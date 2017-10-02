@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include "../Header/GraphicEngine.h"
 
 using namespace std;
 const double MS_PER_UPDATE = 0.0333;
@@ -22,13 +23,10 @@ void update()
 
 }
 
-void render()
-{
-
-}
-
 int main()
 {	
+
+	GraphicEngine graphic = GraphicEngine(50,50);
 
 	double previous = getCurrentTime();
 	bool keepRunning = true;
@@ -46,7 +44,7 @@ int main()
 			update();
 			lag -= MS_PER_UPDATE;
 		}
-		render();
+		graphic.display();
 	}
 
     return (EXIT_SUCCESS);
