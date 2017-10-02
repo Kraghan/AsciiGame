@@ -1,8 +1,9 @@
 #include "../Header/GraphicEngine.h"
 
 GraphicEngine::GraphicEngine(int width, int height)
+	: width(width), height(height)
 {
-	//this->mapGame = new char[width][height];
+	//initialise les width/height/mapGame variable
 	this->mapGame = new char*[height];
 	for (int i = 0; i < height; ++i)
 	{
@@ -12,7 +13,7 @@ GraphicEngine::GraphicEngine(int width, int height)
 			mapGame[i][j] = 'a';
 		}
 	}
-		
+
 }
 
 GraphicEngine::~GraphicEngine()
@@ -20,7 +21,19 @@ GraphicEngine::~GraphicEngine()
 
 }
 
+///
+///	affiche le tableau sur la console
+///
 void GraphicEngine::display()
 {
-
+	if (cout)									//revient à la ligne si le cout contient something
+		cout << endl;
+	for (int i = 0; i < this->height; ++i)		//parcourt les Y...
+	{
+		for (int j = 0; j < this->width; ++j)	//parcourt les X..
+		{
+			cout << mapGame[i][j];				//affiche le caractère [y][x]
+		}
+		cout << endl;							//fin de ligne
+	}
 }
