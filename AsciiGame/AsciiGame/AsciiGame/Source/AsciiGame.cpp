@@ -4,13 +4,16 @@
 #include <stdio.h>
 #include <iostream>
 #include "../Header/GraphicEngine.h"
+#include "../Header/Timer.h"
 
 using namespace std;
-const double MS_PER_UPDATE = 0.0333;
+
+const double SECONDS_PER_UPDATE = 1.0 / 60.0;
+Timer timer;
 
 double getCurrentTime()
 {
-	return 0.0;
+	return timer.getElapsedSeconds();
 }
 
 bool processInput()
@@ -25,9 +28,9 @@ void update()
 
 int main()
 {	
-
-	GraphicEngine graphic = GraphicEngine(50,50);
-
+	GraphicEngine graphic = GraphicEngine(50,10);
+	timer = Timer();
+	timer.start();
 	double previous = getCurrentTime();
 	bool keepRunning = true;
 	double lag = 0.0;
@@ -37,15 +40,18 @@ int main()
 		double elapsed = current - previous;
 		previous = current;
 		lag += elapsed;
+		//keepRunning = false;
 		keepRunning = processInput();
 
-		while (lag >= MS_PER_UPDATE)
+		while (lag >= SECONDS_PER_UPDATE)
 		{
 			update();
-			lag -= MS_PER_UPDATE;
+			lag -= SECONDS_PER_UPDATE;
 		}
 		graphic.display();
 	}
+
+	system("pause");
 
     return (EXIT_SUCCESS);
 }

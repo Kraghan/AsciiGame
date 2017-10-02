@@ -4,13 +4,14 @@
 
 class Timer
 {
-public:
+private : 
 	LARGE_INTEGER lastUpdateTime;
 	LONGLONG freq;
 
+public:
 	explicit Timer(void);
 	void start(void);
 	float getElapsedSeconds(bool restart = false);
-	unsigned long getElapsedMs(bool restart = false);
+	double getElapsedMs(bool restart = false);
 
 };
