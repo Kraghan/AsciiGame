@@ -4,12 +4,16 @@
 #include <stdio.h>
 #include <iostream>
 #include "../Header/GraphicEngine.h"
+#include "../Header/InputController.h"
 #include "../Header/Timer.h"
 
 using namespace std;
 
 const double SECONDS_PER_UPDATE = 1.0 / 60.0;
 Timer timer;
+InputController input;
+GraphicEngine graphic;
+//GraphicEngine graphic;
 
 double getCurrentTime()
 {
@@ -18,17 +22,19 @@ double getCurrentTime()
 
 bool processInput()
 {
-	return true;
+	return (input.inputController());
 }
 
 void update()
 {
-
+	graphic.changeRandomPixel();
 }
 
 int main()
 {	
-	GraphicEngine graphic = GraphicEngine(50,10);
+	graphic = GraphicEngine(50,10);
+	input = InputController();
+
 	timer = Timer();
 	timer.start();
 	double previous = getCurrentTime();
@@ -47,6 +53,7 @@ int main()
 		{
 			update();
 			lag -= SECONDS_PER_UPDATE;
+
 		}
 		graphic.display();
 	}
