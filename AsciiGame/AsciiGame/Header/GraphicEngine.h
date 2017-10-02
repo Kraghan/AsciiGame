@@ -1,17 +1,19 @@
 #pragma once			//que pour VS
 
 #include <iostream>
-
+#include "../stdafx.h"
 
 class GraphicEngine
 {
 	//variable
 public:
+	char **mapGame;							//map 2D du jeu (contenant des char)
 
 	//fonction
 public:
-	GraphicEngine();
+	GraphicEngine(int width, int height);	//alloc la map
 	~GraphicEngine();
-	void display();
+
+	void display();							//affiche la map sur la console
 };
 
