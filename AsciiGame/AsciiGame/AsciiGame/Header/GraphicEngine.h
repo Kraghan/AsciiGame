@@ -1,13 +1,16 @@
 #pragma once			//que pour VS
 
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 class GraphicEngine
 {
 	//variable
 public:
-	char **mapGame;							//map 2D du jeu (contenant des char)
+	char **mapGameCurrent;							//map 2D du jeu (contenant des char)
+	char **mapGameLoading;							//map 2D du jeu (contenant des char)
+
 	int width;
 	int height;
 
@@ -17,5 +20,6 @@ public:
 	~GraphicEngine();
 
 	void display();							//affiche la map sur la console
+	void Swap();
 };
 
