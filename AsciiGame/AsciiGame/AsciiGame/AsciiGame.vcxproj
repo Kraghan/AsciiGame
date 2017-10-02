@@ -116,12 +116,14 @@
     <ClCompile Include="Source\GameState.cpp" />
     <ClCompile Include="Source\GameStateMachine.cpp" />
     <ClCompile Include="Source\GraphicEngine.cpp" />
+    <ClCompile Include="Source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h" />
     <ClInclude Include="Header\GameState.h" />
     <ClInclude Include="Header\GameStateMachine.h" />
     <ClInclude Include="Header\GraphicEngine.h" />
+    <ClInclude Include="Header\Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
