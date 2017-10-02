@@ -2,17 +2,20 @@
 
 #include <iostream>
 #include <sstream>
+#include <windows.h>
+
 using namespace std;
 
 class GraphicEngine
 {
 	//variable
-public:
-	char **mapGameCurrent;							//map 2D du jeu (contenant des char)
-	char **mapGameLoading;							//map 2D du jeu (contenant des char)
+private:
+	char **mapGame;							//map 2D du jeu (contenant des char)
 
 	int width;
 	int height;
+	bool isChanged = true;
+
 
 	//fonction
 public:
@@ -20,6 +23,7 @@ public:
 	~GraphicEngine();
 
 	void display();							//affiche la map sur la console
-	void Swap();
+	void gotoxy(int x, int y);				//set la position du curseur
+	void changePixel(int x, int y, char c);	//change un pixel
 };
 

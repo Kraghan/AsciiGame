@@ -4,26 +4,15 @@ GraphicEngine::GraphicEngine(int width, int height)
 	: width(width), height(height)
 {
 	//initialise les width/height/mapGameCurrent/mapGameLoading variable
-	this->mapGameLoading = new char*[height];
+	this->mapGame = new char*[height];
 	for (int i = 0; i < height; ++i)
 	{
-		mapGameLoading[i] = new char[width];
+		mapGame[i] = new char[width];
 		for (int j = 0; j < width; ++j)
 		{
-			mapGameLoading[i][j] = 'a';
+			mapGame[i][j] = 'a';
 		}
 	}
-
-	this->mapGameCurrent = new char*[height];
-	for (int i = 0; i < height; ++i)
-	{
-		mapGameCurrent[i] = new char[width];
-		for (int j = 0; j < width; ++j)
-		{
-			mapGameCurrent[i][j] = 'a';
-		}
-	}
-
 }
 
 GraphicEngine::~GraphicEngine()
@@ -31,12 +20,19 @@ GraphicEngine::~GraphicEngine()
 
 }
 
-void GraphicEngine::Swap()
+///
+/// set la position du curseur
+///
+void GraphicEngine::gotoxy(int x, int y)
 {
-	
-	char **tmp = mapGameCurrent;
-	mapGameCurrent = mapGameLoading;
-	mapGameLoading = tmp;
+	COORD p = { x, y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), p);
+}
+
+void GraphicEngine::changePixel(int x, int y, char c)
+{
+	this->mapGame[y][x] = c;
+	isChanged = true;
 }
 
 
@@ -45,17 +41,22 @@ void GraphicEngine::Swap()
 ///
 void GraphicEngine::display()
 {
+	if (!isChanged)
+		return;
+	gotoxy(0, 0);
 	//cout.flush()
-	system("cls");								//clear console
+	//system("cls");								//clear console
 	string map = "";
 	for (int i = 0; i < this->height; ++i)		//parcourt les Y...
 	{
 		for (int j = 0; j < this->width; ++j)	//parcourt les X..
 		{
-			map += mapGameLoading[i][j];				//affiche le caractère [y][x]
+			map += mapGame[i][j];				//affiche le caractère [y][x]
 		}
 		map += '\n';							//fin de ligne
 	}
 	cout << map << endl;
+	gotoxy(0, this->height);
+	this->isChanged = false;
 	//this->Swap();
 }
