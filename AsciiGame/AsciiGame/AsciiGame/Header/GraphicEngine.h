@@ -2,8 +2,20 @@
 
 #include <iostream>
 #include <sstream>
+#include <stack>
+
+//the following line is necessary for the
+//  GetConsoleWindow() function to work!
+//it basically says that you are running this
+//  program on Windows 2000 or higher
+//to call BEFORE window.h
+#define _WIN32_WINNT 0x0500
+
 #include <windows.h>
 #include <ctime>
+#include "Event.h"
+#include "InputController.h"
+
 
 using namespace std;
 
@@ -13,9 +25,14 @@ class GraphicEngine
 private:
 	char **mapGame;							//map 2D du jeu (contenant des char)
 
-	int width;
-	int height;
-	bool isChanged = true;
+	int width;								//size en x de la map
+	int height;								//size en x de la map
+	bool isChanged = true;					//l'affichage est-il changé ?
+	int maxWidth = 1300;					//size de la window en x
+	int maxHeight = 800;					//size de la window en y
+
+	InputController input;					//input controller
+	stack<Event>	event;					//stack d'event
 
 
 	//fonction
@@ -25,12 +42,18 @@ public:
 	~GraphicEngine();
 
 	void display();							//affiche la map sur la console
-	void gotoxy(int x, int y);				//set la position du curseur
-	void changePixel(int x, int y, char c);	//change un pixel
-	void ShowConsoleCursor(bool showFlag);	//cache le curseur de la console
-	int getRand(int min, int max);			//retourne un nombre random entre min et max
-
-	//debug
+	void clear();							//clear la console
 	void changeRandomPixel();				//change un pixel random dans la map
+	void changePixel(int x, int y, char c);	//change un pixel
+	void changePixel(int x, int y, char c, int color);	//change un pixel
+	void update();
+
+private:
+	void gotoxy(int x, int y);				//set la position du curseur
+	
+	void ShowConsoleCursor(bool showFlag);	//cache le curseur de la console
+	void SetWindowConsoleSize();				//resize la console window
+	int getRand(int min, int max);			//retourne un nombre random entre min et max
+	void fillEverythingWith(char c);		//remplie le tableau avec un seul caractère
 };
 

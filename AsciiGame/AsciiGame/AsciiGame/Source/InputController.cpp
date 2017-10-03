@@ -12,11 +12,20 @@ InputController::~InputController()
 
 }
 
-bool InputController::inputController()
+///
+/// input de la console
+/// keycode:
+/// https://www.amibroker.com/guide/afl/getasynckeystate.html
+///
+void InputController::update()
 {
 	if (GetAsyncKeyState(VK_ESCAPE))
 	{
-		return (false);
+		exit(EXIT_SUCCESS);
 	}
-	return (true);
+	if (GetAsyncKeyState(65))
+	{
+		//A
+		exit(EXIT_SUCCESS);
+	}
 }

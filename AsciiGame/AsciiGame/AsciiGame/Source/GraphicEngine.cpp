@@ -13,14 +13,61 @@ GraphicEngine::GraphicEngine(int width, int height)
 			mapGame[i][j] = 'a';
 		}
 	}
-	ShowConsoleCursor(false);
+	input = InputController();
+	SetWindowConsoleSize();				//change la size de la window console
+	ShowConsoleCursor(false);			//cache le pointeur APRES
+	
 }
 
+///
+///	destructor
+///
 GraphicEngine::~GraphicEngine()
 {
 
 }
 
+///
+/// remplie le tableau avec un seul caractère
+///
+void GraphicEngine::fillEverythingWith(char c)
+{
+	for (int i = 0; i < height; ++i)
+	{
+		mapGame[i] = new char[width];
+		for (int j = 0; j < width; ++j)
+		{
+			mapGame[i][j] = c;
+		}
+	}
+	isChanged = true;
+}
+
+///
+///	Set la console window à une taille définie
+///
+void GraphicEngine::SetWindowConsoleSize()
+{
+	HWND console = GetConsoleWindow();						//get la console window
+
+	////////////////////////////////////////////////////change texte
+	SetConsoleTitle("AsciiGame");
+	Sleep(10);												//Let the window to update the Title!
+	console = FindWindow(NULL, "AsciiGame");				//change le nom
+
+	////////////////////////////////////////////////////disable maximise
+	HMENU hMenu = GetSystemMenu((HWND)console, FALSE);		//disable Maximize
+	::DeleteMenu(hMenu, 4, MF_BYPOSITION);
+
+	////////////////////////////////////////////////////change la size de la window
+	RECT r;
+	GetWindowRect(console, &r); //stores the console's current dimensions
+	MoveWindow(console, r.left, r.top, maxWidth, maxHeight, TRUE);
+}
+
+///
+/// renvoi un nombre entier aléatoire entre min et max (inclu)
+///
 int GraphicEngine::getRand(int min, int max)
 {
 	static bool init = false;
@@ -46,20 +93,21 @@ void GraphicEngine::ShowConsoleCursor(bool showFlag)
 }
 
 ///
-///change randomly un pixel de la map
-///
-void GraphicEngine::changeRandomPixel()
-{
-	changePixel(getRand(0, width), getRand(0, height), 'b');
-}
-
-///
 /// set la position du curseur
 ///
 void GraphicEngine::gotoxy(int x, int y)
 {
 	COORD p = { x, y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), p);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////// fonction public /////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+void GraphicEngine::update()
+{
+	input.update();
 }
 
 ///
@@ -71,7 +119,27 @@ void GraphicEngine::changePixel(int x, int y, char c)
 	this->mapGame[y][x] = c;
 	isChanged = true;
 }
+void GraphicEngine::changePixel(int x, int y, char c, int color)
+{
+	HANDLE Console = GetStdHandle(STD_OUTPUT_HANDLE);				//get la console window
+	SetConsoleTextAttribute(Console, color);
 
+	this->mapGame[y][x] = c;
+	isChanged = true;
+}
+
+///
+///change randomly un pixel de la map
+///
+void GraphicEngine::changeRandomPixel()
+{
+	changePixel(getRand(0, width), getRand(0, height), 'b');
+}
+
+void GraphicEngine::clear()
+{
+	fillEverythingWith(' ');
+}
 
 ///
 ///	affiche le tableau sur la console

@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClCompile Include="Source\AsciiGame.cpp" />
     <ClCompile Include="Source\Block.cpp" />
+    <ClCompile Include="Source\Event.cpp" />
     <ClCompile Include="Source\GameState.cpp" />
     <ClCompile Include="Source\GameStateMachine.cpp" />
     <ClCompile Include="Source\GraphicEngine.cpp" />
@@ -121,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h" />
+    <ClInclude Include="Header\Event.h" />
     <ClInclude Include="Header\GameState.h" />
     <ClInclude Include="Header\GameStateMachine.h" />
     <ClInclude Include="Header\GraphicEngine.h" />

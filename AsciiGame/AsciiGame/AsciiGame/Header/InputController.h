@@ -9,6 +9,6 @@ public:
 	InputController();
 	~InputController();
 
-	bool inputController();
+	void update();
 };
 
