@@ -6,13 +6,14 @@
 #include "../Header/GraphicEngine.h"
 #include "../Header/InputController.h"
 #include "../Header/Timer.h"
+#include "../Header/GameStateMachine.h"
 
 using namespace std;
 
-const double SECONDS_PER_UPDATE = 1.0 / 60.0;
 Timer timer;
 
 GraphicEngine graphic;
+GameStateMachine stateMachine;
 
 // Return the time elapsed since the timer start
 double getCurrentTime()
@@ -23,21 +24,26 @@ double getCurrentTime()
 // Function used to processed all the input
 bool processInput()
 {
-	return (true);
+	return stateMachine.getActiveState()->processInput();
 }
 
 // Function used to update the game logic
 void update()
 {
-	graphic.changeRandomPixel();
 	graphic.update();
+	stateMachine.getActiveState()->update();
 }
 
 // Main function
 int main()
 {	
 	// Initialization
-	graphic = GraphicEngine(119,29);
+	graphic = GraphicEngine(119, 29);
+	stateMachine = GameStateMachine(&graphic);
+	stateMachine.registerGameState("menu", (GameState*) new GameStateMenu());
+	stateMachine.registerGameState("game", (GameState*) new GameStateGame());
+	stateMachine.registerGameState("pause", (GameState*) new GameStatePause());
+	stateMachine.activeState("game");
 	//input = InputController();
 	timer = Timer();
 	timer.start();
@@ -57,10 +63,10 @@ int main()
 		keepRunning = processInput();
 
 		// Lag compensation + FPS limitation
-		while (lag >= SECONDS_PER_UPDATE)
+		while (lag >= Timer::SECONDS_PER_UPDATE)
 		{
 			update();
-			lag -= SECONDS_PER_UPDATE;
+			lag -= Timer::SECONDS_PER_UPDATE;
 
 		}
 		graphic.display();

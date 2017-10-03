@@ -9,6 +9,7 @@ private :
 	LONGLONG freq;
 
 public:
+	static const double SECONDS_PER_UPDATE;
 	explicit Timer(void);
 	void start(void);
 	float getElapsedSeconds(bool restart = false);

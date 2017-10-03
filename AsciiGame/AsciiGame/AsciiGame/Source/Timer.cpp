@@ -1,4 +1,5 @@
 #include "../Header/Timer.h"
+const double Timer::SECONDS_PER_UPDATE = 1.0 / 60.0;
 
 /*explicit*/ Timer::Timer(void)
 {

@@ -304,3 +304,6 @@ __pycache__/
 
 # OpenCover UI analysis results
 OpenCover/
+
+AsciiGame/AsciiGame/AsciiGame/AsciiGame.vcxproj.filters
+AsciiGame/AsciiGame/AsciiGame/AsciiGame.vcxproj
