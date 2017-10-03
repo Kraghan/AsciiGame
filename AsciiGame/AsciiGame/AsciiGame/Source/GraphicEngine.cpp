@@ -29,7 +29,8 @@ int GraphicEngine::getRand(int min, int max)
 		srand(time(NULL));
 		init = true;
 	}
-
+	if (!((max - min) + min))
+		return (0);
 	return rand() % (max - min) + min;
 }
 

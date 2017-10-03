@@ -36,7 +36,7 @@ void update()
 int main()
 {	
 	// Initialization
-	GraphicEngine graphic = GraphicEngine(100,20);
+	graphic = GraphicEngine(119,29);
 	input = InputController();
 	timer = Timer();
 	timer.start();
