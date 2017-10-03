@@ -13,42 +13,49 @@ const double SECONDS_PER_UPDATE = 1.0 / 60.0;
 Timer timer;
 InputController input;
 GraphicEngine graphic;
-//GraphicEngine graphic;
 
+// Return the time elapsed since the timer start
 double getCurrentTime()
 {
 	return timer.getElapsedSeconds();
 }
 
+// Function used to processed all the input
 bool processInput()
 {
 	return (input.inputController());
 }
 
+// Function used to update the game logic
 void update()
 {
 	graphic.changeRandomPixel();
 }
 
+// Main function
 int main()
 {	
-	graphic = GraphicEngine(50,10);
+	// Initialization
+	GraphicEngine graphic = GraphicEngine(100,20);
 	input = InputController();
-
 	timer = Timer();
 	timer.start();
 	double previous = getCurrentTime();
 	bool keepRunning = true;
 	double lag = 0.0;
+
+	// Start gameloop
 	while (keepRunning)
 	{
+		// Time elapsed calculation since the last loop
 		double current = getCurrentTime();
 		double elapsed = current - previous;
 		previous = current;
 		lag += elapsed;
-		//keepRunning = false;
+
 		keepRunning = processInput();
 
+		// Lag compensation + FPS limitation
 		while (lag >= SECONDS_PER_UPDATE)
 		{
 			update();
@@ -57,6 +64,7 @@ int main()
 		}
 		graphic.display();
 	}
+	// End gameloop
 
 	system("pause");
 
