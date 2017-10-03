@@ -13,8 +13,8 @@ GraphicEngine::GraphicEngine(int width, int height)
 			mapGame[i][j] = 'a';
 		}
 	}
-	event = stack<Event>();
-	input = InputController(&event);
+
+	input = InputController();
 	SetWindowConsoleSize();				//change la size de la window console
 	ShowConsoleCursor(false);			//cache le pointeur APRES
 	
@@ -61,9 +61,32 @@ void GraphicEngine::SetWindowConsoleSize()
 	::DeleteMenu(hMenu, 4, MF_BYPOSITION);
 
 	////////////////////////////////////////////////////change la size de la window
+
+	////////////////////////////////////////////////////Remove scrollbar
 	RECT r;
 	GetWindowRect(console, &r); //stores the console's current dimensions
 	MoveWindow(console, r.left, r.top, maxWidth, maxHeight, TRUE);
+	HANDLE hOut;
+	CONSOLE_SCREEN_BUFFER_INFO SBInfo;
+	COORD NewSBSize;
+	int Status;
+
+	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	GetConsoleScreenBufferInfo(hOut, &SBInfo);
+	NewSBSize.X = SBInfo.dwSize.X;
+	NewSBSize.Y = SBInfo.dwSize.Y - 8955;
+
+	Status = SetConsoleScreenBufferSize(hOut, NewSBSize);
+	if (Status == 0)
+	{
+		Status = GetLastError();
+		cout << "SetConsoleScreenBufferSize() failed! Reason : " << Status << endl;
+		exit(Status);
+	}
+
+	GetConsoleScreenBufferInfo(hOut, &SBInfo);
+	////////////////////////////////////////////////////End remove scrollbar
 }
 
 ///
@@ -108,7 +131,7 @@ void GraphicEngine::gotoxy(int x, int y)
 
 void GraphicEngine::update()
 {
-	input.update();
+	eventStack = input.pollEvent();
 }
 
 ///
@@ -163,4 +186,17 @@ void GraphicEngine::display()
 	gotoxy(0, this->height);					//met le curseur à la fin
 	this->isChanged = false;					//reset le changement
 	//this->Swap();
+}
+
+Event* GraphicEngine::popEvent()
+{
+	Event* e = nullptr;
+	if (!eventStack.empty())
+	{
+		e = eventStack.top();
+		eventStack.pop();
+
+	}
+		
+	return e;
 }

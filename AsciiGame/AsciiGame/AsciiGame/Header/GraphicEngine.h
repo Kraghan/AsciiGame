@@ -32,8 +32,7 @@ private:
 	int maxHeight = 800;					//size de la window en y
 
 	InputController input;					//input controller
-	stack<Event>	event;					//stack d'event
-
+	stack<Event*> eventStack;
 
 	//fonction
 public:
@@ -47,6 +46,7 @@ public:
 	void changePixel(int x, int y, char c);	//change un pixel
 	void changePixel(int x, int y, char c, int color);	//change un pixel
 	void update();
+	Event* popEvent();						// Retourne le sommet de la pile d'événement. Retourne nullptr si vide
 
 private:
 	void gotoxy(int x, int y);				//set la position du curseur

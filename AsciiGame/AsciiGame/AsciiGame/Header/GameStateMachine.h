@@ -1,9 +1,6 @@
 #pragma once
 #include "GraphicEngine.h"
 #include "GameState.h"
-#include "GameStateGame.h"
-#include "GameStateMenu.h"
-#include "GameStatePause.h"
 #include <string>
 #include <map>
 

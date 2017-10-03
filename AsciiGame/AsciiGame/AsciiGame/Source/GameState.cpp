@@ -9,3 +9,8 @@ GameState::~GameState()
 {
 	// Nothing to do
 }
+
+void GameState::linkStateMachine(GameStateMachine* machine)
+{
+	stateMachine = machine;
+}

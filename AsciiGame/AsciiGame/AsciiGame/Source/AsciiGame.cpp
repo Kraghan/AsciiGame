@@ -8,6 +8,10 @@
 #include "../Header/Timer.h"
 #include "../Header/GameStateMachine.h"
 
+#include "../Header/GameStateGame.h"
+#include "../Header/GameStateMenu.h"
+#include "../Header/GameStatePause.h"
+
 using namespace std;
 
 Timer timer;
@@ -38,7 +42,7 @@ void update()
 int main()
 {	
 	// Initialization
-	graphic = GraphicEngine(119, 29);
+	graphic = GraphicEngine(157, 44);
 	stateMachine = GameStateMachine(&graphic);
 	stateMachine.registerGameState("menu", (GameState*) new GameStateMenu());
 	stateMachine.registerGameState("game", (GameState*) new GameStateGame());

@@ -24,6 +24,7 @@ bool GameStateMachine::registerGameState(std::string name, GameState* state)
 	if (stateMap.count(name) == 1)
 		return false;
 	state->init(graphicEngine);
+	state->linkStateMachine(this);
 	stateMap.insert(std::pair<std::string,GameState*>(name, state));
 	return true;
 }

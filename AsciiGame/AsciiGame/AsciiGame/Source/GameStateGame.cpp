@@ -20,6 +20,18 @@
 // Process the input
 /*virtual*/ bool GameStateGame::processInput(void)
 {
+	Event* e = engine->popEvent();
+	while (e != nullptr)
+	{
+		// IL Y A UN PROBLEME, ON RECUPERE PAS LES EVENEMENTS PRESSED
+		if (e->input == Event::INPUT::KB_ESCAPE 
+			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING)
+		{
+			cout << "Pause" << endl;
+			stateMachine->activeState("pause");
+		}
+		e = engine->popEvent();
+	}
 	return true;
 }
 

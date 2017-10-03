@@ -3,8 +3,7 @@
 ///constructeur
 /// https://www.amibroker.com/guide/afl/getasynckeystate.html
 ///
-InputController::InputController(std::stack<Event> * event)
-	: event(event)
+InputController::InputController()
 {
 	stateKey[Event::INPUT::KB_ESCAPE] = 0;					//echape
 	stateKey[Event::INPUT::KB_UP] = 0;						//UP
@@ -18,16 +17,6 @@ InputController::InputController(std::stack<Event> * event)
 	stateKey[Event::INPUT::KB_SPACE] = 0;					//SPACE
 }
 
-///constructeur
-InputController::InputController()
-	: event(NULL)
-{
-
-}
-
-
-
-
 InputController::~InputController()
 {
 
@@ -37,8 +26,9 @@ InputController::~InputController()
 /// input de la console
 /// keycode:
 ///
-void InputController::update()
+stack<Event*> InputController::pollEvent()
 {
+	stack<Event*> s = stack<Event*>();
 	for (auto const& x : stateKey)
 	{
 		if (GetKeyState(x.first) & 0x8000 && stateKey[x.first] == 0)
@@ -47,20 +37,20 @@ void InputController::update()
 			//cout << x.first << " pressed" << endl;
 
 			stateKey[x.first] = 1;
-			event->push(Event((Event::INPUT)x.first, Event::TYPE_INPUT_EVENT::TI_PRESSED));
+			s.push(new Event((Event::INPUT)x.first, Event::TYPE_INPUT_EVENT::TI_PRESSED));
 		}
 		if (GetKeyState(x.first) & 0x8000 && stateKey[x.first] == 1)
 		{
 			//holding
 			//cout << x.first << " holdinng" << endl;
-			event->push(Event((Event::INPUT)x.first, Event::TYPE_INPUT_EVENT::TI_HOLDING));
+			s.push(new Event((Event::INPUT)x.first, Event::TYPE_INPUT_EVENT::TI_HOLDING));
 		}
 		else if (!(GetKeyState(x.first) & 0x8000) && stateKey[x.first] == 1)
 		{
 			//s'il étant en holding avant...
 			//cout << x.first << " released" << endl;
 			stateKey[x.first] = 0;
-			event->push(Event((Event::INPUT)x.first, Event::TYPE_INPUT_EVENT::TI_RELEASED));
+			s.push(new Event((Event::INPUT)x.first, Event::TYPE_INPUT_EVENT::TI_RELEASED));
 		}
 
 		/*std::cout << x.first  // string (key)
@@ -68,4 +58,6 @@ void InputController::update()
 			<< x.second // string's value 
 			<< std::endl;*/
 	}
+
+	return s;
 }

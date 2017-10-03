@@ -1,11 +1,13 @@
 #pragma once
 #include "GraphicEngine.h"
+// Forward declaration, used to fix cyclic import issues
+class GameStateMachine;
+
 class GameState
 {
-private :
-
 protected : 
 	GraphicEngine * engine;
+	GameStateMachine* stateMachine;
 
 public :
 	explicit GameState(void);
@@ -25,4 +27,10 @@ public :
 
 	// Called when the state is set to inactive
 	void virtual onExit(void) = 0;
+
+	// Setter of the stateMachine
+	void linkStateMachine(GameStateMachine* machine);
 };
+
+// Forward declaration, used to fix cyclic import issues
+#include "GameStateMachine.h"
