@@ -13,7 +13,8 @@ GraphicEngine::GraphicEngine(int width, int height)
 			mapGame[i][j] = 'a';
 		}
 	}
-	input = InputController();
+	event = stack<Event>();
+	input = InputController(&event);
 	SetWindowConsoleSize();				//change la size de la window console
 	ShowConsoleCursor(false);			//cache le pointeur APRES
 	

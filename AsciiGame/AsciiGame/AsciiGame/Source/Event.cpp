@@ -1,6 +1,7 @@
 #include "..\Header\Event.h"
 
-Event::Event()
+Event::Event(INPUT input, TYPE_INPUT_EVENT typeInput)
+	: input(input), typeInput(typeInput)
 {
 
 }

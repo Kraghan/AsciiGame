@@ -16,8 +16,11 @@ public:
 		TI_RELEASED = 2,
 	};
 
+	INPUT input;
+	TYPE_INPUT_EVENT typeInput;
+
 public:
-	Event();
+	Event(INPUT input, TYPE_INPUT_EVENT typeInput);
 	~Event();
 };
 
