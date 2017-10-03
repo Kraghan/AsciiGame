@@ -1,10 +1,20 @@
 #include "..\Header\InputController.h"
 
 ///constructeur
-InputController::InputController()
+InputController::InputController(std::stack<Event> * event)
+	: event(event)
 {
 
 }
+
+///constructeur
+InputController::InputController()
+	: event(NULL)
+{
+
+}
+
+
 
 
 InputController::~InputController()
@@ -25,7 +35,7 @@ void InputController::update()
 	}
 	if (GetAsyncKeyState(65))
 	{
-		//A
-		exit(EXIT_SUCCESS);
+
+		event->push(Event(Event::INPUT::KB_A, Event::TYPE_INPUT_EVENT::TI_PRESSED));
 	}
 }
