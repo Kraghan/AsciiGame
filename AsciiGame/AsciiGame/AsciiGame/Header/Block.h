@@ -1,20 +1,30 @@
 #pragma once			//que pour VS
 
 #include <iostream>
-
+#include "Vector2.h"
 
 class Block
 {
-private :
-	unsigned int x;
-	unsigned int y;
-	char sprite;
 
+friend class GameMap;
+private :
+	Vector2 position;
+	char sprite;
+	bool isSolid;
+
+	void setSprite(char representation);
+	void setPosition(Vector2 pos);
+	void setIsSolid(bool solid);
 
 public:
-	Block();
-	~Block();
+	explicit Block(void);
+	explicit Block(Vector2 pos, char representation, bool isSolid = true);
+	explicit Block(unsigned int x, unsigned int y, char representation, bool isSolid = true);
+	virtual ~Block();
 
+	char getSprite();
+	Vector2 getPosition();
+	bool getIsSolid();
 
 };
 

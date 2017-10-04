@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "GameMap.h"
+#include "BorderInitializer.h"
 
 class GameStateGame : GameState
 {

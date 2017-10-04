@@ -9,12 +9,24 @@
 /*virtual*/ void GameStateGame::init(GraphicEngine* e)
 {
 	engine = e;
+	gameMap = GameMap(150,25);
+	BorderInitializer borderInit = BorderInitializer();
+	borderInit.initialize(&gameMap);
 }
 
 // Update the game logic
 /*virtual*/ void GameStateGame::update()
 {
-	engine->changeRandomPixel();
+	gameMap.update();
+	std::vector<std::vector<Block>> blocks = gameMap.getBlocks();
+
+	for (unsigned int i = 0; i < blocks.size(); ++i)
+	{
+		for (unsigned int j = 0; j < blocks[i].size(); ++j)
+		{
+			engine->changePixel(i, j, blocks[i][j].getSprite());
+		}
+	}
 }
 
 // Process the input
