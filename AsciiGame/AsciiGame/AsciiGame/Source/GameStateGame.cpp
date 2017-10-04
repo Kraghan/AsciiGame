@@ -28,6 +28,11 @@
 		{
 			stateMachine->activeState("pause");
 		}
+		if (e->input == Event::INPUT::KB_UP
+			&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED) || (e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
+		{
+			exit(0);
+		}
 		e = engine->popEvent();
 	}
 	return true;
