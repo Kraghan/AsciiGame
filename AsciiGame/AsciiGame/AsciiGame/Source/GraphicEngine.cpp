@@ -1,4 +1,4 @@
-#include "../Header/GraphicEngine.h"
+ï»¿#include "../Header/GraphicEngine.h"
 
 GraphicEngine::GraphicEngine(int width, int height)
 	: width(width), height(height)
@@ -10,12 +10,14 @@ GraphicEngine::GraphicEngine(int width, int height)
 		mapGame[i] = new char[width];
 		for (int j = 0; j < width; ++j)
 		{
-			mapGame[i][j] = 'a';
+			mapGame[i][j] = '*';
 		}
 	}
 
 	input = InputController();
+	//SetSizePolice();
 	SetWindowConsoleSize();				//change la size de la window console
+	
 	ShowConsoleCursor(false);			//cache le pointeur APRES
 	
 }
@@ -29,7 +31,7 @@ GraphicEngine::~GraphicEngine()
 }
 
 ///
-/// remplie le tableau avec un seul caractère
+/// remplie le tableau avec un seul caractÃ¨re
 ///
 void GraphicEngine::fillEverythingWith(char c)
 {
@@ -45,7 +47,7 @@ void GraphicEngine::fillEverythingWith(char c)
 }
 
 ///
-///	Set la console window à une taille définie
+///	Set la console window Ã  une taille dÃ©finie
 ///
 void GraphicEngine::SetWindowConsoleSize()
 {
@@ -69,7 +71,24 @@ void GraphicEngine::SetWindowConsoleSize()
 }
 
 ///
-/// renvoi un nombre entier aléatoire entre min et max (inclu)
+/// Change la taiill edu texte
+///
+
+void GraphicEngine::SetSizePolice()
+{
+	CONSOLE_FONT_INFOEX cfi;
+	cfi.cbSize = sizeof(cfi);
+	cfi.nFont = 0;
+	cfi.dwFontSize.X = 0;                   // Width of each character in the font
+	cfi.dwFontSize.Y = 15;                  // Height
+	cfi.FontFamily = FF_DONTCARE;
+	cfi.FontWeight = FW_NORMAL;
+	//std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
+	SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+}
+
+///
+/// renvoi un nombre entier alÃ©atoire entre min et max (inclu)
 ///
 int GraphicEngine::getRand(int min, int max)
 {
@@ -121,7 +140,7 @@ void GraphicEngine::update()
 
 ///
 /// change un "pixel" du tableau
-/// et dis à la classe qu'on a changé le tableau (il va changé dans display)
+/// et dis Ã  la classe qu'on a changÃ© le tableau (il va changÃ© dans display)
 ///
 void GraphicEngine::changePixel(int x, int y, char c)
 {
@@ -142,7 +161,13 @@ void GraphicEngine::changePixel(int x, int y, char c, int color)
 ///
 void GraphicEngine::changeRandomPixel()
 {
-	changePixel(getRand(0, width), getRand(0, height), 'b');
+	int x = getRand(2, width - 2);
+	int y = getRand(2, height - 2);
+	changePixel(x, y, ' ');
+	changePixel(x + 1, y, ' ');
+	changePixel(x - 1, y, ' ');
+	changePixel(x, y - 1, ' ');
+	changePixel(x, y + 1, ' ');
 }
 
 void GraphicEngine::clear()
@@ -155,20 +180,20 @@ void GraphicEngine::clear()
 ///
 void GraphicEngine::display()
 {
-	if (!isChanged)								//si on a changé, on affiche
+	if (!isChanged)								//si on a changÃ©, on affiche
 		return;
-	gotoxy(0, 0);								//on set le pointeur au début
+	gotoxy(0, 0);								//on set le pointeur au dÃ©but
 	string map = "";
 	for (int i = 0; i < this->height; ++i)		//parcourt les Y...
 	{
 		for (int j = 0; j < this->width; ++j)	//parcourt les X..
 		{
-			map += mapGame[i][j];				//affiche le caractère [y][x]
+			map += mapGame[i][j];				//affiche le caractÃ¨re [y][x]
 		}
 		map += '\n';							//fin de ligne
 	}
 	cout << map << endl;						//affiche tout
-	gotoxy(0, this->height);					//met le curseur à la fin
+	gotoxy(0, this->height);					//met le curseur Ã  la fin
 	this->isChanged = false;					//reset le changement
 	//this->Swap();
 }
