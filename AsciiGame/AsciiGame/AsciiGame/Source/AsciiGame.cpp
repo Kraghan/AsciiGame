@@ -14,33 +14,12 @@
 
 using namespace std;
 
-Timer timer;
-
-GraphicEngine graphic;
-GameStateMachine stateMachine;
-
-// Return the time elapsed since the timer start
-double getCurrentTime()
-{
-	return timer.getElapsedSeconds();
-}
-
-// Function used to processed all the input
-bool processInput()
-{
-	return stateMachine.getActiveState()->processInput();
-}
-
-// Function used to update the game logic
-void update()
-{
-	graphic.update();
-	stateMachine.getActiveState()->update();
-}
-
 // Main function
 int main()
 {	
+	Timer timer;
+	GraphicEngine graphic;
+	GameStateMachine stateMachine;
 	// Initialization
 	graphic = GraphicEngine(157, 44);
 	stateMachine = GameStateMachine(&graphic);
@@ -51,7 +30,7 @@ int main()
 	//input = InputController();
 	timer = Timer();
 	timer.start();
-	double previous = getCurrentTime();
+	double previous = timer.getElapsedSeconds();
 	bool keepRunning = true;
 	double lag = 0.0;
 
@@ -59,17 +38,18 @@ int main()
 	while (keepRunning)
 	{
 		// Time elapsed calculation since the last loop
-		double current = getCurrentTime();
+		double current = timer.getElapsedSeconds();
 		double elapsed = current - previous;
 		previous = current;
 		lag += elapsed;
 
-		keepRunning = processInput();
+		keepRunning = stateMachine.getActiveState()->processInput();
 
 		// Lag compensation + FPS limitation
 		while (lag >= Timer::SECONDS_PER_UPDATE)
 		{
-			update();
+			graphic.update();
+			stateMachine.getActiveState()->update();
 			lag -= Timer::SECONDS_PER_UPDATE;
 
 		}
