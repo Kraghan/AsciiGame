@@ -3,12 +3,17 @@
 #include "GameMap.h"
 #include "Player.h"
 #include "Vector2.h"
+#include "Bullet.h"
+
+#include <vector>
 
 class GameStateGame : GameState
 {
 private:
 	GameMap gameMap;
 	Player player;
+	
+	vector<Bullet> bullet;
 
 public:
 	virtual ~GameStateGame(void);

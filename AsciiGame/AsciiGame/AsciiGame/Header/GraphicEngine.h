@@ -46,10 +46,13 @@ public:
 	void changeRandomPixel();				//change un pixel random dans la map
 	void changePixel(int x, int y, char c);	//change un pixel
 	void changePixel(int x, int y, char c, int color);	//change un pixel
-	void displayPlayer(Vector2 pos);	//move le player;
-	void displayPlayer(Vector2 oldPos, Vector2 newPos);	//set la position courante à un couloir, et la suivante à la position du player
 	void update();
 	Event* popEvent();						// Retourne le sommet de la pile d'événement. Retourne nullptr si vide
+
+	void displayPlayer(Vector2 pos);	//move le player;
+	void displayPlayer(Vector2 oldPos, Vector2 newPos);	//set la position courante à un couloir, et la suivante à la position du player
+	void displayBullet(Vector2 oldPos, Vector2 newPos);	//set la position courante à un couloir, et la suivante à la position du player
+
 
 private:
 	void gotoxy(int x, int y);				//set la position du curseur

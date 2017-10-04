@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClCompile Include="Source\AsciiGame.cpp" />
     <ClCompile Include="Source\Block.cpp" />
+    <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\Event.cpp" />
     <ClCompile Include="Source\GameMap.cpp" />
     <ClCompile Include="Source\GameState.cpp" />
@@ -128,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h" />
+    <ClInclude Include="Header\Bullet.h" />
     <ClInclude Include="Header\Event.h" />
     <ClInclude Include="Header\GameMap.h" />
     <ClInclude Include="Header\GameState.h" />
