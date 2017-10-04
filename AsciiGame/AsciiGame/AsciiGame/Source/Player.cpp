@@ -10,3 +10,11 @@ Player::~Player()
 {
 
 }
+
+///
+/// déplace le joueur ?
+///
+void Player::move()
+{
+
+}

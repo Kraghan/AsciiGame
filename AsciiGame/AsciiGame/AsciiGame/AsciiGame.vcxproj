@@ -121,7 +121,9 @@
     <ClCompile Include="Source\GameStateMenu.cpp" />
     <ClCompile Include="Source\GameStatePause.cpp" />
     <ClCompile Include="Source\GraphicEngine.cpp" />
+    <ClCompile Include="Source\IA.cpp" />
     <ClCompile Include="Source\InputController.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -134,7 +136,9 @@
     <ClInclude Include="Header\GameStateMenu.h" />
     <ClInclude Include="Header\GameStatePause.h" />
     <ClInclude Include="Header\GraphicEngine.h" />
+    <ClInclude Include="Header\IA.h" />
     <ClInclude Include="Header\InputController.h" />
+    <ClInclude Include="Header\Player.h" />
     <ClInclude Include="Header\Timer.h" />
     <ClInclude Include="Header\Vector2.h" />
   </ItemGroup>
