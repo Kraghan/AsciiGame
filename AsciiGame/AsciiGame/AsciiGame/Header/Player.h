@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector2.h"
+#include <iostream>
 
 class Player
 {
@@ -35,11 +36,12 @@ public:
 	~Player();
 
 	void tryToMove(MOVE_TYPE moveType);					//déplace le joueur
+	void stopMove();								//stop le joueur
 													//dis "BOUGER a droite"
 	void update(); //selon move, change pos;
 
 private:
-	void changeHorizVerti();
+	void changeHorizVerti(bool stop);
 
 };
 

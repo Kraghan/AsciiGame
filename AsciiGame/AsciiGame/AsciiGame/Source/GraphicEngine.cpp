@@ -132,7 +132,7 @@ void GraphicEngine::gotoxy(int x, int y)
 ///
 void GraphicEngine::displayPlayer(Vector2 pos)
 {
-	changePixel(pos.x, pos.y, 'P');
+	changePixel(pos.x, pos.y, 'P', 5);
 }
 ///
 /// set la position courante à un couloir, et la suivante à la position du player
@@ -140,7 +140,7 @@ void GraphicEngine::displayPlayer(Vector2 pos)
 void GraphicEngine::displayPlayer(Vector2 oldPos, Vector2 newPos)
 {
 	changePixel(oldPos.x, oldPos.y, ' ');
-	changePixel(newPos.x, newPos.y, 'P');
+	changePixel(newPos.x, newPos.y, 'P', 5);
 }
 
 void GraphicEngine::update()

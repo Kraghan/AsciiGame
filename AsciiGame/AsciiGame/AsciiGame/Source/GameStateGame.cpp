@@ -69,27 +69,64 @@
 ////////////////////////////////////// INPUT PLAYER ///////////////////////////////////
 void GameStateGame::inputPlayer(Event *e)
 {
-	//UP OU DOWN, mais pas les 2
-	if (e->input == Event::INPUT::KB_UP
-		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING) )
+	//////////////////////////le joueur lache une touche
+	if ( (e->input == Event::INPUT::KB_UP || e->input == Event::INPUT::KB_DOWN
+			|| e->input == Event::INPUT::KB_RIGHT || e->input == Event::INPUT::KB_LEFT)
+		&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
+	{
+		player.stopMove();
+	}
+
+	//////////////////////////////////////le joueur move
+	//up
+	if (e->input == Event::INPUT::KB_Z
+		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
 	{
 		player.tryToMove(Player::MOVE_TYPE::M_UP);
 	}
-	else if (e->input == Event::INPUT::KB_DOWN
+	
+	//DOWN
+	else if (e->input == Event::INPUT::KB_S
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
 	{
 		player.tryToMove(Player::MOVE_TYPE::M_DOWN);
 	}
-
-	//RIGHT OU LEFT, mais pas les deux
-	if (e->input == Event::INPUT::KB_RIGHT
+	//RIGHT
+	else if (e->input == Event::INPUT::KB_D
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
 	{
 		player.tryToMove(Player::MOVE_TYPE::M_RIGHT);
 	}
-	else if (e->input == Event::INPUT::KB_LEFT
+	//LEFT
+	else if (e->input == Event::INPUT::KB_Q
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
 	{
 		player.tryToMove(Player::MOVE_TYPE::M_LEFT);
+	}
+
+	///////////////////////////////////////////////////SHOOT
+	if (e->input == Event::INPUT::KB_UP
+		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
+	{
+		//player.tryToMove(Player::MOVE_TYPE::M_UP);
+	}
+
+	//DOWN
+	else if (e->input == Event::INPUT::KB_DOWN
+		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
+	{
+		//player.tryToMove(Player::MOVE_TYPE::M_DOWN);
+	}
+	//RIGHT
+	else if (e->input == Event::INPUT::KB_RIGHT
+		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
+	{
+		//player.tryToMove(Player::MOVE_TYPE::M_RIGHT);
+	}
+	//LEFT
+	else if (e->input == Event::INPUT::KB_LEFT
+		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
+	{
+		//player.tryToMove(Player::MOVE_TYPE::M_LEFT);
 	}
 }

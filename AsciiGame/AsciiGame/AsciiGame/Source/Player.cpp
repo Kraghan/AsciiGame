@@ -16,7 +16,7 @@ Player::~Player()
 
 }
 
-void Player::changeHorizVerti()
+void Player::changeHorizVerti(bool stop = false)
 {
 	if (moveType != M_NOTHING)
 	{
@@ -55,6 +55,7 @@ void Player::changeHorizVerti()
 			addVerti = -speedPlayer;
 			break;
 		}
+		//TODO ???
 		moveType = M_NOTHING;								//reset le moveType !
 	}
 }
@@ -71,6 +72,19 @@ void Player::tryToMove(MOVE_TYPE moveTry)
 	tryedToMove = true;							//set le joueur dans l'état "essai de bouger"
 }
 
+///
+/// stop le joueur et reset ses valeurs
+///
+void Player::stopMove()
+{
+	//moveType = moveTry;							//change l'enum pour définir ou il veut bouger
+	//changeHorizVerti(false);
+	addHoriz = 0;							//reset les additions !
+	addVerti = 0;
+
+	tryedToMove = false;
+}
+
 
 ///
 /// déplace le joueur ?
@@ -81,6 +95,6 @@ void Player::update()
 	pos.x = pos.x += addHoriz;
 	pos.y = pos.y += addVerti;
 
-	addHoriz = 0;							//reset les additions !
-	addVerti = 0;
+	//addHoriz = 0;							//reset les additions !
+	//addVerti = 0;
 }
