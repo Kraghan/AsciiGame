@@ -62,31 +62,10 @@ void GraphicEngine::SetWindowConsoleSize()
 
 	////////////////////////////////////////////////////change la size de la window
 
-	////////////////////////////////////////////////////Remove scrollbar
+	
 	RECT r;
 	GetWindowRect(console, &r); //stores the console's current dimensions
 	MoveWindow(console, r.left, r.top, maxWidth, maxHeight, TRUE);
-	HANDLE hOut;
-	CONSOLE_SCREEN_BUFFER_INFO SBInfo;
-	COORD NewSBSize;
-	int Status;
-
-	hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
-	GetConsoleScreenBufferInfo(hOut, &SBInfo);
-	NewSBSize.X = SBInfo.dwSize.X;
-	NewSBSize.Y = SBInfo.dwSize.Y - 8955;
-
-	Status = SetConsoleScreenBufferSize(hOut, NewSBSize);
-	if (Status == 0)
-	{
-		Status = GetLastError();
-		cout << "SetConsoleScreenBufferSize() failed! Reason : " << Status << endl;
-		exit(Status);
-	}
-
-	GetConsoleScreenBufferInfo(hOut, &SBInfo);
-	////////////////////////////////////////////////////End remove scrollbar
 }
 
 ///
