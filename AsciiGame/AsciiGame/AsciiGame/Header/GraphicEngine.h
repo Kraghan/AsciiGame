@@ -52,7 +52,9 @@ private:
 	void gotoxy(int x, int y);				//set la position du curseur
 	
 	void ShowConsoleCursor(bool showFlag);	//cache le curseur de la console
-	void SetWindowConsoleSize();				//resize la console window
+	void SetWindowConsoleSize();			//resize la console window
+	void SetSizePolice();					//change le taille du texte
+
 	int getRand(int min, int max);			//retourne un nombre random entre min et max
 	void fillEverythingWith(char c);		//remplie le tableau avec un seul caractère
 };
