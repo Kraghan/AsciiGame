@@ -78,12 +78,6 @@
     <ClCompile Include="Source\Event.cpp">
       <Filter>Fichiers de ressources\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Source\BorderInitializer.cpp">
-      <Filter>Fichiers de ressources\Map\Initializer</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CaveSeedInitializer.cpp">
-      <Filter>Fichiers de ressources\Map\Initializer</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Event.cpp">
       <Filter>Fichiers de ressources</Filter>
     </ClCompile>
@@ -98,6 +92,15 @@
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
       <Filter>Fichiers de ressources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BorderInitializer.cpp">
+      <Filter>Fichiers de ressources\Map\Initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CaveSeedInitializer.cpp">
+      <Filter>Fichiers de ressources\Map\Initializer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,17 +140,11 @@
     <ClInclude Include="Header\Vector2.h">
       <Filter>Fichiers d%27en-tête\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Header\BorderBlock.h">
-      <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
-    </ClInclude>
     <ClInclude Include="Header\NormalBlock.h">
       <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
     </ClInclude>
     <ClInclude Include="Header\Initializer.h">
       <Filter>Fichiers d%27en-tête\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\BorderInitializer.h">
-      <Filter>Fichiers d%27en-tête\Map\Initializer</Filter>
     </ClInclude>
     <ClInclude Include="Header\VoidBlock.h">
       <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
@@ -166,6 +163,15 @@
     </ClInclude>
     <ClInclude Include="Header\Window.h">
       <Filter>Fichiers d%27en-tête\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Bullet.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\InputController.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\BorderInitializer.h">
+      <Filter>Fichiers d%27en-tête\Map\Initializer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

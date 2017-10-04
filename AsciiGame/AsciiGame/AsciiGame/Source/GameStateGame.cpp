@@ -11,6 +11,7 @@
 	window = wind;												//créé un lien du graphic engine
 	player = Player(Vector2(10, 10));							//créé un player, à la position 10,10
 	gameMap = GameMap(Window::SCREEN_WIDTH,Window::SCREEN_HEIGHT);
+
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
 }
@@ -29,7 +30,7 @@
 		}
 	}
 
-	if (player.tryedToMove)								//le joueur a essayé de bouger
+	if (player.tryedToMove)								//le joueur a essayï¿½ de bouger
 	{
 		//si les colisions sont ok, bouger le joueur
 		//{
@@ -44,6 +45,15 @@
 								//}
 		player.tryedToMove = false;
 	}
+
+	//parcourt tous les bullet prï¿½sents...
+	/*for (auto & element : bullet)
+	{
+		engine->displayBullet(Vector2(element.pos.x, element.pos.y), Vector2(element.pos.x + element.addHoriz, element.pos.y + element.addVerti));
+		element.update();
+	}*/
+	//Bullet ?? list de bullet
+
 }
 
 // Process the input
@@ -52,7 +62,7 @@
 	Event* e = window->popEvent();
 	while (e != nullptr)
 	{
-		if (e->input == Event::INPUT::KB_ESCAPE 
+		if (e->input == Event::INPUT::KB_ESCAPE
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
 			stateMachine->activeState("pause");
@@ -68,7 +78,7 @@
 // Called when the state is set to active
 /*virtual*/ void GameStateGame::onEnter(void)
 {
-	
+
 }
 
 // Called when the state is set to inactive
@@ -95,7 +105,7 @@ void GameStateGame::inputPlayer(Event *e)
 	{
 		player.tryToMove(Player::MOVE_TYPE::M_UP);
 	}
-	
+
 	//DOWN
 	else if (e->input == Event::INPUT::KB_S
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
@@ -119,25 +129,29 @@ void GameStateGame::inputPlayer(Event *e)
 	if (e->input == Event::INPUT::KB_UP
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
 	{
-		//player.tryToMove(Player::MOVE_TYPE::M_UP);
+		Bullet bul = Bullet(Vector2(player.pos.x, player.pos.y - 1), Bullet::MOVE_TYPE::M_UP);
+		bullet.push_back(bul);
 	}
 
 	//DOWN
 	else if (e->input == Event::INPUT::KB_DOWN
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
 	{
-		//player.tryToMove(Player::MOVE_TYPE::M_DOWN);
+		Bullet bul = Bullet(Vector2(player.pos.x, player.pos.y + 1), Bullet::MOVE_TYPE::M_DOWN);
+		bullet.push_back(bul);
 	}
 	//RIGHT
 	else if (e->input == Event::INPUT::KB_RIGHT
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
 	{
-		//player.tryToMove(Player::MOVE_TYPE::M_RIGHT);
+		Bullet bul = Bullet(Vector2(player.pos.x + 1, player.pos.y), Bullet::MOVE_TYPE::M_RIGHT);
+		bullet.push_back(bul);
 	}
 	//LEFT
 	else if (e->input == Event::INPUT::KB_LEFT
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
 	{
-		//player.tryToMove(Player::MOVE_TYPE::M_LEFT);
+		Bullet bul = Bullet(Vector2(player.pos.x - 1, player.pos.y), Bullet::MOVE_TYPE::M_LEFT);
+		bullet.push_back(bul);
 	}
 }

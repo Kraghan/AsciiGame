@@ -165,6 +165,12 @@ void GraphicEngine::displayPlayer(Vector2 oldPos, Vector2 newPos)
 	changePixel(newPos.x, newPos.y, 'P', 5);
 }
 
+void GraphicEngine::displayBullet(Vector2 oldPos, Vector2 newPos)
+{
+	changePixel(oldPos.x, oldPos.y, ' ');
+	changePixel(newPos.x, newPos.y, '*', 7);
+}
+
 void GraphicEngine::update()
 {
 	stack<Event*> e = input.pollEvent();
