@@ -8,32 +8,45 @@
 // Used to initialize the state
 /*virtual*/ void GameStateGame::init(GraphicEngine* e)
 {
-	engine = e;													//créé un lien du graphic engine
-	player = Player(Vector2(10, 10));							//créé un player, à la position 10,10
-	engine->displayPlayer(Vector2(10, 10));						//afficher le player
+	engine = e;													//crï¿½ï¿½ un lien du graphic engine
+	player = Player(Vector2(10, 10));							//crï¿½ï¿½ un player, ï¿½ la position 10,10
+	engine->displayPlayer(Vector2(10, 10));
+	gameMap = GameMap(GraphicEngine::TILE_WIDTH,GraphicEngine::TILE_HEIGHT);
+	BorderInitializer borderInit = BorderInitializer();
+	borderInit.initialize(&gameMap);
 }
 
 // Update the game logic
 /*virtual*/ void GameStateGame::update()
 {
-	//engine->changeRandomPixel();
-	if (player.tryedToMove)								//le joueur a essayé de bouger
+	gameMap.update();
+	std::vector<std::vector<Block>> blocks = gameMap.getBlocks();
+
+	for (unsigned int i = 0; i < blocks.size(); ++i)
+	{
+		for (unsigned int j = 0; j < blocks[i].size(); ++j)
+		{
+			engine->changePixel(i, j, blocks[i][j].getSprite());
+		}
+	}
+
+	if (player.tryedToMove)								//le joueur a essayï¿½ de bouger
 	{
 		//si les colisions sont ok, bouger le joueur
 		//{
-			//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
-			engine->displayPlayer(Vector2(player.pos.x, player.pos.y), Vector2(player.pos.x + player.addHoriz, player.pos.y + player.addVerti));
-			player.update();		//ici actualise les nouvelles positions du joueur
-		//}
-		//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
-		//{
-			//player.addHoriz = 0;
-			//player.addVerti = 0;
-		//}
+		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
+		engine->displayPlayer(Vector2(player.pos.x, player.pos.y), Vector2(player.pos.x + player.addHoriz, player.pos.y + player.addVerti));
+		player.update();		//ici actualise les nouvelles positions du joueur
+								//}
+								//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
+								//{
+								//player.addHoriz = 0;
+								//player.addVerti = 0;
+								//}
 		player.tryedToMove = false;
 	}
 
-	//parcourt tous les bullet présents...
+	//parcourt tous les bullet prï¿½sents...
 	for (auto & element : bullet)
 	{
 		engine->displayBullet(Vector2(element.pos.x, element.pos.y), Vector2(element.pos.x + element.addHoriz, element.pos.y + element.addVerti));
@@ -49,7 +62,7 @@
 	Event* e = engine->popEvent();
 	while (e != nullptr)
 	{
-		if (e->input == Event::INPUT::KB_ESCAPE 
+		if (e->input == Event::INPUT::KB_ESCAPE
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
 			stateMachine->activeState("pause");
@@ -65,7 +78,7 @@
 // Called when the state is set to active
 /*virtual*/ void GameStateGame::onEnter(void)
 {
-	
+
 }
 
 // Called when the state is set to inactive
@@ -92,7 +105,7 @@ void GameStateGame::inputPlayer(Event *e)
 	{
 		player.tryToMove(Player::MOVE_TYPE::M_UP);
 	}
-	
+
 	//DOWN
 	else if (e->input == Event::INPUT::KB_S
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))

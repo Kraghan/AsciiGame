@@ -37,6 +37,9 @@ private:
 
 	//fonction
 public:
+	const static unsigned int TILE_WIDTH = 157;
+	const static unsigned int TILE_HEIGHT = 44;
+
 	GraphicEngine() {};
 	GraphicEngine(int width, int height);	//alloc la map
 	~GraphicEngine();

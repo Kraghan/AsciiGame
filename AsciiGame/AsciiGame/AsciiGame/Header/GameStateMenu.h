@@ -4,7 +4,20 @@
 class GameStateMenu : GameState
 {
 private:
+	enum FocusButton
+	{
+		FB_PLAY,
+		FB_QUIT
+	};
 
+	FocusButton focus;
+
+	void drawContour();
+	void drawTitle();
+	void drawPlay();
+	void drawPlayFocused();
+	void drawQuit();
+	void drawQuitFocused();
 public:
 	virtual ~GameStateMenu(void);
 

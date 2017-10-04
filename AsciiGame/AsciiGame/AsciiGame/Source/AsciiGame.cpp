@@ -21,7 +21,7 @@ int main()
 	GraphicEngine graphic;
 	GameStateMachine stateMachine;
 	// Initialization
-	graphic = GraphicEngine(157, 44);
+	graphic = GraphicEngine(GraphicEngine::TILE_WIDTH, GraphicEngine::TILE_HEIGHT);
 	stateMachine = GameStateMachine(&graphic);
 	stateMachine.registerGameState("menu", (GameState*) new GameStateMenu());
 	stateMachine.registerGameState("game", (GameState*) new GameStateGame());
