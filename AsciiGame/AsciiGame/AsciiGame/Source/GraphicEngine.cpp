@@ -10,7 +10,7 @@ GraphicEngine::GraphicEngine(int width, int height)
 		mapGame[i] = new char[width];
 		for (int j = 0; j < width; ++j)
 		{
-			mapGame[i][j] = '*';
+			mapGame[i][j] = ' ';
 		}
 	}
 
@@ -126,6 +126,22 @@ void GraphicEngine::gotoxy(int x, int y)
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////// fonction public /////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
+
+///
+///	set la position du player
+///
+void GraphicEngine::displayPlayer(Vector2 pos)
+{
+	changePixel(pos.x, pos.y, 'P');
+}
+///
+/// set la position courante à un couloir, et la suivante à la position du player
+///
+void GraphicEngine::displayPlayer(Vector2 oldPos, Vector2 newPos)
+{
+	changePixel(oldPos.x, oldPos.y, ' ');
+	changePixel(newPos.x, newPos.y, 'P');
+}
 
 void GraphicEngine::update()
 {

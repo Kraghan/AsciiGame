@@ -26,10 +26,10 @@ void Player::changeHorizVerti()
 		switch (moveType)
 		{
 		case M_UP:
-			addVerti = speedPlayer;
+			addVerti = -speedPlayer;
 			break;
 		case M_DOWN:
-			addVerti = -speedPlayer;
+			addVerti = speedPlayer;
 			break;
 		case M_RIGHT:
 			addHoriz = speedPlayer;
@@ -39,19 +39,19 @@ void Player::changeHorizVerti()
 			break;
 
 		case M_UP_RIGHT:
-			addHoriz = speedPlayer;
+			addHoriz = -speedPlayer;
 			addVerti = speedPlayer;
 			break;
 		case M_UP_LEFT:
-			addHoriz = speedPlayer;
+			addHoriz = -speedPlayer;
 			addVerti = -speedPlayer;
 			break;
 		case M_DOWN_RIGHT:
-			addHoriz = -speedPlayer;
+			addHoriz = speedPlayer;
 			addVerti = speedPlayer;
 			break;
 		case M_DOWN_LEFT:
-			addHoriz = -speedPlayer;
+			addHoriz = speedPlayer;
 			addVerti = -speedPlayer;
 			break;
 		}

@@ -8,33 +8,28 @@
 // Used to initialize the state
 /*virtual*/ void GameStateGame::init(GraphicEngine* e)
 {
-	engine = e;
-	player = Player(Vector2(10, 10));
+	engine = e;													//créé un lien du graphic engine
+	player = Player(Vector2(10, 10));							//créé un player, à la position 10,10
+	engine->displayPlayer(Vector2(10, 10));						//afficher le player
 }
 
 // Update the game logic
 /*virtual*/ void GameStateGame::update()
 {
-	engine->changeRandomPixel();
+	//engine->changeRandomPixel();
 	if (player.tryedToMove)								//le joueur a essayé de bouger
 	{
-		cout << "player.pos.x: " << player.pos.x << ", player.pos.y: " << player.pos.y << endl;
-		cout << "player.addHoriz: " << player.addHoriz << ", player.addVerti: " << player.addVerti << endl;
-
-		//tester les colisions......
-		//position actuelle du joueur: { player.pos.x, player.pos.y }
-		//la position désiré du joueur: { player.pos.x + player.addHoriz, player.pos.y + player.addVerti }
-
 		//si les colisions sont ok, bouger le joueur
 		//{
-			//ici actualiser les pixels représentant le joueur dans le graphicEngine...
+			//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
+			engine->displayPlayer(Vector2(player.pos.x, player.pos.y), Vector2(player.pos.x + player.addHoriz, player.pos.y + player.addVerti));
 			player.update();		//ici actualise les nouvelles positions du joueur
 		//}
-		cout << "after update player:" << endl;
-		cout << "player.pos.x: " << player.pos.x << ", player.pos.y: " << player.pos.y << endl;
-		cout << "player.addHoriz: " << player.addHoriz << ", player.addVerti: " << player.addVerti << endl;
-
-		system("pause");
+		//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
+		//{
+			//player.addHoriz = 0;
+			//player.addVerti = 0;
+		//}
 		player.tryedToMove = false;
 	}
 
