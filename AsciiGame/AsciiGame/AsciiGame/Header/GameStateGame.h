@@ -1,10 +1,11 @@
 #pragma once
 #include "GameState.h"
+#include "GameMap.h"
 
 class GameStateGame : GameState
 {
 private:
-
+	GameMap gameMap;
 public:
 	virtual ~GameStateGame(void);
 

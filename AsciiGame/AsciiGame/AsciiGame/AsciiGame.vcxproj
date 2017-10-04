@@ -114,6 +114,7 @@
     <ClCompile Include="Source\AsciiGame.cpp" />
     <ClCompile Include="Source\Block.cpp" />
     <ClCompile Include="Source\Event.cpp" />
+    <ClCompile Include="Source\GameMap.cpp" />
     <ClCompile Include="Source\GameState.cpp" />
     <ClCompile Include="Source\GameStateGame.cpp" />
     <ClCompile Include="Source\GameStateMachine.cpp" />
@@ -126,6 +127,7 @@
   <ItemGroup>
     <ClInclude Include="Header\Block.h" />
     <ClInclude Include="Header\Event.h" />
+    <ClInclude Include="Header\GameMap.h" />
     <ClInclude Include="Header\GameState.h" />
     <ClInclude Include="Header\GameStateGame.h" />
     <ClInclude Include="Header\GameStateMachine.h" />
@@ -134,6 +136,7 @@
     <ClInclude Include="Header\GraphicEngine.h" />
     <ClInclude Include="Header\InputController.h" />
     <ClInclude Include="Header\Timer.h" />
+    <ClInclude Include="Header\Vector2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

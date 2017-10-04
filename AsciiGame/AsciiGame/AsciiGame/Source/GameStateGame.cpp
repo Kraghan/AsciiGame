@@ -26,7 +26,6 @@
 		if (e->input == Event::INPUT::KB_ESCAPE 
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
-			cout << "Pause" << endl;
 			stateMachine->activeState("pause");
 		}
 		e = engine->popEvent();
@@ -37,7 +36,7 @@
 // Called when the state is set to active
 /*virtual*/ void GameStateGame::onEnter(void)
 {
-
+	
 }
 
 // Called when the state is set to inactive

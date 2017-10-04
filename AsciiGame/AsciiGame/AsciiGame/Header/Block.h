@@ -5,12 +5,16 @@
 
 class Block
 {
-	//variable
-public:
+private :
+	unsigned int x;
+	unsigned int y;
+	char sprite;
 
-	//fonction
+
 public:
 	Block();
 	~Block();
+
+
 };
 
