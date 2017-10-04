@@ -11,22 +11,25 @@
 #include "../Header/GameStateGame.h"
 #include "../Header/GameStateMenu.h"
 #include "../Header/GameStatePause.h"
+#include "../Header/Window.h"
 
 using namespace std;
 
 // Main function
 int main()
 {	
+	Window window = Window();
+	window.open("Ascii Game");
+	window.display();
+
 	Timer timer;
-	GraphicEngine graphic;
 	GameStateMachine stateMachine;
 	// Initialization
-	graphic = GraphicEngine(GraphicEngine::TILE_WIDTH, GraphicEngine::TILE_HEIGHT);
-	stateMachine = GameStateMachine(&graphic);
+	stateMachine = GameStateMachine(&window);
 	stateMachine.registerGameState("menu", (GameState*) new GameStateMenu());
 	stateMachine.registerGameState("game", (GameState*) new GameStateGame());
 	stateMachine.registerGameState("pause", (GameState*) new GameStatePause());
-	stateMachine.activeState("game");
+	stateMachine.activeState("game", true);
 	//input = InputController();
 	timer = Timer();
 	timer.start();
@@ -48,12 +51,12 @@ int main()
 		// Lag compensation + FPS limitation
 		while (lag >= Timer::SECONDS_PER_UPDATE)
 		{
-			graphic.update();
+			window.update();
 			stateMachine.getActiveState()->update();
 			lag -= Timer::SECONDS_PER_UPDATE;
 
 		}
-		graphic.display();
+		window.display();
 	}
 	// End gameloop
 

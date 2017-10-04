@@ -1,12 +1,12 @@
 #pragma once
-#include "GraphicEngine.h"
+#include "Window.h"
 // Forward declaration, used to fix cyclic import issues
 class GameStateMachine;
 
 class GameState
 {
 protected : 
-	GraphicEngine * engine;
+	Window * window;
 	GameStateMachine* stateMachine;
 
 public :
@@ -14,7 +14,7 @@ public :
 	virtual ~GameState(void);
 
 	// Used to initialize the state
-	void virtual init(GraphicEngine* engine) = 0;
+	void virtual init(Window* wind) = 0;
 
 	// Update the game logic
 	void virtual update() = 0;

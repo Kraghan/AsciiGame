@@ -47,8 +47,7 @@ public:
 	void display();							//affiche la map sur la console
 	void clear();							//clear la console
 	void changeRandomPixel();				//change un pixel random dans la map
-	void changePixel(int x, int y, char c);	//change un pixel
-	void changePixel(int x, int y, char c, int color);	//change un pixel
+	void changePixel(int x, int y, char c, int color = 15);	//change un pixel
 	void displayPlayer(Vector2 pos);	//move le player;
 	void displayPlayer(Vector2 oldPos, Vector2 newPos);	//set la position courante à un couloir, et la suivante à la position du player
 	void update();

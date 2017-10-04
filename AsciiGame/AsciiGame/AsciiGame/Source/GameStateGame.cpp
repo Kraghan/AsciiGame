@@ -6,12 +6,11 @@
 }
 
 // Used to initialize the state
-/*virtual*/ void GameStateGame::init(GraphicEngine* e)
+/*virtual*/ void GameStateGame::init(Window* wind)
 {
-	engine = e;													//créé un lien du graphic engine
+	window = wind;												//créé un lien du graphic engine
 	player = Player(Vector2(10, 10));							//créé un player, à la position 10,10
-	engine->displayPlayer(Vector2(10, 10));
-	gameMap = GameMap(GraphicEngine::TILE_WIDTH,GraphicEngine::TILE_HEIGHT);
+	gameMap = GameMap(Window::SCREEN_WIDTH,Window::SCREEN_HEIGHT);
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
 }
@@ -26,7 +25,7 @@
 	{
 		for (unsigned int j = 0; j < blocks[i].size(); ++j)
 		{
-			engine->changePixel(i, j, blocks[i][j].getSprite());
+			window->changePixel(i, j, blocks[i][j].getSprite());
 		}
 	}
 
@@ -35,7 +34,7 @@
 		//si les colisions sont ok, bouger le joueur
 		//{
 		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
-		engine->displayPlayer(Vector2(player.pos.x, player.pos.y), Vector2(player.pos.x + player.addHoriz, player.pos.y + player.addVerti));
+		//engine->displayPlayer(Vector2(player.pos.x, player.pos.y), Vector2(player.pos.x + player.addHoriz, player.pos.y + player.addVerti));
 		player.update();		//ici actualise les nouvelles positions du joueur
 								//}
 								//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
@@ -50,7 +49,7 @@
 // Process the input
 /*virtual*/ bool GameStateGame::processInput(void)
 {
-	Event* e = engine->popEvent();
+	Event* e = window->popEvent();
 	while (e != nullptr)
 	{
 		if (e->input == Event::INPUT::KB_ESCAPE 
@@ -61,7 +60,7 @@
 
 		inputPlayer(e);											//input du joueur in-game
 
-		e = engine->popEvent();
+		e = window->popEvent();
 	}
 	return true;
 }

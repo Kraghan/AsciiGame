@@ -1,5 +1,5 @@
 #pragma once
-#include "GraphicEngine.h"
+#include "Window.h"
 #include "GameState.h"
 #include <string>
 #include <map>
@@ -9,11 +9,11 @@ class GameStateMachine
 private:
 	std::map<std::string, GameState*> stateMap;
 	GameState* currentState;
-	GraphicEngine* graphicEngine;
+	Window* window;
 
 public:
 	explicit GameStateMachine();
-	explicit GameStateMachine(GraphicEngine * graphic);
+	explicit GameStateMachine(Window * graphic);
 	virtual ~GameStateMachine(void);
 
 	// Allow to add a game state to the state machine.

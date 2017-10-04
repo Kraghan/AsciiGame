@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include "AlphabetDrawer.h"
 
 class GameStateMenu : GameState
 {
@@ -22,7 +23,7 @@ public:
 	virtual ~GameStateMenu(void);
 
 	// Used to initialize the state
-	void virtual init(GraphicEngine* engine);
+	void virtual init(Window* wind);
 
 	// Update the game logic
 	void virtual update();

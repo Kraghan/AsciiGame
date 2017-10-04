@@ -6,9 +6,9 @@
 }
 
 // Used to initialize the state
-/*virtual*/ void GameStatePause::init(GraphicEngine* e)
+/*virtual*/ void GameStatePause::init(Window* wind)
 {
-	engine = e;
+	window = wind;
 }
 
 // Update the game logic

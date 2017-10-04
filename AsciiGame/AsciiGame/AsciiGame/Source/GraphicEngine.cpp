@@ -19,6 +19,28 @@ GraphicEngine::GraphicEngine(int width, int height)
 	SetWindowConsoleSize();				//change la size de la window console
 	
 	ShowConsoleCursor(false);			//cache le pointeur APRES
+
+	HANDLE hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
+
+	COORD dwBufferSize = { width,height };
+	COORD dwBufferCoord = { 0, 0 };
+	SMALL_RECT rcRegion = { 0, 0, width - 1, height - 1 };
+
+	CHAR_INFO buffer[TILE_HEIGHT][TILE_WIDTH];
+
+	ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
+		dwBufferCoord, &rcRegion);
+
+	buffer[5][10].Char.AsciiChar = 'H';
+	buffer[5][10].Attributes = 0x0E;
+	buffer[5][11].Char.AsciiChar = 'i';
+	buffer[5][11].Attributes = 0x0B;
+	buffer[5][12].Char.AsciiChar = '!';
+	buffer[5][12].Attributes = 0x0A;
+
+	WriteConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize,
+		dwBufferCoord, &rcRegion);
+	system("pause");
 	
 }
 
@@ -154,15 +176,6 @@ void GraphicEngine::update()
 	}
 }
 
-///
-/// change un "pixel" du tableau
-/// et dis à la classe qu'on a changé le tableau (il va changé dans display)
-///
-void GraphicEngine::changePixel(int x, int y, char c)
-{
-	this->mapGame[y][x] = c;
-	isChanged = true;
-}
 void GraphicEngine::changePixel(int x, int y, char c, int color)
 {
 	HANDLE Console = GetStdHandle(STD_OUTPUT_HANDLE);				//get la console window

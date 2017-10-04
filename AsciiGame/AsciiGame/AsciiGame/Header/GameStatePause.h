@@ -9,7 +9,7 @@ public:
 	virtual ~GameStatePause(void);
 
 	// Used to initialize the state
-	void virtual init(GraphicEngine* engine);
+	void virtual init(Window* wind);
 
 	// Update the game logic
 	void virtual update();
