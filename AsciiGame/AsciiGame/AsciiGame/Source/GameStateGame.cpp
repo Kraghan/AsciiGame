@@ -9,7 +9,7 @@
 /*virtual*/ void GameStateGame::init(GraphicEngine* e)
 {
 	engine = e;
-	gameMap = GameMap(150,25);
+	gameMap = GameMap(GraphicEngine::TILE_WIDTH,GraphicEngine::TILE_HEIGHT);
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
 }

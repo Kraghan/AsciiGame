@@ -114,6 +114,7 @@
     <ClCompile Include="Source\AsciiGame.cpp" />
     <ClCompile Include="Source\Block.cpp" />
     <ClCompile Include="Source\BorderInitializer.cpp" />
+    <ClCompile Include="Source\CaveSeedInitializer.cpp" />
     <ClCompile Include="Source\Event.cpp" />
     <ClCompile Include="Source\GameMap.cpp" />
     <ClCompile Include="Source\GameState.cpp" />

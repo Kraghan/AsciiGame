@@ -81,6 +81,9 @@
     <ClCompile Include="Source\BorderInitializer.cpp">
       <Filter>Fichiers de ressources\Map\Initializer</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CaveSeedInitializer.cpp">
+      <Filter>Fichiers de ressources\Map\Initializer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h">
