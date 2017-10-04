@@ -131,7 +131,13 @@ void GraphicEngine::gotoxy(int x, int y)
 
 void GraphicEngine::update()
 {
-	eventStack = input.pollEvent();
+	stack<Event*> e = input.pollEvent();
+
+	while (!e.empty())
+	{
+		eventStack.push(e.top());
+		e.pop();
+	}
 }
 
 ///

@@ -23,9 +23,8 @@
 	Event* e = engine->popEvent();
 	while (e != nullptr)
 	{
-		// IL Y A UN PROBLEME, ON RECUPERE PAS LES EVENEMENTS PRESSED
 		if (e->input == Event::INPUT::KB_ESCAPE 
-			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING)
+			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
 			cout << "Pause" << endl;
 			stateMachine->activeState("pause");
