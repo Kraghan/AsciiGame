@@ -14,14 +14,9 @@
 
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
-}
 
-// Update the game logic
-/*virtual*/ void GameStateGame::update()
-{
-	gameMap.update();
+
 	std::vector<std::vector<Block>> blocks = gameMap.getBlocks();
-
 	for (unsigned int i = 0; i < blocks.size(); ++i)
 	{
 		for (unsigned int j = 0; j < blocks[i].size(); ++j)
@@ -29,6 +24,12 @@
 			window->changePixel(i, j, blocks[i][j].getSprite());
 		}
 	}
+}
+
+// Update the game logic
+/*virtual*/ void GameStateGame::update()
+{
+	gameMap.update();
 	
 	//if (player.tryedToMove)								//le joueur a essayï¿½ de bouger
 	//{
@@ -107,81 +108,106 @@ void GameStateGame::displayBullet(Bullet &bullet)
 ////////////////////////////////////// INPUT PLAYER ///////////////////////////////////
 void GameStateGame::inputPlayer(Event *e)
 {
-	//////////////////////////////////////le joueur move
-	//up
-	if (e->input == Event::INPUT::KB_Z
-		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
+	// Une touche est pressée ou maintenue
+	if (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED 
+		|| e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING)
 	{
-		player.tryToMove(Player::MOVE_TYPE::M_UP);
-	}
+		switch (e->input)
+		{
+			// Déplacement
+			case Event::INPUT::KB_Z : 
+			{
+				player.tryToMove(Player::MOVE_TYPE::M_UP);
+				break;
+			}
+			case Event::INPUT::KB_Q:
+			{
+				player.tryToMove(Player::MOVE_TYPE::M_LEFT);
+				break;
+			}
+			case Event::INPUT::KB_S:
+			{
+				player.tryToMove(Player::MOVE_TYPE::M_DOWN);
+				break;
+			}
+			case Event::INPUT::KB_D:
+			{
+				player.tryToMove(Player::MOVE_TYPE::M_RIGHT);
+				break;
+			}
+			// Tir
+			case Event::INPUT::KB_UP:
+			{
 
-	//DOWN
-	else if (e->input == Event::INPUT::KB_S
-		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
-	{
-		player.tryToMove(Player::MOVE_TYPE::M_DOWN);
-	}
-	//RIGHT
-	else if (e->input == Event::INPUT::KB_D
-		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
-	{
-		player.tryToMove(Player::MOVE_TYPE::M_RIGHT);
-	}
-	//LEFT
-	else if (e->input == Event::INPUT::KB_Q
-		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
-	{
-		player.tryToMove(Player::MOVE_TYPE::M_LEFT);
-	}
-	/////////////////////////////////////le joueur stop
-	//up stop
-	if (e->input == Event::INPUT::KB_Z && e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
-	{
-		player.stopMove(Player::MOVE_TYPE::M_UP);
-	}
-	//DOWN stop
-	else if (e->input == Event::INPUT::KB_S && e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
-	{
-		player.stopMove(Player::MOVE_TYPE::M_DOWN);
-	}
-	//RIGHT stop
-	else if (e->input == Event::INPUT::KB_D && e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
-	{
-		player.stopMove(Player::MOVE_TYPE::M_RIGHT);
-	}
-	//LEFT stop
-	else if (e->input == Event::INPUT::KB_Q	&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
-	{
-		player.stopMove(Player::MOVE_TYPE::M_LEFT);
-	}
+				break;
+			}
+			case Event::INPUT::KB_DOWN:
+			{
 
-	///////////////////////////////////////////////////SHOOT
-	if (e->input == Event::INPUT::KB_UP
-		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
-	{
-		Bullet bul = Bullet(Vector2(player.pos.x, player.pos.y - 1), Bullet::MOVE_TYPE::M_UP);
-		bullet.push_back(bul);
-	}
+				break;
+			}
+			case Event::INPUT::KB_LEFT:
+			{
 
-	//DOWN
-	else if (e->input == Event::INPUT::KB_DOWN
-		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
-	{
-		Bullet bul = Bullet(Vector2(player.pos.x, player.pos.y + 1), Bullet::MOVE_TYPE::M_DOWN);
-		bullet.push_back(bul);
+				break;
+			}
+			case Event::INPUT::KB_RIGHT:
+			{
+
+				break;
+			}
+			default:
+			{
+				break;
+			}
+		}
 	}
-	//RIGHT
-	else if (e->input == Event::INPUT::KB_RIGHT
-		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
+	else if (e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
 	{
-		Bullet bul = Bullet(Vector2(player.pos.x + 1, player.pos.y), Bullet::MOVE_TYPE::M_RIGHT);
-		bullet.push_back(bul);
-	}
-	//LEFT
-	else if (e->input == Event::INPUT::KB_LEFT
-		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
-	{
-		Bullet bul = Bullet(Vector2(player.pos.x - 1, player.pos.y), Bullet::MOVE_TYPE::M_LEFT);
-		bullet.push_back(bul);
+		switch (e->input)
+		{
+			// Déplacement
+			case Event::INPUT::KB_Z:
+			{
+				player.stopMove(Player::MOVE_TYPE::M_UP);
+				break;
+			}
+			case Event::INPUT::KB_Q:
+			{
+				player.stopMove(Player::MOVE_TYPE::M_LEFT);
+				break;
+			}
+			case Event::INPUT::KB_S:
+			{
+				player.stopMove(Player::MOVE_TYPE::M_DOWN);
+				break;
+			}
+			case Event::INPUT::KB_D:
+			{
+				player.stopMove(Player::MOVE_TYPE::M_RIGHT);
+				break;
+			}
+			// Tir
+			case Event::INPUT::KB_UP:
+			{
+
+				break;
+			}
+			case Event::INPUT::KB_DOWN:
+			{
+
+				break;
+			}
+			case Event::INPUT::KB_LEFT:
+			{
+
+				break;
+			}
+			case Event::INPUT::KB_RIGHT:
+			{
+
+				break;
+			}
+		}
 	}
 }

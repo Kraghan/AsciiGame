@@ -91,8 +91,8 @@ void Player::stopMove(MOVE_TYPE moveTry)
 void Player::update()
 {
 	//ici, actualiser la position du joueur
-	pos.x = pos.x += addHoriz;
-	pos.y = pos.y += addVerti;
+	pos.x += addHoriz;
+	pos.y += addVerti;
 
 	//addHoriz = 0;							//reset les additions !
 	//addVerti = 0;
