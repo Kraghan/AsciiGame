@@ -22,14 +22,16 @@ private :
 	SMALL_RECT rcRegion;
 
 	// Must be equal to SCREEN_WIDTH and SCREEN_HEIGHT
-	CHAR_INFO buffer[150][150];
+	CHAR_INFO buffer[93][253];
 
 	InputController input;					//input controller
 	stack<Event*> eventStack;
 public : 
-	const static unsigned int SCREEN_WIDTH = 150;
-	const static unsigned int SCREEN_HEIGHT = 150;
-	const static unsigned int FONT_SIZE = 15;
+	const static unsigned int SCREEN_WIDTH = 253;
+	const static unsigned int SCREEN_HEIGHT = 93;
+	const static unsigned int FONT_SIZE = 10;
+	const static unsigned int MAX_WIDTH = 1285;
+	const static unsigned int MAX_HEIGHT = 1000;
 
 	explicit Window();
 	virtual ~Window();

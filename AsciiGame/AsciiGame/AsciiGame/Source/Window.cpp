@@ -13,35 +13,46 @@
 void Window::open(char* title)
 {
 	HWND console = GetConsoleWindow();
+	hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
 
 	// Set title
 	SetConsoleTitle(title);
 	Sleep(10);
 
-	// Initialize window and buffer
-	hOutput = (HANDLE)GetStdHandle(STD_OUTPUT_HANDLE);
+	// Change font size
+	CONSOLE_FONT_INFOEX cfi;
+	cfi.cbSize = sizeof(cfi);
+	cfi.nFont = 0;
+	cfi.dwFontSize.X = 0;
+	cfi.dwFontSize.Y = FONT_SIZE;
+	cfi.FontFamily = FF_ROMAN;
+	cfi.FontWeight = FW_NORMAL;
+	SetCurrentConsoleFontEx(hOutput, FALSE, &cfi);
 
+	console = FindWindow(NULL, title);
+	RECT r;
+	GetWindowRect(console, &r);
+	MoveWindow(console, r.left, r.top, MAX_WIDTH, MAX_HEIGHT, FALSE);
+
+	// Remove resize border + vertical scroll bar + maximize button
+	LONG lStyle = GetWindowLong(console, GWL_STYLE);
+	lStyle &= ~(WS_VSCROLL | WS_SIZEBOX | WS_MAXIMIZEBOX);
+	SetWindowLong(console, GWL_STYLE, lStyle);
+
+	// Applique les changements
+	SetWindowPos(console, NULL, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER);
+
+	// Initialize window and buffer
 	dwBufferSize = { SCREEN_WIDTH,SCREEN_HEIGHT };
 	dwBufferCoord = { 0, 0 };
 	rcRegion = { 0, 0, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1 };
-
 	ReadConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize, dwBufferCoord, &rcRegion);
 
-	// !!!!!!!!!!!!!!!!!!!!!!!!! DOESN'T WORK !!!!!!!!!!!!!!!!!!!!
-	// Disable resize
-	console = FindWindow(NULL, "AsciiGame");
-
-	HMENU hMenu = GetSystemMenu((HWND)console, FALSE);		//disable Maximize
-	::DeleteMenu(hMenu, 4, MF_BYPOSITION);
-
-	RECT r;
-	GetWindowRect(console, &r); //stores the console's current dimensions
-
-	int maxWidth = 1300;
-	int maxHeight = 800;
-	MoveWindow(console, r.left, r.top, maxWidth, maxHeight, TRUE);
-
-	// !!!!!!!!!!!!!!!!!!!!!!!!! END DOESN'T WORK !!!!!!!!!!!!!!!!
+	// Hide cursor
+	CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(hOutput, &cursorInfo);
+	cursorInfo.bVisible = false;
+	SetConsoleCursorInfo(hOutput, &cursorInfo);
 }
 
 void Window::display()

@@ -54,6 +54,8 @@
 	}*/
 	//Bullet ?? list de bullet
 
+	//window->drawColorWithCode();
+
 }
 
 // Process the input

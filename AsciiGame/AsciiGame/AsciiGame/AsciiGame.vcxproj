@@ -134,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="Header\AlphabetDrawer.h" />
     <ClInclude Include="Header\Block.h" />
+    <ClInclude Include="Header\BorderBlock.h" />
     <ClInclude Include="Header\BorderInitializer.h" />
     <ClInclude Include="Header\Bullet.h" />
     <ClInclude Include="Header\Event.h" />

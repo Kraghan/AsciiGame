@@ -29,7 +29,7 @@ int main()
 	stateMachine.registerGameState("menu", (GameState*) new GameStateMenu());
 	stateMachine.registerGameState("game", (GameState*) new GameStateGame());
 	stateMachine.registerGameState("pause", (GameState*) new GameStatePause());
-	stateMachine.activeState("game", true);
+	stateMachine.activeState("menu", true);
 	//input = InputController();
 	timer = Timer();
 	timer.start();

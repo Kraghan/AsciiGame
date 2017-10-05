@@ -173,5 +173,11 @@
     <ClInclude Include="Header\BorderInitializer.h">
       <Filter>Fichiers d%27en-tête\Map\Initializer</Filter>
     </ClInclude>
+    <ClInclude Include="Header\InputController.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\BorderBlock.h">
+      <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
