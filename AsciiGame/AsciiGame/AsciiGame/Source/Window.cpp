@@ -10,6 +10,9 @@
 
 }
 
+///
+/// affiche la console
+///
 void Window::open(char* title)
 {
 	HWND console = GetConsoleWindow();
@@ -44,6 +47,7 @@ void Window::open(char* title)
 	// !!!!!!!!!!!!!!!!!!!!!!!!! END DOESN'T WORK !!!!!!!!!!!!!!!!
 }
 
+
 void Window::display()
 {
 	WriteConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize, dwBufferCoord, &rcRegion);
@@ -67,6 +71,9 @@ void Window::changePixel(int x, int y, char c, int color)
 	buffer[y][x].Char.AsciiChar = c;
 }
 
+///
+/// 
+///
 void Window::update()
 {
 	stack<Event*> e = input.pollEvent();
@@ -78,6 +85,9 @@ void Window::update()
 	}
 }
 
+///
+/// enlève un seul event
+///
 Event* Window::popEvent()
 {
 	Event* e = nullptr;
@@ -85,12 +95,13 @@ Event* Window::popEvent()
 	{
 		e = eventStack.top();
 		eventStack.pop();
-
 	}
-
 	return e;
 }
 
+///
+/// fonction debug pour afficher tout les caractère coloré
+///
 void Window::drawColorWithCode()
 {
 	int col = 0, row = 0;

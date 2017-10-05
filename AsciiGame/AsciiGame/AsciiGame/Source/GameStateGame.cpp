@@ -29,13 +29,14 @@
 			window->changePixel(i, j, blocks[i][j].getSprite());
 		}
 	}
-
-	if (player.tryedToMove)								//le joueur a essay� de bouger
-	{
+	
+	//if (player.tryedToMove)								//le joueur a essay� de bouger
+	//{
 		//si les colisions sont ok, bouger le joueur
 		//{
 		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
-		//engine->displayPlayer(Vector2(player.pos.x, player.pos.y), Vector2(player.pos.x + player.addHoriz, player.pos.y + player.addVerti));
+		displayPlayer();
+		
 		player.update();		//ici actualise les nouvelles positions du joueur
 								//}
 								//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
@@ -43,13 +44,13 @@
 								//player.addHoriz = 0;
 								//player.addVerti = 0;
 								//}
-		player.tryedToMove = false;
-	}
+		//player.tryedToMove = false;
+	//}
 
 	//parcourt tous les bullet pr�sents...
 	/*for (auto & element : bullet)
 	{
-		engine->displayBullet(Vector2(element.pos.x, element.pos.y), Vector2(element.pos.x + element.addHoriz, element.pos.y + element.addVerti));
+		displayBullet(element);
 		element.update();
 	}*/
 	//Bullet ?? list de bullet
@@ -86,18 +87,24 @@
 {
 
 }
+////////////////////////////////////// display object ///////////////////////////////
+
+void GameStateGame::displayPlayer()
+{
+	window->changePixel(player.pos.x, player.pos.y, ' ');
+	window->changePixel(player.pos.x + player.addHoriz, player.pos.y + player.addVerti, player.carac, player.color);
+}
+
+void GameStateGame::displayBullet(Bullet &bullet)
+{
+	//changePixel(oldPos.x, oldPos.y, ' ');
+	//changePixel(newPos.x, newPos.y, '*', 7);
+}
+
 
 ////////////////////////////////////// INPUT PLAYER ///////////////////////////////////
 void GameStateGame::inputPlayer(Event *e)
 {
-	//////////////////////////le joueur lache une touche
-	if ( (e->input == Event::INPUT::KB_UP || e->input == Event::INPUT::KB_DOWN
-			|| e->input == Event::INPUT::KB_RIGHT || e->input == Event::INPUT::KB_LEFT)
-		&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
-	{
-		player.stopMove();
-	}
-
 	//////////////////////////////////////le joueur move
 	//up
 	if (e->input == Event::INPUT::KB_Z
@@ -123,6 +130,27 @@ void GameStateGame::inputPlayer(Event *e)
 		&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
 	{
 		player.tryToMove(Player::MOVE_TYPE::M_LEFT);
+	}
+	/////////////////////////////////////le joueur stop
+	//up stop
+	if (e->input == Event::INPUT::KB_Z && e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
+	{
+		player.stopMove(Player::MOVE_TYPE::M_UP);
+	}
+	//DOWN stop
+	else if (e->input == Event::INPUT::KB_S && e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
+	{
+		player.stopMove(Player::MOVE_TYPE::M_DOWN);
+	}
+	//RIGHT stop
+	else if (e->input == Event::INPUT::KB_D && e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
+	{
+		player.stopMove(Player::MOVE_TYPE::M_RIGHT);
+	}
+	//LEFT stop
+	else if (e->input == Event::INPUT::KB_Q	&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_RELEASED)
+	{
+		player.stopMove(Player::MOVE_TYPE::M_LEFT);
 	}
 
 	///////////////////////////////////////////////////SHOOT

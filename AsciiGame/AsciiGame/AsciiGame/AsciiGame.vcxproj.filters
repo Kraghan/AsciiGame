@@ -93,14 +93,14 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>Fichiers de ressources\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Bullet.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Source\BorderInitializer.cpp">
       <Filter>Fichiers de ressources\Map\Initializer</Filter>
     </ClCompile>
     <ClCompile Include="Source\CaveSeedInitializer.cpp">
       <Filter>Fichiers de ressources\Map\Initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet.cpp">
+      <Filter>Fichiers de ressources\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="Header\BorderInitializer.h">
       <Filter>Fichiers d%27en-tête\Map\Initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\InputController.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

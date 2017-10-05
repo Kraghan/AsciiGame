@@ -24,6 +24,9 @@ public:
 	int addVerti = 1;
 	int speedBullet = 1;
 
+	char carac = '*';
+	int color = 7;
+
 private:
 	MOVE_TYPE moveType = M_NOTHING;				//le type de mouvement à faire dans l'update !
 

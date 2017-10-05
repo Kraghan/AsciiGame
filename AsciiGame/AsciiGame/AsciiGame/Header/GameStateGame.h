@@ -36,4 +36,6 @@ public:
 
 private:
 	void inputPlayer(Event *e);
+	void displayPlayer();
+	void displayBullet(Bullet &bullet);
 };
