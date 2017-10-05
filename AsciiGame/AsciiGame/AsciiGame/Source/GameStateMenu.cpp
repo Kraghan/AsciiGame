@@ -75,6 +75,11 @@
 	return true;
 }
 
+/*virtual*/ void GameStateMenu::display()
+{
+
+}
+
 // Called when the state is set to active
 /*virtual*/ void GameStateMenu::onEnter(void)
 {

@@ -79,6 +79,11 @@
 	return true;
 }
 
+/*virtual*/ void GameStateGame::display()
+{
+
+}
+
 // Called when the state is set to active
 /*virtual*/ void GameStateGame::onEnter(void)
 {

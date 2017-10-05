@@ -22,6 +22,9 @@ public :
 	// Process the input
 	bool virtual processInput(void) = 0;
 
+	// Called just before update in the gameloop
+	void virtual display() = 0;
+
 	// Called when the state is set to active
 	void virtual onEnter(void) = 0;
 

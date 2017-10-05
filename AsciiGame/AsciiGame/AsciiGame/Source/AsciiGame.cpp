@@ -56,6 +56,7 @@ int main()
 			lag -= Timer::SECONDS_PER_UPDATE;
 
 		}
+		stateMachine.getActiveState()->display();
 		window.display();
 	}
 	// End gameloop

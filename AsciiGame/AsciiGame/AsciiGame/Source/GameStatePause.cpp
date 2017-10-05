@@ -23,6 +23,11 @@
 	return true;
 }
 
+/*virtual*/ void GameStatePause::display()
+{
+
+}
+
 // Called when the state is set to active
 /*virtual*/ void GameStatePause::onEnter(void)
 {
