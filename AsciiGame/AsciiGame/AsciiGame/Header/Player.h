@@ -23,6 +23,8 @@ public:
 	Vector2 pos;
 	bool tryedToMove = false;
 	int speedPlayer = 1;
+	char carac = 'P';
+	int color = 5;
 
 	int addHoriz = 0;
 	int addVerti = 0;
@@ -36,7 +38,7 @@ public:
 	~Player();
 
 	void tryToMove(MOVE_TYPE moveType);					//déplace le joueur
-	void stopMove();								//stop le joueur
+	void stopMove(MOVE_TYPE moveType);								//stop le joueur
 													//dis "BOUGER a droite"
 	void update(); //selon move, change pos;
 

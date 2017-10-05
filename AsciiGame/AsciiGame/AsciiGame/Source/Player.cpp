@@ -16,26 +16,26 @@ Player::~Player()
 
 }
 
+///
+/// change addVerti et AddHoriz pour définir où il veut bouger (0,0) signifie ne bouge pas.
+///
 void Player::changeHorizVerti(bool stop = false)
 {
 	if (moveType != M_NOTHING)
 	{
-		addHoriz = 0;
-		addVerti = 0;
-
 		switch (moveType)
 		{
 		case M_UP:
-			addVerti = -speedPlayer;
+			addVerti = (!stop) ? -speedPlayer : 0;	//si !stop, UP = -1, sinon, on a lancé l'événement STOP de UP, donc 0
 			break;
 		case M_DOWN:
-			addVerti = speedPlayer;
+			addVerti = (!stop) ? speedPlayer : 0;	//si !stop, DOWN = 1, sinon, on a lancé l'événement STOP de DOWN, donc 0
 			break;
 		case M_RIGHT:
-			addHoriz = speedPlayer;
+			addHoriz = (!stop) ? speedPlayer : 0;
 			break;
 		case M_LEFT:
-			addHoriz = -speedPlayer;
+			addHoriz = (!stop) ? -speedPlayer : 0;
 			break;
 
 		case M_UP_RIGHT:
@@ -67,7 +67,7 @@ void Player::tryToMove(MOVE_TYPE moveTry)
 {
 	//ici, dire "BOUGER A DROITE"
 	moveType = moveTry;							//change l'enum pour définir ou il veut bouger
-	changeHorizVerti();							//change les variables d'additions à ajouter à la map
+	changeHorizVerti(false);							//change les variables d'additions à ajouter à la map
 
 	tryedToMove = true;							//set le joueur dans l'état "essai de bouger"
 }
@@ -75,14 +75,13 @@ void Player::tryToMove(MOVE_TYPE moveTry)
 ///
 /// stop le joueur et reset ses valeurs
 ///
-void Player::stopMove()
+void Player::stopMove(MOVE_TYPE moveTry)
 {
-	//moveType = moveTry;							//change l'enum pour définir ou il veut bouger
-	//changeHorizVerti(false);
-	addHoriz = 0;							//reset les additions !
-	addVerti = 0;
+	moveType = moveTry;							//change l'enum pour définir quel mouvement il a arreté
+	changeHorizVerti(true);
 
-	tryedToMove = false;
+	if (addHoriz == 0 && addVerti == 0)
+		tryedToMove = false;
 }
 
 
