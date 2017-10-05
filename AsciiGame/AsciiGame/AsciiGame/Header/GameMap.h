@@ -5,12 +5,14 @@
 #include "NormalBlock.h"
 #include "BorderBlock.h"
 #include "Vector2.h"
+#include "Window.h"
 
 class GameMap
 {
 private: 
 	Vector2 dimension;
 	std::vector<std::vector<Block>> blockMap;
+	bool needRedraw;
 
 public : 
 	explicit GameMap();
@@ -33,6 +35,7 @@ public :
 	Vector2 getDimension();
 	std::vector<std::vector<Block>> getBlocks();
 	void update();
+	void display(Window* window);
 
 
 };

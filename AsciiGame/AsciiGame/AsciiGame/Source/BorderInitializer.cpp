@@ -10,7 +10,7 @@
 			if (x <= 1 || y <= 1 || x >= dimension.x - 2 || y >= dimension.y - 2)
 				map->setBlock(x, y, (Block*) new BorderBlock());
 			else
-				map->setBlock(x, y, (Block*) new NormalBlock());
+				map->setBlock(x, y, (Block*) new VoidBlock());
 		}
 	}
 }

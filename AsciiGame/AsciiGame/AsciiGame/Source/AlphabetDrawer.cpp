@@ -357,7 +357,6 @@ void AlphabetDrawer::drawT(Window* window, Vector2 pos)
 	window->changePixel(pos.x + 1, pos.y, 'X');
 	window->changePixel(pos.x + 2, pos.y, 'X');
 	window->changePixel(pos.x + 3, pos.y, 'X');
-	window->changePixel(pos.x + 4, pos.y, 'X');
 	window->changePixel(pos.x, pos.y, 'X');
 
 	window->changePixel(pos.x + 1, pos.y + 1, 'X');

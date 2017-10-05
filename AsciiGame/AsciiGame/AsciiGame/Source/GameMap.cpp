@@ -9,6 +9,7 @@
 		for (unsigned int j = 0; j < blockMap[i].size(); ++j)
 			blockMap[i][j] = Block(i, j, ' ', false);
 	}
+	needRedraw = true;
 }
 /*explicit*/ GameMap::GameMap(Vector2 dim)
 	: dimension(dim)
@@ -20,6 +21,7 @@
 		for (unsigned int j = 0; j < blockMap[i].size(); ++j)
 			blockMap[i][j] = Block(i, j, ' ', false);
 	}
+	needRedraw = true;
 }
 /*explicit*/ GameMap::GameMap(unsigned int x, unsigned int y)
 	: dimension(Vector2(x,y))
@@ -34,6 +36,7 @@
 			blockMap[i][j] = Block(i, j, ' ', false);
 		}
 	}
+	needRedraw = true;
 	
 }
 /*virtual*/ GameMap::~GameMap()
@@ -89,4 +92,19 @@ std::vector<std::vector<Block>> GameMap::getBlocks()
 void GameMap::update()
 {
 	
+}
+
+void GameMap::display(Window* window)
+{
+	if (needRedraw)
+	{
+		for (unsigned int i = 0; i < blockMap.size(); ++i)
+		{
+			for (unsigned int j = 0; j < blockMap[i].size(); ++j)
+			{
+				window->changePixel(i, j, blockMap[i][j].getSprite());
+			}
+		}
+		needRedraw = false;
+	}
 }

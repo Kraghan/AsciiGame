@@ -14,16 +14,6 @@
 
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
-
-
-	std::vector<std::vector<Block>> blocks = gameMap.getBlocks();
-	for (unsigned int i = 0; i < blocks.size(); ++i)
-	{
-		for (unsigned int j = 0; j < blocks[i].size(); ++j)
-		{
-			window->changePixel(i, j, blocks[i][j].getSprite());
-		}
-	}
 }
 
 // Update the game logic
@@ -81,7 +71,7 @@
 
 /*virtual*/ void GameStateGame::display()
 {
-
+	gameMap.display(window);
 }
 
 // Called when the state is set to active
