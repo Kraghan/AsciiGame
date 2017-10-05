@@ -1,9 +1,12 @@
 #include "..\Header\Bullet.h"
 
-Bullet::Bullet(Vector2 pos, MOVE_TYPE move)
-	: pos(pos), moveType(move)
+Bullet::Bullet(Vector2 pos, int addH, int addV)
+	: pos(pos), addHoriz(addH), addVerti(addV)
 {
-	void changeHorizVerti(MOVE_TYPE moveType);					//déplace le joueur
+	oldPos = pos;
+	displaySize.x = 5;
+	displaySize.y = 5;
+	setupRealPos();
 }
 
 
@@ -12,48 +15,44 @@ Bullet::~Bullet()
 
 }
 
-void Bullet::changeHorizVerti()
+///
+/// affiche le bullet (et cache l'ancien)
+///
+void Bullet::display(Window *win)
 {
-	if (moveType != M_NOTHING)
-	{
-		addHoriz = 0;
-		addVerti = 0;
+	displayBullet(win, true);	//enlève l'ancien en mettant du blanc
+	displayBullet(win);		//affiche la nouvelle positions
 
-		switch (moveType)
-		{
-		case M_UP:
-			addVerti = -speedBullet;
-			break;
-		case M_DOWN:
-			addVerti = speedBullet;
-			break;
-		case M_RIGHT:
-			addHoriz = speedBullet;
-			break;
-		case M_LEFT:
-			addHoriz = -speedBullet;
-			break;
+	oldPos = pos;
+}
 
-		case M_UP_RIGHT:
-			addHoriz = -speedBullet;
-			addVerti = speedBullet;
-			break;
-		case M_UP_LEFT:
-			addHoriz = -speedBullet;
-			addVerti = -speedBullet;
-			break;
-		case M_DOWN_RIGHT:
-			addHoriz = speedBullet;
-			addVerti = speedBullet;
-			break;
-		case M_DOWN_LEFT:
-			addHoriz = speedBullet;
-			addVerti = -speedBullet;
-			break;
-		}
-		//TODO ???
-		moveType = M_NOTHING;								//reset le moveType !
-	}
+///
+/// affiche le sprite de l'objet
+///
+void Bullet::displayBullet(Window *win, bool erase)
+{
+	char c = (!erase) ? carac : ' ';
+	int x = (!erase) ? pos.x : oldPos.x;
+	int y = (!erase) ? pos.y : oldPos.y;
+
+	win->changePixel(x, y, c);
+	win->changePixel(x - 1, y, c);
+	win->changePixel(x + 1, y, c);
+	win->changePixel(x, y - 1, c);
+	win->changePixel(x, y + 1, c);
+	win->changePixel(x - 1, y - 1, c);
+	win->changePixel(x - 1, y + 1, c);
+	win->changePixel(x + 1, y - 1, c);
+	win->changePixel(x + 2, y + 1, c);
+}
+
+///
+/// actualise la position pour les colisions
+///
+void Bullet::setupRealPos()
+{
+	displayPos.x = pos.x - (displaySize.x / 2);
+	displayPos.y = pos.y - (displaySize.y / 2);
 }
 
 ///
@@ -61,6 +60,8 @@ void Bullet::changeHorizVerti()
 ///
 void Bullet::update()
 {
-	pos.x = pos.x += addHoriz;
-	pos.y = pos.y += addVerti;
+	pos.x += addHoriz * speedBullet;
+	pos.y += addVerti * speedBullet;
+
+	setupRealPos();
 }

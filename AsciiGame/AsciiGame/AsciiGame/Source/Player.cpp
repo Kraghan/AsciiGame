@@ -8,7 +8,10 @@ Player::Player()
 Player::Player(Vector2 pos)
 	: pos(pos)
 {
-
+	oldPos = pos;
+	displaySize.x = 11;
+	displaySize.y = 9;
+	setupRealPos();
 }
 
 Player::~Player()
@@ -19,40 +22,43 @@ Player::~Player()
 ///
 /// change addVerti et AddHoriz pour définir où il veut bouger (0,0) signifie ne bouge pas.
 ///
-void Player::changeHorizVerti(bool stop = false)
+void Player::changeHorizVerti(bool stop, bool bullet = false)
 {
 	if (moveType != M_NOTHING)
 	{
 		switch (moveType)
 		{
 		case M_UP:
-			addVerti = (!stop) ? -speedPlayer : 0;	//si !stop, UP = -1, sinon, on a lancé l'événement STOP de UP, donc 0
+			if (!bullet)
+				addVerti = (!stop) ? -speedPlayer : 0;	//si !stop, UP = -1, sinon, on a lancé l'événement STOP de UP, donc 0
+			else
+			{
+				addShootVerti = -1;
+			}
 			break;
 		case M_DOWN:
-			addVerti = (!stop) ? speedPlayer : 0;	//si !stop, DOWN = 1, sinon, on a lancé l'événement STOP de DOWN, donc 0
+			if (!bullet)
+				addVerti = (!stop) ? speedPlayer : 0;	//si !stop, DOWN = 1, sinon, on a lancé l'événement STOP de DOWN, donc 0
+			else
+			{
+				addShootVerti = 1;
+			}
 			break;
 		case M_RIGHT:
-			addHoriz = (!stop) ? speedPlayer : 0;
+			if (!bullet)
+				addHoriz = (!stop) ? speedPlayer : 0;
+			else
+			{
+				addShootHoriz = 1;
+			}
 			break;
 		case M_LEFT:
-			addHoriz = (!stop) ? -speedPlayer : 0;
-			break;
-
-		case M_UP_RIGHT:
-			addHoriz = -speedPlayer;
-			addVerti = speedPlayer;
-			break;
-		case M_UP_LEFT:
-			addHoriz = -speedPlayer;
-			addVerti = -speedPlayer;
-			break;
-		case M_DOWN_RIGHT:
-			addHoriz = speedPlayer;
-			addVerti = speedPlayer;
-			break;
-		case M_DOWN_LEFT:
-			addHoriz = speedPlayer;
-			addVerti = -speedPlayer;
+			if (!bullet)
+				addHoriz = (!stop) ? -speedPlayer : 0;
+			else
+			{
+				addShootHoriz = -1;
+			}
 			break;
 		}
 		//TODO ???
@@ -65,11 +71,20 @@ void Player::changeHorizVerti(bool stop = false)
 ///
 void Player::tryToMove(MOVE_TYPE moveTry)
 {
-	//ici, dire "BOUGER A DROITE"
 	moveType = moveTry;							//change l'enum pour définir ou il veut bouger
 	changeHorizVerti(false);							//change les variables d'additions à ajouter à la map
 
 	tryedToMove = true;							//set le joueur dans l'état "essai de bouger"
+}
+
+///
+/// essai de tirer
+///
+void Player::tryToShoot(MOVE_TYPE moveTry)
+{
+	moveType = moveTry;							//change l'enum pour définir ou on tir
+	bulletToShoot = true;
+	changeHorizVerti(false, true);			//change les variables d'additions à ajouter à la map
 }
 
 ///
@@ -84,6 +99,105 @@ void Player::stopMove(MOVE_TYPE moveTry)
 		tryedToMove = false;
 }
 
+void Player::display(Window *win)
+{
+	displaySpaceInvader(win, true);	//enlève l'ancien en mettant du blanc
+	displaySpaceInvader(win);		//affiche la nouvelle positions
+
+	oldPos = pos;
+}
+
+///
+/// créé un bullet (position, orientation)
+///
+Bullet Player::shoot()
+{
+	int posX = pos.x + (displaySize.x * addShootHoriz);
+	int posY = pos.y + (displaySize.y * addShootVerti);
+	Bullet bull(Vector2(posX, posY), addShootHoriz, addShootVerti);
+
+	//reset les valeurs de tir
+	addShootHoriz = 0;
+	addShootVerti = 0;
+	bulletToShoot = false;
+
+	return (bull);
+}
+
+///
+/// affiche le sprite de l'objet: spaceInvader
+///
+void Player::displaySpaceInvader(Window *win, bool erase)
+{
+	char c = (!erase) ? carac : ' ';
+	int x = (!erase) ? pos.x : oldPos.x;
+	int y = (!erase) ? pos.y : oldPos.y;
+
+	win->changePixel(x, y, c);
+	win->changePixel(x - 1, y, c);
+	win->changePixel(x - 2, y, c);
+	win->changePixel(x - 3, y, c);
+	win->changePixel(x - 4, y, c);
+	win->changePixel(x - 5, y, c);
+	win->changePixel(x + 1, y, c);
+	win->changePixel(x + 2, y, c);
+	win->changePixel(x + 3, y, c);
+	win->changePixel(x + 4, y, c);
+	win->changePixel(x + 5, y, c);
+
+	win->changePixel(x, y - 1, c);
+	win->changePixel(x + 1, y - 1, c);
+	win->changePixel(x - 1, y - 1, c);
+	
+	win->changePixel(x + 3, y - 1, c);
+	win->changePixel(x - 3, y - 1, c);
+
+	win->changePixel(x + 4, y - 1, c);
+	win->changePixel(x - 4, y - 1, c);
+
+	win->changePixel(x, y - 2, c);
+	win->changePixel(x - 1, y - 2, c);
+	win->changePixel(x + 1, y - 2, c);
+	win->changePixel(x - 2, y - 2, c);
+	win->changePixel(x + 2, y - 2, c);
+	win->changePixel(x - 3, y - 2, c);
+	win->changePixel(x + 3, y - 2, c);
+
+	win->changePixel(x - 2, y - 3, c);
+	win->changePixel(x + 2, y - 3, c);
+
+	win->changePixel(x - 3, y - 4, c);
+	win->changePixel(x + 3, y - 4, c);
+
+	win->changePixel(x, y + 1, c);
+	win->changePixel(x - 1, y + 1, c);
+	win->changePixel(x - 2, y + 1, c);
+	win->changePixel(x - 3, y + 1, c);
+	win->changePixel(x - 5, y + 1, c);
+	win->changePixel(x + 1, y + 1, c);
+	win->changePixel(x + 2, y + 1, c);
+	win->changePixel(x + 3, y + 1, c);
+	win->changePixel(x + 5, y + 1, c);
+
+	win->changePixel(x - 3, y + 2, c);
+	win->changePixel(x - 5, y + 2, c);
+	win->changePixel(x + 3, y + 2, c);
+	win->changePixel(x + 5, y + 2, c);
+
+	win->changePixel(x - 1, y + 3, c);
+	win->changePixel(x - 2, y + 3, c);
+	win->changePixel(x + 1, y + 3, c);
+	win->changePixel(x + 2, y + 3, c);
+}
+
+///
+/// actualise la position pour les colisions
+///
+void Player::setupRealPos()
+{
+	displayPos.x = pos.x - (displaySize.x / 2);
+	displayPos.y = pos.y - (displaySize.y / 2);
+}
 
 ///
 /// déplace le joueur ?
@@ -91,9 +205,9 @@ void Player::stopMove(MOVE_TYPE moveTry)
 void Player::update()
 {
 	//ici, actualiser la position du joueur
+	
 	pos.x += addHoriz;
 	pos.y += addVerti;
 
-	//addHoriz = 0;							//reset les additions !
-	//addVerti = 0;
+	setupRealPos();
 }

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Vector2.h"
+#include "Window.h"
+#include "Bullet.h"
 #include <iostream>
 
 class Player
@@ -20,14 +22,22 @@ public:
 		M_DOWN_LEFT = 7
 	};
 
+	Vector2 displayPos;
+	Vector2 displaySize;
+
+	Vector2 oldPos;
 	Vector2 pos;
-	bool tryedToMove = false;
+	bool tryedToMove = true;			//ici à vrai pour afficher le player au début
 	int speedPlayer = 1;
 	char carac = 'P';
-	int color = 5;
+	int color = 15;
 
 	int addHoriz = 0;
 	int addVerti = 0;
+
+	bool bulletToShoot = false;			//le joueur doit-il tirrer un bullet ?
+	int addShootHoriz = 0;
+	int addShootVerti = 0;
 
 private:
 	MOVE_TYPE moveType = M_NOTHING;				//le type de mouvement à faire dans l'update !
@@ -39,11 +49,15 @@ public:
 
 	void tryToMove(MOVE_TYPE moveType);					//déplace le joueur
 	void stopMove(MOVE_TYPE moveType);								//stop le joueur
-													//dis "BOUGER a droite"
+	void tryToShoot(MOVE_TYPE moveType);
+
+	void display(Window *win);
+	Bullet shoot();
 	void update(); //selon move, change pos;
 
 private:
-	void changeHorizVerti(bool stop);
-
+	void changeHorizVerti(bool stop, bool bullet);
+	void displaySpaceInvader(Window *win, bool erase = false);
+	void setupRealPos();	//actualise la position pour les colisions
 };
 

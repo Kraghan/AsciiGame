@@ -1,42 +1,33 @@
 #pragma once
 
 #include "Vector2.h"
+#include "Window.h"
 
 class Bullet
 {
 public:
-	enum MOVE_TYPE
-	{
-		M_NOTHING = -1,	//rien, etat initial
-		M_UP = 0,
-		M_DOWN = 1,
-		M_RIGHT = 2,
-		M_LEFT = 3,
-		//diag
-		M_UP_RIGHT = 4,
-		M_UP_LEFT = 5,
-		M_DOWN_RIGHT = 6,
-		M_DOWN_LEFT = 7
-	};
+	Vector2 displayPos;
+	Vector2 displaySize;
 
+	Vector2 oldPos;
 	Vector2 pos;
-	int addHoriz = 1;
-	int addVerti = 1;
+
+	int addHoriz = 0;
+	int addVerti = 0;
 	int speedBullet = 1;
 
 	char carac = '*';
 	int color = 7;
 
-private:
-	MOVE_TYPE moveType = M_NOTHING;				//le type de mouvement à faire dans l'update !
-
 public:
-	Bullet(Vector2 pos, MOVE_TYPE moveTry);
+	Bullet(Vector2 pos, int addH, int addV);
 	~Bullet();
 
+	void display(Window *win);
 	void update(); //selon move, change pos;
 
 private:
-	void changeHorizVerti();
+	void displayBullet(Window *win, bool erase = false);
+	void setupRealPos();	//actualise la position pour les colisions
 };
 
