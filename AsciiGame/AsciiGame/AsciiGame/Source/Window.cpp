@@ -26,7 +26,7 @@ void Window::open(char* title)
 	CONSOLE_FONT_INFOEX cfi;
 	cfi.cbSize = sizeof(cfi);
 	cfi.nFont = 0;
-	cfi.dwFontSize.X = 0;
+	cfi.dwFontSize.X = FONT_SIZE;
 	cfi.dwFontSize.Y = FONT_SIZE;
 	cfi.FontFamily = FF_ROMAN;
 	cfi.FontWeight = FW_NORMAL;
@@ -78,6 +78,8 @@ void Window::clear()
 
 void Window::changePixel(int x, int y, char c, int color)
 {
+	if (y < 0 || y >= SCREEN_HEIGHT || x < 0 || x >= SCREEN_WIDTH)
+		return;
 	buffer[y][x].Attributes = color;
 	buffer[y][x].Char.AsciiChar = c;
 }

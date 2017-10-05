@@ -31,19 +31,19 @@
 {
 	gameMap.update();
 
-	if (player.tryedToMove)
-	{
-		//si les colisions sont ok, bouger le joueur
-		//{
-		displayPlayer();		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
+	//si les colisions sont ok, bouger le joueur
+	//{
 		player.update();		//ici actualise les nouvelles positions du joueur
-								//}
-								//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
-								//{
-								//player.addHoriz = 0;
-								//player.addVerti = 0;
-								//}
-
+	//}
+	//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
+	//{
+	//player.addHoriz = 0;
+	//player.addVerti = 0;
+	//}
+	
+	for (auto & element : bullet)
+	{
+		element.update();
 	}
 
 	//parcourt tous les bullet pr�sents...
@@ -79,7 +79,22 @@
 
 /*virtual*/ void GameStateGame::display()
 {
+	//si les colisions sont ok, bouger le joueur
+	//{
+	player.display(window);		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
+	//}
+	//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
+	//{
+	//player.addHoriz = 0;
+	//player.addVerti = 0;
+	//}
+	if (player.bulletToShoot)
+		bullet.push_back(player.shoot());
 
+	for (auto & element : bullet)
+	{
+		element.display(window);
+	}
 }
 
 // Called when the state is set to active
@@ -93,20 +108,6 @@
 {
 
 }
-////////////////////////////////////// display object ///////////////////////////////
-
-void GameStateGame::displayPlayer()
-{
-	window->changePixel(player.pos.x, player.pos.y, ' ');
-	window->changePixel(player.pos.x + player.addHoriz, player.pos.y + player.addVerti, player.carac, player.color);
-}
-
-void GameStateGame::displayBullet(Bullet &bullet)
-{
-	//changePixel(oldPos.x, oldPos.y, ' ');
-	//changePixel(newPos.x, newPos.y, '*', 7);
-}
-
 
 ////////////////////////////////////// INPUT PLAYER ///////////////////////////////////
 void GameStateGame::inputPlayer(Event *e)
@@ -141,22 +142,22 @@ void GameStateGame::inputPlayer(Event *e)
 			// Tir
 			case Event::INPUT::KB_UP:
 			{
-
+				player.tryToShoot(Player::MOVE_TYPE::M_UP);
 				break;
 			}
 			case Event::INPUT::KB_DOWN:
 			{
-
+				player.tryToShoot(Player::MOVE_TYPE::M_DOWN);
 				break;
 			}
 			case Event::INPUT::KB_LEFT:
 			{
-
+				player.tryToShoot(Player::MOVE_TYPE::M_LEFT);
 				break;
 			}
 			case Event::INPUT::KB_RIGHT:
 			{
-
+				player.tryToShoot(Player::MOVE_TYPE::M_RIGHT);
 				break;
 			}
 			default:
