@@ -29,7 +29,7 @@ void Player::changeHorizVerti(bool stop = false)
 			addVerti = (!stop) ? -speedPlayer : 0;	//si !stop, UP = -1, sinon, on a lancé l'événement STOP de UP, donc 0
 			break;
 		case M_DOWN:
-			addVerti = (!stop) ? speedPlayer : 0;	//si !stop, DOWN = -1, sinon, on a lancé l'événement STOP de UP, donc 0
+			addVerti = (!stop) ? speedPlayer : 0;	//si !stop, DOWN = 1, sinon, on a lancé l'événement STOP de DOWN, donc 0
 			break;
 		case M_RIGHT:
 			addHoriz = (!stop) ? speedPlayer : 0;
