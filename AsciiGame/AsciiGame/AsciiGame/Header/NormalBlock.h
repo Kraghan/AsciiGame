@@ -5,12 +5,12 @@ class NormalBlock : Block
 {
 public:
 	explicit NormalBlock(void)
-		: Block(Vector2(), ' ')
+		: Block(Vector2(), 'x')
 	{
 
 	}
 	explicit NormalBlock(Vector2 pos)
-		: Block(pos, ' ')
+		: Block(pos, 'x')
 	{
 
 	}

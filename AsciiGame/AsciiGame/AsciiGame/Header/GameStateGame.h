@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "GameMap.h"
 #include "BorderInitializer.h"
+#include "CaveSeedInitializer.h"
 #include "Player.h"
 #include "Vector2.h"
 #include "Bullet.h"

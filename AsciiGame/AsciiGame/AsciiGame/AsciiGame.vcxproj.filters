@@ -179,5 +179,11 @@
     <ClInclude Include="Header\BorderBlock.h">
       <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
     </ClInclude>
+    <ClInclude Include="Header\InputController.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\CaveSeedInitializer.h">
+      <Filter>Fichiers d%27en-tête\Map\Initializer</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

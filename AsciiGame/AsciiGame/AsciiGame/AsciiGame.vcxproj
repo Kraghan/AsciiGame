@@ -137,6 +137,7 @@
     <ClInclude Include="Header\BorderBlock.h" />
     <ClInclude Include="Header\BorderInitializer.h" />
     <ClInclude Include="Header\Bullet.h" />
+    <ClInclude Include="Header\CaveSeedInitializer.h" />
     <ClInclude Include="Header\Event.h" />
     <ClInclude Include="Header\GameMap.h" />
     <ClInclude Include="Header\GameState.h" />

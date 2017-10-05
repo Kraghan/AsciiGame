@@ -14,6 +14,8 @@
 
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
+	CaveSeedInitializer caveInit = CaveSeedInitializer();
+	caveInit.initialize(&gameMap);
 }
 
 // Update the game logic
@@ -69,6 +71,7 @@
 
 /*virtual*/ void GameStateGame::display()
 {
+	gameMap.display(window);
 	//si les colisions sont ok, bouger le joueur
 	//{
 	player.display(window);		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)

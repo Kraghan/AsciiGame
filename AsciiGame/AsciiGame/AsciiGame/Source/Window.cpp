@@ -28,7 +28,7 @@ void Window::open(char* title)
 	cfi.nFont = 0;
 	cfi.dwFontSize.X = FONT_SIZE;
 	cfi.dwFontSize.Y = FONT_SIZE;
-	cfi.FontFamily = FF_ROMAN;
+	cfi.FontFamily = FF_DONTCARE;
 	cfi.FontWeight = FW_NORMAL;
 	SetCurrentConsoleFontEx(hOutput, FALSE, &cfi);
 

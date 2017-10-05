@@ -68,13 +68,13 @@ Block* GameMap::getBlock(unsigned int x, unsigned int y)
 // Set the block at position
 void GameMap::setBlock(Vector2 position, Block* block)
 {
-	blockMap[position.x][position.y].setPosition(block->getPosition());
+	blockMap[position.x][position.y].setPosition(position);
 	blockMap[position.x][position.y].setSprite(block->getSprite());
 	blockMap[position.x][position.y].setIsSolid(block->getIsSolid());
 }
 void GameMap::setBlock(unsigned int x, unsigned int y, Block* block)
 {
-	blockMap[x][y].setPosition(block->getPosition());
+	blockMap[x][y].setPosition(Vector2(x,y));
 	blockMap[x][y].setSprite(block->getSprite());
 	blockMap[x][y].setIsSolid(block->getIsSolid());
 }
