@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector2.h"
+#include "Window.h"
 #include <iostream>
 
 class Player
@@ -21,7 +22,7 @@ public:
 	};
 
 	Vector2 pos;
-	bool tryedToMove = false;
+	bool tryedToMove = true;			//ici à vrai pour afficher le player au début
 	int speedPlayer = 1;
 	char carac = 'P';
 	int color = 5;
@@ -39,7 +40,8 @@ public:
 
 	void tryToMove(MOVE_TYPE moveType);					//déplace le joueur
 	void stopMove(MOVE_TYPE moveType);								//stop le joueur
-													//dis "BOUGER a droite"
+					
+	void display(Window &win);
 	void update(); //selon move, change pos;
 
 private:

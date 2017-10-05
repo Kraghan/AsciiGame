@@ -84,6 +84,18 @@ void Player::stopMove(MOVE_TYPE moveTry)
 		tryedToMove = false;
 }
 
+/*
+void GameStateGame::displayPlayer()
+{
+window->changePixel(player.pos.x, player.pos.y, ' ');
+window->changePixel(player.pos.x + player.addHoriz, player.pos.y + player.addVerti, player.carac, player.color);
+}
+
+*/
+void Player::display(Window &win)
+{
+
+}
 
 ///
 /// déplace le joueur ?

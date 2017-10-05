@@ -30,14 +30,12 @@
 /*virtual*/ void GameStateGame::update()
 {
 	gameMap.update();
-	
-	//if (player.tryedToMove)								//le joueur a essay� de bouger
-	//{
+
+	if (player.tryedToMove)
+	{
 		//si les colisions sont ok, bouger le joueur
 		//{
-		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
-		displayPlayer();
-		
+		displayPlayer();		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
 		player.update();		//ici actualise les nouvelles positions du joueur
 								//}
 								//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
@@ -45,8 +43,8 @@
 								//player.addHoriz = 0;
 								//player.addVerti = 0;
 								//}
-		//player.tryedToMove = false;
-	//}
+
+	}
 
 	//parcourt tous les bullet pr�sents...
 	/*for (auto & element : bullet)
