@@ -38,6 +38,11 @@
 		element.update();
 	}
 
+	for (auto & element : ia)
+	{
+		element.update();
+	}
+
 	//parcourt tous les bullet pr�sents...
 	/*for (auto & element : bullet)
 	{
@@ -64,6 +69,13 @@
 
 		inputPlayer(e);											//input du joueur in-game
 
+		if (e->input == Event::INPUT::KB_I
+			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
+		{
+			IA popIa(Vector2(200, 100));
+			ia.push_back(popIa);
+		}
+
 		e = window->popEvent();
 	}
 	return true;
@@ -85,6 +97,11 @@
 		bullet.push_back(player.shoot());
 
 	for (auto & element : bullet)
+	{
+		element.display(window);
+	}
+
+	for (auto & element : ia)
 	{
 		element.display(window);
 	}

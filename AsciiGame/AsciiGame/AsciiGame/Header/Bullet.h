@@ -6,7 +6,6 @@
 class Bullet : Entity
 {
 public:
-
 	char carac = '*';
 	int color = 7;
 	int dimensionBulletX = 5;

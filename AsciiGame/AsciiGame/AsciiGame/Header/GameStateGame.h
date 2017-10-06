@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Vector2.h"
 #include "Bullet.h"
+#include "IA.h"
 
 #include <vector>
 
@@ -16,6 +17,7 @@ private:
 	Player player;
 	
 	vector<Bullet> bullet;
+	vector<IA> ia;
 
 public:
 	virtual ~GameStateGame(void);
@@ -40,5 +42,4 @@ public:
 
 private:
 	void inputPlayer(Event *e);
-	void displayBullet(Bullet &bullet);
 };

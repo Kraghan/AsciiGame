@@ -18,6 +18,11 @@ public:
 		KB_D = 68,
 		KB_SPACE = 32,
 		KB_ENTER = 13,
+
+		KB_I = 73,
+		KB_J = 74,
+		KB_K = 75,
+		KB_L = 76,
 	};
 	// key:
 	//https://www.amibroker.com/guide/afl/getasynckeystate.html
