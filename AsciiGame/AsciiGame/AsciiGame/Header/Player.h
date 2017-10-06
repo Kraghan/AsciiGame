@@ -3,6 +3,7 @@
 #include "Vector2.h"
 #include "Window.h"
 #include "Bullet.h"
+#include "Timer.h"
 #include <iostream>
 
 class Player
@@ -24,6 +25,11 @@ public:
 
 	Vector2 displayPos;
 	Vector2 displaySize;
+
+	Timer timer;
+	float timeReload = 0.3f;
+
+	//float timeOfFirstShoot = 0;
 
 	Vector2 oldPos;
 	Vector2 pos;

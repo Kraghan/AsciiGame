@@ -17,7 +17,10 @@ public:
 		KB_Q = 81,
 		KB_D = 68,
 		KB_SPACE = 32,
+		KB_ENTER = 13,
 	};
+	// key:
+	//https://www.amibroker.com/guide/afl/getasynckeystate.html
 	//enum des types d'événements
 	enum TYPE_INPUT_EVENT
 	{

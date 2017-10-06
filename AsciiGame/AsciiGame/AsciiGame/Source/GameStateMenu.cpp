@@ -53,7 +53,7 @@
 		}
 
 		// Valid choice if space or enter pressed
-		if ((e->input == Event::INPUT::KB_SPACE || e->input == Event::INPUT::KB_A)
+		if ((e->input == Event::INPUT::KB_SPACE || e->input == Event::INPUT::KB_ENTER)
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
 			if (focus == FB_PLAY)

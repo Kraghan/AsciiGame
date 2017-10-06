@@ -12,6 +12,7 @@ Player::Player(Vector2 pos)
 	displaySize.x = 11;
 	displaySize.y = 9;
 	setupRealPos();
+	timer = Timer();
 }
 
 Player::~Player()
@@ -71,6 +72,8 @@ void Player::changeHorizVerti(bool stop, bool bullet = false)
 ///
 void Player::tryToMove(MOVE_TYPE moveTry)
 {
+
+
 	moveType = moveTry;							//change l'enum pour définir ou il veut bouger
 	changeHorizVerti(false);							//change les variables d'additions à ajouter à la map
 
@@ -82,6 +85,8 @@ void Player::tryToMove(MOVE_TYPE moveTry)
 ///
 void Player::tryToShoot(MOVE_TYPE moveTry)
 {
+	if (timer.getElapsedSeconds() < timeReload)
+		return;
 	moveType = moveTry;							//change l'enum pour définir ou on tir
 	bulletToShoot = true;
 	changeHorizVerti(false, true);			//change les variables d'additions à ajouter à la map
@@ -120,6 +125,8 @@ Bullet Player::shoot()
 	addShootHoriz = 0;
 	addShootVerti = 0;
 	bulletToShoot = false;
+
+	timer.start();
 
 	return (bull);
 }
@@ -205,7 +212,6 @@ void Player::setupRealPos()
 void Player::update()
 {
 	//ici, actualiser la position du joueur
-	
 	pos.x += addHoriz;
 	pos.y += addVerti;
 

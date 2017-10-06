@@ -14,7 +14,7 @@ public:
 
 	int addHoriz = 0;
 	int addVerti = 0;
-	int speedBullet = 1;
+	int speedBullet = 2;
 
 	char carac = '*';
 	int color = 7;
