@@ -10,6 +10,7 @@ private:
 		FB_PLAY,
 		FB_QUIT
 	};
+	bool hasChange;
 
 	FocusButton focus;
 

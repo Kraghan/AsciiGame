@@ -1,478 +1,488 @@
 #include "../Header/AlphabetDrawer.h"
 
-void AlphabetDrawer::drawA(Window* window, Vector2 pos)
+void AlphabetDrawer::drawPixel(Window* window, unsigned int x, unsigned int y, unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
+	for (unsigned int i = 0; i < fontSize; ++i)
+	{
+		for (unsigned int j = 0; j < fontSize; ++j)
+		{
+			window->changePixel(x + i, y + j, caractere, color);
+		}
+	}
+}
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+void AlphabetDrawer::drawA(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
+{
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
+
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 
 }
 
-void AlphabetDrawer::drawB(Window* window, Vector2 pos)
+void AlphabetDrawer::drawB(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawC(Window* window, Vector2 pos)
+void AlphabetDrawer::drawC(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawD(Window* window, Vector2 pos)
+void AlphabetDrawer::drawD(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawE(Window* window, Vector2 pos)
+void AlphabetDrawer::drawE(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawF(Window* window, Vector2 pos)
+void AlphabetDrawer::drawF(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawG(Window* window, Vector2 pos)
+void AlphabetDrawer::drawG(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawH(Window* window, Vector2 pos)
+void AlphabetDrawer::drawH(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawI(Window* window, Vector2 pos)
+void AlphabetDrawer::drawI(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawJ(Window* window, Vector2 pos)
+void AlphabetDrawer::drawJ(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawK(Window* window, Vector2 pos)
+void AlphabetDrawer::drawK(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 2, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 2, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawL(Window* window, Vector2 pos)
+void AlphabetDrawer::drawL(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawM(Window* window, Vector2 pos)
+void AlphabetDrawer::drawM(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 1, pos.y + 1, 'X');
-	window->changePixel(pos.x + 2, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawN(Window* window, Vector2 pos)
+void AlphabetDrawer::drawN(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 1, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawO(Window* window, Vector2 pos)
+void AlphabetDrawer::drawO(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawP(Window* window, Vector2 pos)
+void AlphabetDrawer::drawP(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawQ(Window* window, Vector2 pos)
+void AlphabetDrawer::drawQ(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 2, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawR(Window* window, Vector2 pos)
+void AlphabetDrawer::drawR(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 2, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawS(Window* window, Vector2 pos)
+void AlphabetDrawer::drawS(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawT(Window* window, Vector2 pos)
+void AlphabetDrawer::drawT(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
-	window->changePixel(pos.x, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y, fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 1, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 3, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 	
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawU(Window* window, Vector2 pos)
+void AlphabetDrawer::drawU(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x + 3, pos.y, 'X');
-	window->changePixel(pos.x, pos.y, 'X');
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 3, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawV(Window* window, Vector2 pos)
+void AlphabetDrawer::drawV(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 	
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 2, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 2, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawW(Window* window, Vector2 pos)
+void AlphabetDrawer::drawW(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 4, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 4 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 2, pos.y + 1, 'X');
-	window->changePixel(pos.x + 4, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 4 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
-	window->changePixel(pos.x + 4, pos.y + 2, 'X');
+	drawPixel(window, pos.x, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 4 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 2, pos.y + 3, 'X');
-	window->changePixel(pos.x + 4, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 4 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawX(Window* window, Vector2 pos)
+void AlphabetDrawer::drawX(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 1, 'X');
-	window->changePixel(pos.x + 2, pos.y + 1, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 3, 'X');
-	window->changePixel(pos.x + 3, pos.y + 3, 'X');
+	drawPixel(window, pos.x, pos.y + 3 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawY(Window* window, Vector2 pos)
+void AlphabetDrawer::drawY(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 1, 'X');
-	window->changePixel(pos.x + 2, pos.y + 1, 'X');
+	drawPixel(window, pos.x, pos.y + fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 2, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 3, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }
 
-void AlphabetDrawer::drawZ(Window* window, Vector2 pos)
+void AlphabetDrawer::drawZ(Window* window, Vector2 pos , unsigned int fontSize, char caractere, int color)
 {
-	window->changePixel(pos.x, pos.y, 'X');
-	window->changePixel(pos.x + 1, pos.y, 'X');
-	window->changePixel(pos.x + 2, pos.y, 'X');
-	window->changePixel(pos.x + 3, pos.y, 'X');
+	drawPixel(window, pos.x, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 3, pos.y + 1, 'X');
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 2, pos.y + 2, 'X');
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 2 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x + 1, pos.y + 3, 'X');
+	drawPixel(window, pos.x + fontSize, pos.y + 3 * fontSize,fontSize, caractere, color);
 
-	window->changePixel(pos.x, pos.y + 4, 'X');
-	window->changePixel(pos.x + 1, pos.y + 4, 'X');
-	window->changePixel(pos.x + 2, pos.y + 4, 'X');
-	window->changePixel(pos.x + 3, pos.y + 4, 'X');
+	drawPixel(window, pos.x, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 4 * fontSize,fontSize, caractere, color);
 }

@@ -10,23 +10,13 @@
 {
 	window = wind;
 	focus = FB_PLAY;
-	window->clear();
-	drawContour();
-	drawTitle();
+	hasChange = true;
 }
 
 // Update the game logic
 /*virtual*/ void GameStateMenu::update()
 {
-	if (focus == FB_PLAY)
-		drawPlayFocused();
-	else
-		drawPlay();
-
-	if (focus == FB_QUIT)
-		drawQuitFocused();
-	else
-		drawQuit();
+	
 }
 
 // Process the input
@@ -44,6 +34,7 @@
 		if ((e->input == Event::INPUT::KB_DOWN || e->input == Event::INPUT::KB_S)
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
+			hasChange = true;
 			if (focus == FB_PLAY)
 				focus = FB_QUIT;
 			else if (focus == FB_QUIT)
@@ -54,6 +45,7 @@
 		if ((e->input == Event::INPUT::KB_UP || e->input == Event::INPUT::KB_Z)
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
+			hasChange = true;
 			if (focus == FB_PLAY)
 				focus = FB_QUIT;
 			else if (focus == FB_QUIT)
@@ -77,7 +69,26 @@
 
 /*virtual*/ void GameStateMenu::display()
 {
+	if (hasChange)
+	{
 
+		window->clear();
+		drawContour();
+		drawTitle();
+
+		if (focus == FB_PLAY)
+			drawPlayFocused();
+		else
+			drawPlay();
+
+		if (focus == FB_QUIT)
+			drawQuitFocused();
+		else
+			drawQuit();
+
+		hasChange = false;
+	}
+	
 }
 
 // Called when the state is set to active
@@ -109,31 +120,25 @@ void GameStateMenu::drawContour()
 		{
 			window->changePixel(0, i, '\\');
 			window->changePixel(1, i, '\\');
-			window->changePixel(2, i, '\\');
 
 			window->changePixel(Window::SCREEN_WIDTH - 1, i, '/');
 			window->changePixel(Window::SCREEN_WIDTH - 2, i, '/');
-			window->changePixel(Window::SCREEN_WIDTH - 3, i, '/');
 		}
 		else if (i == Window::SCREEN_HEIGHT - 1 || i == Window::SCREEN_HEIGHT - 2)
 		{
 			window->changePixel(0, i, '/');
 			window->changePixel(1, i, '/');
-			window->changePixel(2, i, '/');
 
 			window->changePixel(Window::SCREEN_WIDTH - 1, i, '\\');
 			window->changePixel(Window::SCREEN_WIDTH - 2, i, '\\');
-			window->changePixel(Window::SCREEN_WIDTH - 3, i, '\\');
 		}
 		else
 		{
 			window->changePixel(0, i, 'Z');
 			window->changePixel(1, i, 'Z');
-			window->changePixel(2, i, 'Z');
 
 			window->changePixel(Window::SCREEN_WIDTH - 1, i, 'Z');
 			window->changePixel(Window::SCREEN_WIDTH - 2, i, 'Z');
-			window->changePixel(Window::SCREEN_WIDTH - 3, i, 'Z');
 		}
 
 	}
@@ -141,35 +146,87 @@ void GameStateMenu::drawContour()
 
 void GameStateMenu::drawTitle()
 {
-	AlphabetDrawer::drawA(window, Vector2(20, 10));
-	AlphabetDrawer::drawS(window, Vector2(25, 10));
-	AlphabetDrawer::drawC(window, Vector2(30, 10));
-	AlphabetDrawer::drawI(window, Vector2(35, 10));
-	AlphabetDrawer::drawI(window, Vector2(37, 10));
+	unsigned int fontSize = 6;
+	char caractere = 'X';
+	Vector2 initPos = Vector2(60, 10);
 
-	AlphabetDrawer::drawG(window, Vector2(42, 10));
-	AlphabetDrawer::drawA(window, Vector2(47, 10));
-	AlphabetDrawer::drawM(window, Vector2(52, 10));
-	AlphabetDrawer::drawE(window, Vector2(57, 10));
+	AlphabetDrawer::drawA(window, initPos, fontSize, caractere, 0x09);
+	AlphabetDrawer::drawS(window, Vector2(initPos.x + 5 * fontSize, initPos.y), fontSize, caractere, 0x09);
+	AlphabetDrawer::drawC(window, Vector2(initPos.x + 10 * fontSize, initPos.y), fontSize, caractere, 0x09);
+	AlphabetDrawer::drawI(window, Vector2(initPos.x + 15 * fontSize, initPos.y), fontSize, caractere, 0x09);
+	AlphabetDrawer::drawI(window, Vector2(initPos.x + 17 * fontSize, initPos.y), fontSize, caractere, 0x09);
+
+	AlphabetDrawer::drawG(window, Vector2(initPos.x + 22 * fontSize, initPos.y), fontSize, caractere, 0x09);
+	AlphabetDrawer::drawA(window, Vector2(initPos.x + 27 * fontSize, initPos.y), fontSize, caractere, 0x09);
+	AlphabetDrawer::drawM(window, Vector2(initPos.x + 32 * fontSize, initPos.y), fontSize, caractere, 0x09);
+	AlphabetDrawer::drawE(window, Vector2(initPos.x + 37 * fontSize, initPos.y), fontSize, caractere, 0x09);
 
 }
 
 void GameStateMenu::drawPlay()
 {
+	unsigned int fontSize = 4;
+	char caractere = 'X';
+	Vector2 initPos = Vector2(100, 92);
 
+	AlphabetDrawer::drawP(window, initPos, fontSize, caractere);
+	AlphabetDrawer::drawL(window, Vector2(initPos.x + 5 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawA(window, Vector2(initPos.x + 10 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawY(window, Vector2(initPos.x + 15 * fontSize, initPos.y), fontSize, caractere);
+
+	AlphabetDrawer::drawG(window, Vector2(initPos.x + 23 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawA(window, Vector2(initPos.x + 28 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawM(window, Vector2(initPos.x + 33 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawE(window, Vector2(initPos.x + 38 * fontSize, initPos.y), fontSize, caractere);
 }
 
 void GameStateMenu::drawPlayFocused()
 {
+	unsigned int fontSize = 5;
+	char caractere = 'X';
+	Vector2 initPos = Vector2(80, 90);
 
+	AlphabetDrawer::drawP(window, initPos, fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawL(window, Vector2(initPos.x + 5 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawA(window, Vector2(initPos.x + 10 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawY(window, Vector2(initPos.x + 15 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+
+	AlphabetDrawer::drawG(window, Vector2(initPos.x + 23 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawA(window, Vector2(initPos.x + 28 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawM(window, Vector2(initPos.x + 33 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawE(window, Vector2(initPos.x + 38 * fontSize, initPos.y), fontSize, caractere, 0x0E);
 }
 
 void GameStateMenu::drawQuit()
 {
+	unsigned int fontSize = 4;
+	char caractere = 'X';
+	Vector2 initPos = Vector2(110, 122);
 
+	AlphabetDrawer::drawQ(window, initPos, fontSize, caractere);
+	AlphabetDrawer::drawU(window, Vector2(initPos.x + 5 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawI(window, Vector2(initPos.x + 10 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawT(window, Vector2(initPos.x + 12 * fontSize, initPos.y), fontSize, caractere);
+
+	AlphabetDrawer::drawG(window, Vector2(initPos.x + 20 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawA(window, Vector2(initPos.x + 25 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawM(window, Vector2(initPos.x + 30 * fontSize, initPos.y), fontSize, caractere);
+	AlphabetDrawer::drawE(window, Vector2(initPos.x + 35 * fontSize, initPos.y), fontSize, caractere);
 }
 
 void GameStateMenu::drawQuitFocused()
 {
+	unsigned int fontSize = 5;
+	char caractere = 'X';
+	Vector2 initPos = Vector2(90, 120);
 
+	AlphabetDrawer::drawQ(window, initPos, fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawU(window, Vector2(initPos.x + 5 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawI(window, Vector2(initPos.x + 10 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawT(window, Vector2(initPos.x + 12 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+
+	AlphabetDrawer::drawG(window, Vector2(initPos.x + 20 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawA(window, Vector2(initPos.x + 25 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawM(window, Vector2(initPos.x + 30 * fontSize, initPos.y), fontSize, caractere, 0x0E);
+	AlphabetDrawer::drawE(window, Vector2(initPos.x + 35 * fontSize, initPos.y), fontSize, caractere, 0x0E);
 }
