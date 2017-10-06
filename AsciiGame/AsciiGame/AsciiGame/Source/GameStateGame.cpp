@@ -114,43 +114,43 @@ void GameStateGame::inputPlayer(Event *e)
 			// Déplacement
 			case Event::INPUT::KB_Z : 
 			{
-				player.tryToMove(Player::MOVE_TYPE::M_UP);
+				player.tryToMove(Entity::MOVE_TYPE::M_UP);
 				break;
 			}
 			case Event::INPUT::KB_Q:
 			{
-				player.tryToMove(Player::MOVE_TYPE::M_LEFT);
+				player.tryToMove(Entity::MOVE_TYPE::M_LEFT);
 				break;
 			}
 			case Event::INPUT::KB_S:
 			{
-				player.tryToMove(Player::MOVE_TYPE::M_DOWN);
+				player.tryToMove(Entity::MOVE_TYPE::M_DOWN);
 				break;
 			}
 			case Event::INPUT::KB_D:
 			{
-				player.tryToMove(Player::MOVE_TYPE::M_RIGHT);
+				player.tryToMove(Entity::MOVE_TYPE::M_RIGHT);
 				break;
 			}
 			// Tir
 			case Event::INPUT::KB_UP:
 			{
-				player.tryToShoot(Player::MOVE_TYPE::M_UP);
+				player.tryToShoot(Entity::MOVE_TYPE::M_UP);
 				break;
 			}
 			case Event::INPUT::KB_DOWN:
 			{
-				player.tryToShoot(Player::MOVE_TYPE::M_DOWN);
+				player.tryToShoot(Entity::MOVE_TYPE::M_DOWN);
 				break;
 			}
 			case Event::INPUT::KB_LEFT:
 			{
-				player.tryToShoot(Player::MOVE_TYPE::M_LEFT);
+				player.tryToShoot(Entity::MOVE_TYPE::M_LEFT);
 				break;
 			}
 			case Event::INPUT::KB_RIGHT:
 			{
-				player.tryToShoot(Player::MOVE_TYPE::M_RIGHT);
+				player.tryToShoot(Entity::MOVE_TYPE::M_RIGHT);
 				break;
 			}
 			default:
@@ -166,22 +166,22 @@ void GameStateGame::inputPlayer(Event *e)
 			// Déplacement
 			case Event::INPUT::KB_Z:
 			{
-				player.stopMove(Player::MOVE_TYPE::M_UP);
+				player.stopMove(Entity::MOVE_TYPE::M_UP);
 				break;
 			}
 			case Event::INPUT::KB_Q:
 			{
-				player.stopMove(Player::MOVE_TYPE::M_LEFT);
+				player.stopMove(Entity::MOVE_TYPE::M_LEFT);
 				break;
 			}
 			case Event::INPUT::KB_S:
 			{
-				player.stopMove(Player::MOVE_TYPE::M_DOWN);
+				player.stopMove(Entity::MOVE_TYPE::M_DOWN);
 				break;
 			}
 			case Event::INPUT::KB_D:
 			{
-				player.stopMove(Player::MOVE_TYPE::M_RIGHT);
+				player.stopMove(Entity::MOVE_TYPE::M_RIGHT);
 				break;
 			}
 			// Tir
