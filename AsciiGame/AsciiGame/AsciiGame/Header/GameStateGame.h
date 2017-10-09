@@ -7,6 +7,7 @@
 #include "Vector2.h"
 #include "Bullet.h"
 #include "AlphabetDrawer.h"
+#include "IA.h"
 
 #include <vector>
 
@@ -19,6 +20,7 @@ private:
 	vector<Bullet> bullet;
 	bool needRedrawUi;
 	double timeElapsed;
+	vector<IA> ia;
 
 public:
 	virtual ~GameStateGame(void);

@@ -15,7 +15,11 @@ InputController::InputController()
 	stateKey[Event::INPUT::KB_Q] = 0;						//Q
 	stateKey[Event::INPUT::KB_D] = 0;						//D
 	stateKey[Event::INPUT::KB_SPACE] = 0;					//SPACE
-	stateKey[Event::INPUT::KB_ENTER] = 0;					//SPACE
+	stateKey[Event::INPUT::KB_ENTER] = 0;					//ENTER
+	stateKey[Event::INPUT::KB_I] = 0;						//Z
+	stateKey[Event::INPUT::KB_J] = 0;						//S
+	stateKey[Event::INPUT::KB_K] = 0;						//Q
+	stateKey[Event::INPUT::KB_L] = 0;						//D
 }
 
 InputController::~InputController()

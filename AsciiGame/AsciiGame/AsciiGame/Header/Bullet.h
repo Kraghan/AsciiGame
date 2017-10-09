@@ -1,23 +1,16 @@
 #pragma once
 
-#include "Vector2.h"
+#include "Entity.h"
 #include "Window.h"
 
-class Bullet
+class Bullet : Entity
 {
 public:
-	Vector2 displayPos;
-	Vector2 displaySize;
-
-	Vector2 oldPos;
-	Vector2 pos;
-
-	int addHoriz = 0;
-	int addVerti = 0;
-	int speedBullet = 2;
-
 	char carac = '*';
 	int color = 7;
+	int dimensionBulletX = 5;
+	int dimensionBulletY = 5;
+	int speedBullet = 2;
 
 public:
 	Bullet(Vector2 pos, int addH, int addV);
@@ -28,6 +21,5 @@ public:
 
 private:
 	void displayBullet(Window *win, bool erase = false);
-	void setupRealPos();	//actualise la position pour les colisions
 };
 

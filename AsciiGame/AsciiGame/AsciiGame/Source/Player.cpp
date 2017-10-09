@@ -6,12 +6,14 @@ Player::Player()
 }
 
 Player::Player(Vector2 pos)
-	: pos(pos)
+	: Entity(pos)
 {
-	oldPos = pos;
-	displaySize.x = 11;
-	displaySize.y = 9;
-	setupRealPos();
+	dimension.x = dimensionPlayerX;	//entity
+	dimension.y = dimensionPlayerY;	//entity
+	setupRealPos();		//entity
+
+	speed = speedPlayer;
+
 	timer = Timer();
 }
 
@@ -31,7 +33,7 @@ void Player::changeHorizVerti(bool stop, bool bullet = false)
 		{
 		case M_UP:
 			if (!bullet)
-				addVerti = (!stop) ? -speedPlayer : 0;	//si !stop, UP = -1, sinon, on a lancé l'événement STOP de UP, donc 0
+				addVerti = (!stop) ? -speed : 0;	//si !stop, UP = -1, sinon, on a lancé l'événement STOP de UP, donc 0
 			else
 			{
 				addShootVerti = -1;
@@ -39,7 +41,7 @@ void Player::changeHorizVerti(bool stop, bool bullet = false)
 			break;
 		case M_DOWN:
 			if (!bullet)
-				addVerti = (!stop) ? speedPlayer : 0;	//si !stop, DOWN = 1, sinon, on a lancé l'événement STOP de DOWN, donc 0
+				addVerti = (!stop) ? speed : 0;	//si !stop, DOWN = 1, sinon, on a lancé l'événement STOP de DOWN, donc 0
 			else
 			{
 				addShootVerti = 1;
@@ -47,7 +49,7 @@ void Player::changeHorizVerti(bool stop, bool bullet = false)
 			break;
 		case M_RIGHT:
 			if (!bullet)
-				addHoriz = (!stop) ? speedPlayer : 0;
+				addHoriz = (!stop) ? speed : 0;
 			else
 			{
 				addShootHoriz = 1;
@@ -55,7 +57,7 @@ void Player::changeHorizVerti(bool stop, bool bullet = false)
 			break;
 		case M_LEFT:
 			if (!bullet)
-				addHoriz = (!stop) ? -speedPlayer : 0;
+				addHoriz = (!stop) ? -speed : 0;
 			else
 			{
 				addShootHoriz = -1;
@@ -72,8 +74,6 @@ void Player::changeHorizVerti(bool stop, bool bullet = false)
 ///
 void Player::tryToMove(MOVE_TYPE moveTry)
 {
-
-
 	moveType = moveTry;							//change l'enum pour définir ou il veut bouger
 	changeHorizVerti(false);							//change les variables d'additions à ajouter à la map
 
@@ -93,6 +93,25 @@ void Player::tryToShoot(MOVE_TYPE moveTry)
 }
 
 ///
+/// créé un bullet (position, orientation)
+///
+Bullet Player::shoot()
+{
+	int posX = pos.x + (dimension.x * addShootHoriz);
+	int posY = pos.y + (dimension.y * addShootVerti);
+	Bullet bull(Vector2(posX, posY), addShootHoriz, addShootVerti);
+
+	//reset les valeurs de tir
+	addShootHoriz = 0;
+	addShootVerti = 0;
+	bulletToShoot = false;
+
+	timer.start();
+
+	return (bull);
+}
+
+///
 /// stop le joueur et reset ses valeurs
 ///
 void Player::stopMove(MOVE_TYPE moveTry)
@@ -104,31 +123,16 @@ void Player::stopMove(MOVE_TYPE moveTry)
 		tryedToMove = false;
 }
 
+
+///
+/// affiche le player (et cache l'ancien)
+///
 void Player::display(Window *win)
 {
 	displaySpaceInvader(win, true);	//enlève l'ancien en mettant du blanc
 	displaySpaceInvader(win);		//affiche la nouvelle positions
 
 	oldPos = pos;
-}
-
-///
-/// créé un bullet (position, orientation)
-///
-Bullet Player::shoot()
-{
-	int posX = pos.x + (displaySize.x * addShootHoriz);
-	int posY = pos.y + (displaySize.y * addShootVerti);
-	Bullet bull(Vector2(posX, posY), addShootHoriz, addShootVerti);
-
-	//reset les valeurs de tir
-	addShootHoriz = 0;
-	addShootVerti = 0;
-	bulletToShoot = false;
-
-	timer.start();
-
-	return (bull);
 }
 
 ///
@@ -198,22 +202,13 @@ void Player::displaySpaceInvader(Window *win, bool erase)
 }
 
 ///
-/// actualise la position pour les colisions
-///
-void Player::setupRealPos()
-{
-	displayPos.x = pos.x - (displaySize.x / 2);
-	displayPos.y = pos.y - (displaySize.y / 2);
-}
-
-///
 /// déplace le joueur ?
 ///
 void Player::update()
 {
 	//ici, actualiser la position du joueur
-	pos.x += addHoriz;
-	pos.y += addVerti;
+	pos.x += addHoriz * speed;
+	pos.y += addVerti * speed;
 
 	setupRealPos();
 }

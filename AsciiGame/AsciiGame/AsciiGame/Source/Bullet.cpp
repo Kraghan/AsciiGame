@@ -1,12 +1,15 @@
 #include "..\Header\Bullet.h"
 
 Bullet::Bullet(Vector2 pos, int addH, int addV)
-	: pos(pos), addHoriz(addH), addVerti(addV)
+	: Entity(pos)
 {
-	oldPos = pos;
-	displaySize.x = 5;
-	displaySize.y = 5;
-	setupRealPos();
+	addHoriz = addH;					//entity
+	addVerti = addV;					//entity
+	dimension.x = dimensionBulletX;		//entity
+	dimension.y = dimensionBulletY;		//entity
+	setupRealPos();						//entity
+
+	speed = speedBullet;
 }
 
 
@@ -40,19 +43,17 @@ void Bullet::displayBullet(Window *win, bool erase)
 	win->changePixel(x + 1, y, c);
 	win->changePixel(x, y - 1, c);
 	win->changePixel(x, y + 1, c);
-	win->changePixel(x - 1, y - 1, c);
-	win->changePixel(x - 1, y + 1, c);
-	win->changePixel(x + 1, y - 1, c);
-	win->changePixel(x + 2, y + 1, c);
-}
 
-///
-/// actualise la position pour les colisions
-///
-void Bullet::setupRealPos()
-{
-	displayPos.x = pos.x - (displaySize.x / 2);
-	displayPos.y = pos.y - (displaySize.y / 2);
+	win->changePixel(x - 2, y, c);
+	win->changePixel(x + 2, y, c);
+	win->changePixel(x, y - 2, c);
+	win->changePixel(x, y + 2, c);
+
+	win->changePixel(x + 1, y + 1, c);
+	win->changePixel(x + 1, y - 1, c);
+	win->changePixel(x - 1, y + 1, c);
+	win->changePixel(x - 1, y - 1, c);
+
 }
 
 ///
@@ -60,8 +61,8 @@ void Bullet::setupRealPos()
 ///
 void Bullet::update()
 {
-	pos.x += addHoriz * speedBullet;
-	pos.y += addVerti * speedBullet;
+	pos.x += addHoriz * speed;
+	pos.y += addVerti * speed;
 
 	setupRealPos();
 }
