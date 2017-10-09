@@ -33,4 +33,14 @@ public :
 	static void drawX(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 	static void drawY(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 	static void drawZ(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw0(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw1(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw2(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw3(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw4(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw5(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw6(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw7(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw8(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void draw9(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 };

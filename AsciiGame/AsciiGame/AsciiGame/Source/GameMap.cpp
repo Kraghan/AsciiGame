@@ -102,7 +102,8 @@ void GameMap::display(Window* window)
 		{
 			for (unsigned int j = 0; j < blockMap[i].size(); ++j)
 			{
-				window->changePixel(i, j, blockMap[i][j].getSprite());
+				if(blockMap[i][j].getSprite() != ' ')
+					window->changePixel(i, j + Window::UI_HEIGHT, blockMap[i][j].getSprite());
 			}
 		}
 		needRedraw = false;

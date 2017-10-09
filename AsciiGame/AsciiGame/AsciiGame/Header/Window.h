@@ -11,6 +11,7 @@
 #include <string>
 #include "Event.h"
 #include "InputController.h"
+#include "Vector2.h"
 
 class Window
 {
@@ -29,6 +30,7 @@ private :
 public :
 	const static unsigned int SCREEN_WIDTH = 400;
 	const static unsigned int SCREEN_HEIGHT = 200;
+	const static unsigned int UI_HEIGHT = 25;
 	const static unsigned int FONT_SIZE = 3;
 	const static unsigned int MAX_WIDTH = 1285;
 	const static unsigned int MAX_HEIGHT = 785;
@@ -39,7 +41,7 @@ public :
 	void open(char* title);
 
 	void display();
-	void clear();
+	void clear(Vector2 position = Vector2(0,0), Vector2 dimension = Vector2(SCREEN_WIDTH, SCREEN_HEIGHT));
 	void changePixel(int x, int y, char c, int color = 15);
 	void update();
 

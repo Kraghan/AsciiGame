@@ -64,11 +64,11 @@ void Window::display()
 	WriteConsoleOutput(hOutput, (CHAR_INFO *)buffer, dwBufferSize, dwBufferCoord, &rcRegion);
 }
 
-void Window::clear()
+void Window::clear(Vector2 position, Vector2 dimension)
 {
-	for (unsigned int i = 0; i < SCREEN_HEIGHT ; ++i)
+	for (unsigned int i = position.y; i < dimension.y ; ++i)
 	{
-		for (unsigned int j = 0; j < SCREEN_WIDTH; ++j)
+		for (unsigned int j = position.x; j < dimension.x; ++j)
 		{
 			buffer[i][j].Attributes = 15;
 			buffer[i][j].Char.AsciiChar = ' ';

@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Vector2.h"
 #include "Bullet.h"
+#include "AlphabetDrawer.h"
 
 #include <vector>
 
@@ -16,6 +17,8 @@ private:
 	Player player;
 	
 	vector<Bullet> bullet;
+	bool needRedrawUi;
+	double timeElapsed;
 
 public:
 	virtual ~GameStateGame(void);
@@ -41,4 +44,5 @@ public:
 private:
 	void inputPlayer(Event *e);
 	void displayBullet(Bullet &bullet);
+	void displayUI();
 };

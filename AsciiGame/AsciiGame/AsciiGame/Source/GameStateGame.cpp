@@ -8,19 +8,23 @@
 // Used to initialize the state
 /*virtual*/ void GameStateGame::init(Window* wind)
 {
-	window = wind;												//créé un lien du graphic engine
-	player = Player(Vector2(10, 10));							//créé un player, à la position 10,10
-	gameMap = GameMap(Window::SCREEN_WIDTH,Window::SCREEN_HEIGHT);
+	window = wind;																	//créé un lien du graphic engine
+	player = Player(Vector2(10, Window::UI_HEIGHT + 10));							//créé un player, à la position 10,10
+	gameMap = GameMap(Window::SCREEN_WIDTH,Window::SCREEN_HEIGHT - Window::UI_HEIGHT);
 
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
 	CaveSeedInitializer caveInit = CaveSeedInitializer();
 	caveInit.initialize(&gameMap);
+	window->clear();
+	needRedrawUi = true;
+	timeElapsed = 0.0;
 }
 
 // Update the game logic
 /*virtual*/ void GameStateGame::update()
 {
+	timeElapsed += Timer::SECONDS_PER_UPDATE;
 	gameMap.update();
 
 	//si les colisions sont ok, bouger le joueur
@@ -37,14 +41,6 @@
 	{
 		element.update();
 	}
-
-	//parcourt tous les bullet prï¿½sents...
-	/*for (auto & element : bullet)
-	{
-		displayBullet(element);
-		element.update();
-	}*/
-	//Bullet ?? list de bullet
 
 	//window->drawColorWithCode();
 
@@ -71,6 +67,8 @@
 
 /*virtual*/ void GameStateGame::display()
 {
+	//window->clear();
+
 	gameMap.display(window);
 	//si les colisions sont ok, bouger le joueur
 	//{
@@ -88,6 +86,8 @@
 	{
 		element.display(window);
 	}
+
+	displayUI();
 }
 
 // Called when the state is set to active
@@ -184,27 +184,49 @@ void GameStateGame::inputPlayer(Event *e)
 				player.stopMove(Player::MOVE_TYPE::M_RIGHT);
 				break;
 			}
-			// Tir
-			case Event::INPUT::KB_UP:
+			default:
 			{
-
-				break;
-			}
-			case Event::INPUT::KB_DOWN:
-			{
-
-				break;
-			}
-			case Event::INPUT::KB_LEFT:
-			{
-
-				break;
-			}
-			case Event::INPUT::KB_RIGHT:
-			{
-
 				break;
 			}
 		}
 	}
+}
+
+void GameStateGame::displayUI()
+{
+	if (needRedrawUi)
+	{
+		for (unsigned int x = 0; x < Window::SCREEN_WIDTH; ++x)
+		{
+			window->changePixel(x, 0, '-', 0x03);
+			window->changePixel(x, 1, '-', 0x03);
+			window->changePixel(x, Window::UI_HEIGHT - 2, '=', 0x03);
+			window->changePixel(x, Window::UI_HEIGHT - 1, '=', 0x03);
+		}
+		for (unsigned int y = 2; y < Window::UI_HEIGHT - 2; ++y)
+		{
+			window->changePixel(0, y, '|', 0x03);
+			window->changePixel(Window::SCREEN_WIDTH - 1, y, '|', 0x03);
+			window->changePixel(1, y, '|', 0x03);
+			window->changePixel(Window::SCREEN_WIDTH - 2, y, '|', 0x03);
+		}
+
+		needRedrawUi = false;
+	}
+
+	Vector2 timerPosition = Vector2(50, 7);
+	AlphabetDrawer::draw0(window, timerPosition);
+	AlphabetDrawer::draw1(window, Vector2(timerPosition.x + 5, timerPosition.y));
+	AlphabetDrawer::draw2(window, Vector2(timerPosition.x + 10, timerPosition.y));
+	AlphabetDrawer::draw3(window, Vector2(timerPosition.x + 15, timerPosition.y));
+	AlphabetDrawer::draw4(window, Vector2(timerPosition.x + 20, timerPosition.y));
+	AlphabetDrawer::draw5(window, Vector2(timerPosition.x + 25, timerPosition.y));
+	AlphabetDrawer::draw6(window, Vector2(timerPosition.x + 30, timerPosition.y));
+	AlphabetDrawer::draw7(window, Vector2(timerPosition.x + 35, timerPosition.y));
+	AlphabetDrawer::draw8(window, Vector2(timerPosition.x + 40, timerPosition.y));
+	AlphabetDrawer::draw9(window, Vector2(timerPosition.x + 45, timerPosition.y));
+
+	
+
+	
 }
