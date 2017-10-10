@@ -8,9 +8,15 @@
 		for (unsigned int y = 0; y < dimension.y; ++y)
 		{
 			if (x <= 1 || y <= 1 || x >= dimension.x - 2 || y >= dimension.y - 2)
-				map->setBlock(x, y, (Block*) new BorderBlock());
-			else
-				map->setBlock(x, y, (Block*) new VoidBlock());
+			{
+				map->setBlock((Block*) new BorderBlock(Vector2(x, y)));
+				continue;
+			}
+			if (x % 30 == 0)
+			{
+				map->setBlock((Block*) new BorderBlock(Vector2(x, y)));
+				continue;
+			}
 		}
 	}
 }

@@ -149,14 +149,11 @@
     <ClInclude Include="Header\GameStatePause.h" />
     <ClInclude Include="Header\GraphicEngine.h" />
     <ClInclude Include="Header\Initializer.h" />
-    <ClInclude Include="Header\InputController.h" />
     <ClInclude Include="Header\NormalBlock.h" />
     <ClInclude Include="Header\IA.h" />
-    <ClInclude Include="Header\InputController.h" />
     <ClInclude Include="Header\Player.h" />
     <ClInclude Include="Header\Timer.h" />
     <ClInclude Include="Header\Vector2.h" />
-    <ClInclude Include="Header\VoidBlock.h" />
     <ClInclude Include="Header\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,12 +1,10 @@
 #include "..\Header\Bullet.h"
 
 Bullet::Bullet(Vector2 pos, int addH, int addV)
-	: Entity(pos)
+	: Entity(pos, Vector2(5,5))
 {
 	addHoriz = addH;					//entity
 	addVerti = addV;					//entity
-	dimension.x = dimensionBulletX;		//entity
-	dimension.y = dimensionBulletY;		//entity
 	setupRealPos();						//entity
 
 	speed = speedBullet;

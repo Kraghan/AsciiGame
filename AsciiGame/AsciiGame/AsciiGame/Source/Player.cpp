@@ -6,10 +6,8 @@ Player::Player()
 }
 
 Player::Player(Vector2 pos)
-	: Entity(pos)
+	: Entity(pos, Vector2(11, 9))
 {
-	dimension.x = dimensionPlayerX;	//entity
-	dimension.y = dimensionPlayerY;	//entity
 	setupRealPos();		//entity
 
 	speed = speedPlayer;
@@ -144,7 +142,9 @@ void Player::displaySpaceInvader(Window *win, bool erase)
 	int x = (!erase) ? pos.x : oldPos.x;
 	int y = (!erase) ? pos.y : oldPos.y;
 
-	win->changePixel(x, y, c);
+	// Todo redraw IN THE RECT
+
+	/*win->changePixel(x, y, c);
 	win->changePixel(x - 1, y, c);
 	win->changePixel(x - 2, y, c);
 	win->changePixel(x - 3, y, c);
@@ -198,7 +198,16 @@ void Player::displaySpaceInvader(Window *win, bool erase)
 	win->changePixel(x - 1, y + 3, c);
 	win->changePixel(x - 2, y + 3, c);
 	win->changePixel(x + 1, y + 3, c);
-	win->changePixel(x + 2, y + 3, c);
+	win->changePixel(x + 2, y + 3, c);*/
+
+	for (int i = 0; i < dimension.x; ++i)
+	{
+		for (int j = 0; j < dimension.y; ++j)
+		{
+			win->changePixel(x + i, y + j, c, 0x05);
+		}
+	}
+
 }
 
 ///

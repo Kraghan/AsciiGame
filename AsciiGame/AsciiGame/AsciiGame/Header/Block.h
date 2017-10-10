@@ -25,6 +25,7 @@ public:
 	char getSprite();
 	Vector2 getPosition();
 	bool getIsSolid();
+	Vector2 getDimension();
 
 };
 

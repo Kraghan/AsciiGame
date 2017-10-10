@@ -2,43 +2,23 @@
 
 /*explicit*/ GameMap::GameMap()
 {
-	blockMap = std::vector<std::vector<Block>>(dimension.x);
-	for (unsigned int i = 0; i < blockMap.size(); ++i)
-	{
-		blockMap[i] = std::vector<Block>(dimension.y);
-		for (unsigned int j = 0; j < blockMap[i].size(); ++j)
-			blockMap[i][j] = Block(i, j, ' ', false);
-	}
+	blockMap = std::vector<Block*>(dimension.x * dimension.y);
 	needRedraw = true;
 }
 /*explicit*/ GameMap::GameMap(Vector2 dim)
 	: dimension(dim)
 {
-	blockMap = std::vector<std::vector<Block>>(dimension.x);
-	for (unsigned int i = 0; i < blockMap.size(); ++i)
-	{
-		blockMap[i] = std::vector<Block>(dimension.y);
-		for (unsigned int j = 0; j < blockMap[i].size(); ++j)
-			blockMap[i][j] = Block(i, j, ' ', false);
-	}
+	blockMap = std::vector<Block*>(dimension.x * dimension.y);
 	needRedraw = true;
 }
 /*explicit*/ GameMap::GameMap(unsigned int x, unsigned int y)
 	: dimension(Vector2(x,y))
 {
 	
-	blockMap = std::vector<std::vector<Block>>(dimension.x);
-	for (unsigned int i = 0; i < blockMap.size(); ++i)
-	{
-		blockMap[i] = std::vector<Block>(dimension.y);
-		for (unsigned int j = 0; j < blockMap[i].size(); ++j)
-		{
-			blockMap[i][j] = Block(i, j, ' ', false);
-		}
-	}
+	blockMap = std::vector<Block*>();
 	needRedraw = true;
-	
 }
+
 /*virtual*/ GameMap::~GameMap()
 {
 
@@ -48,7 +28,7 @@
 bool GameMap::isInBound(Vector2 position)
 {
 	// Easy because of unsigned int, can't be negative
-	return position.x < dimension.x && position.y < dimension.y;
+	return position.x <= dimension.x && position.y <= dimension.y + Window::UI_HEIGHT && Window::UI_HEIGHT <= position.y;
 }
 bool GameMap::isInBound(unsigned int x, unsigned int y)
 {
@@ -58,25 +38,29 @@ bool GameMap::isInBound(unsigned int x, unsigned int y)
 // Get the block at the position 
 Block* GameMap::getBlock(Vector2 position)
 {
-	return &blockMap[position.x][position.y];
+	for (unsigned int i = 0; i < blockMap.size(); ++i)
+		if (blockMap[i]->getPosition().x == position.x && blockMap[i]->getPosition().y == position.y)
+			return blockMap[i];
+	return nullptr;
+
 }
 Block* GameMap::getBlock(unsigned int x, unsigned int y)
 {
-	return &blockMap[x][y];
+	return getBlock(Vector2(x, y));
 }
 
 // Set the block at position
-void GameMap::setBlock(Vector2 position, Block* block)
+void GameMap::setBlock(Block* block)
 {
-	blockMap[position.x][position.y].setPosition(position);
-	blockMap[position.x][position.y].setSprite(block->getSprite());
-	blockMap[position.x][position.y].setIsSolid(block->getIsSolid());
-}
-void GameMap::setBlock(unsigned int x, unsigned int y, Block* block)
-{
-	blockMap[x][y].setPosition(Vector2(x,y));
-	blockMap[x][y].setSprite(block->getSprite());
-	blockMap[x][y].setIsSolid(block->getIsSolid());
+	for (unsigned int i = 0; i < blockMap.size(); ++i)
+		if (blockMap[i]->getPosition().x == block->getPosition().x && blockMap[i]->getPosition().y == block->getPosition().y)
+		{
+			blockMap[i] = block;
+			return;
+		}
+
+	blockMap.push_back(block);
+
 }
 
 Vector2 GameMap::getDimension()
@@ -84,7 +68,7 @@ Vector2 GameMap::getDimension()
 	return dimension;
 }
 
-std::vector<std::vector<Block>> GameMap::getBlocks()
+std::vector<Block*> GameMap::getBlocks()
 {
 	return blockMap;
 }
@@ -96,16 +80,6 @@ void GameMap::update()
 
 void GameMap::display(Window* window)
 {
-	if (needRedraw)
-	{
-		for (unsigned int i = 0; i < blockMap.size(); ++i)
-		{
-			for (unsigned int j = 0; j < blockMap[i].size(); ++j)
-			{
-				if(blockMap[i][j].getSprite() != ' ')
-					window->changePixel(i, j + Window::UI_HEIGHT, blockMap[i][j].getSprite());
-			}
-		}
-		needRedraw = false;
-	}
+	for (unsigned int i = 0; i < blockMap.size(); ++i)
+		window->changePixel(blockMap[i]->getPosition().x, blockMap[i]->getPosition().y + Window::UI_HEIGHT, blockMap[i]->getSprite());
 }

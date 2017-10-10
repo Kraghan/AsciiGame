@@ -11,7 +11,7 @@ class GameMap
 {
 private: 
 	Vector2 dimension;
-	std::vector<std::vector<Block>> blockMap;
+	std::vector<Block*> blockMap;
 	bool needRedraw;
 
 public : 
@@ -29,11 +29,10 @@ public :
 	Block* getBlock(unsigned int x, unsigned int y);
 
 	// Set the block at position
-	void setBlock(Vector2 position, Block* block);
-	void setBlock(unsigned int x, unsigned int y, Block* block);
+	void setBlock(Block* block);
 
 	Vector2 getDimension();
-	std::vector<std::vector<Block>> getBlocks();
+	std::vector<Block*> getBlocks();
 	void update();
 	void display(Window* window);
 

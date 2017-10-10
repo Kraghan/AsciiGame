@@ -1,7 +1,6 @@
 #pragma once
 #include "Initializer.h"
 #include "BorderBlock.h"
-#include "VoidBlock.h"
 
 class BorderInitializer
 {

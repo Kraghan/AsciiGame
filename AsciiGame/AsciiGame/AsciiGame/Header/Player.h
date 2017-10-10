@@ -6,7 +6,7 @@
 #include "Timer.h"
 #include <iostream>
 
-class Player : Entity
+class Player : public Entity
 {
 public:
 
@@ -16,8 +16,6 @@ public:
 
 	char carac = 'P';
 	int color = 15;
-	int dimensionPlayerX = 11;
-	int dimensionPlayerY = 9;
 	int speedPlayer = 1;
 
 	bool bulletToShoot = false;			//le joueur doit-il tirrer un bullet ?

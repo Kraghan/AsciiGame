@@ -57,3 +57,8 @@ void Block::setIsSolid(bool solid)
 {
 	isSolid = solid;
 }
+
+Vector2 Block::getDimension()
+{
+	return Vector2(1, 1);
+}

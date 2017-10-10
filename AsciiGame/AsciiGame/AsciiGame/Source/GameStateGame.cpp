@@ -15,7 +15,7 @@
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
 	CaveSeedInitializer caveInit = CaveSeedInitializer();
-	caveInit.initialize(&gameMap);
+	//caveInit.initialize(&gameMap);
 	window->clear();
 	needRedrawUi = true;
 	timeElapsed = 0.0;
@@ -27,15 +27,40 @@
 	timeElapsed += Timer::SECONDS_PER_UPDATE;
 	gameMap.update();
 
-	//si les colisions sont ok, bouger le joueur
-	//{
-		player.update();		//ici actualise les nouvelles positions du joueur
-	//}
-	//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
-	//{
-	//player.addHoriz = 0;
-	//player.addVerti = 0;
-	//}
+	Vector2 playerNextPos = Vector2(player.pos.x + player.addHoriz * player.speed, player.pos.y + player.addVerti * player.speed);
+	
+	if (gameMap.isInBound(playerNextPos) && gameMap.isInBound(Vector2(playerNextPos.x + player.dimension.x, playerNextPos.y + player.dimension.y)))
+	{
+		bool wallCollisionOk = true;
+		std::vector<Block*> blocks = gameMap.getBlocks();
+
+		for (unsigned int i = 0; i < blocks.size(); ++i)
+		{
+			if (blocks[i] == nullptr)
+				continue;
+			Vector2 blockPos = blocks[i]->getPosition();
+			blockPos.y += Window::UI_HEIGHT;
+			Vector2 blockDim = blocks[i]->getDimension();
+			if ((playerNextPos.x >= blockPos.x && playerNextPos.x < (blockPos.x + blockDim.x)
+				&& playerNextPos.y >= blockPos.y && playerNextPos.y < (blockPos.y + blockDim.y))
+				|| (playerNextPos.x + player.dimension.x >= blockPos.x && playerNextPos.x + player.dimension.x < (blockPos.x + blockDim.x)
+					&& playerNextPos.y + player.dimension.y >= blockPos.y && playerNextPos.y + player.dimension.y < (blockPos.y + blockDim.y)))
+			{
+				wallCollisionOk = false;
+				break;
+			}
+		}
+
+		if(wallCollisionOk)
+		{
+			player.update();		//ici actualise les nouvelles positions du joueur
+		}
+		else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
+		{
+			player.addHoriz = 0;
+			player.addVerti = 0;
+		}
+	}
 	
 	for (auto & element : bullet)
 	{
@@ -90,15 +115,8 @@
 	//window->clear();
 
 	gameMap.display(window);
-	//si les colisions sont ok, bouger le joueur
-	//{
 	player.display(window);		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
-	//}
-	//else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
-	//{
-	//player.addHoriz = 0;
-	//player.addVerti = 0;
-	//}
+	
 	if (player.bulletToShoot)
 		bullet.push_back(player.shoot());
 

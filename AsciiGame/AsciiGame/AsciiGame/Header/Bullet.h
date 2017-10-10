@@ -8,8 +8,6 @@ class Bullet : Entity
 public:
 	char carac = '*';
 	int color = 7;
-	int dimensionBulletX = 5;
-	int dimensionBulletY = 5;
 	int speedBullet = 2;
 
 public:

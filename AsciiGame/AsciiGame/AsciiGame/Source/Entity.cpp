@@ -7,8 +7,9 @@ Entity::Entity()
 
 }
 
-Entity::Entity(Vector2 pos)
+Entity::Entity(Vector2 pos, Vector2 dim)
 	: pos(pos)
+	, dimension(dim)
 {
 	oldPos = pos;
 }

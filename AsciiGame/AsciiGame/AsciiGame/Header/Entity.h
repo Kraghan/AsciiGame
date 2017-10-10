@@ -34,7 +34,7 @@ public:
 
 public:
 	Entity();
-	Entity(Vector2 pos);
+	Entity(Vector2 pos, Vector2 dim);
 	virtual ~Entity();
 
 protected:

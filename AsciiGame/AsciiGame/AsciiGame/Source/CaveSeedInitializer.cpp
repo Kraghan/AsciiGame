@@ -42,7 +42,7 @@
 			{
 				for (unsigned short i = 0; i < 4; ++i)
 					for (unsigned short j = 0; j < 4; ++j)
-						map->setBlock(x * 4 + i + 2, y * 4 + j  + 2, (Block*) new NormalBlock());
+						map->setBlock((Block*) new NormalBlock(Vector2(x * 4 + i + 2, y * 4 + j + 2)));
 			}
 		}
 	}

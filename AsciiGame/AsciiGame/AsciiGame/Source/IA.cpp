@@ -1,10 +1,8 @@
 #include "..\Header\IA.h"
 
 IA::IA(Vector2 pos)
-	: Entity(pos)
+	: Entity(pos, Vector2(dimensionBulletX, dimensionBulletY))
 {
-	dimension.x = dimensionBulletX;		//entity
-	dimension.y = dimensionBulletY;		//entity
 	setupRealPos();						//entity
 
 	speed = speedIA;
