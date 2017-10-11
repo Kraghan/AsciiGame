@@ -9,8 +9,8 @@ IA::IA(Vector2 pos)
 
 	while (addHoriz == 0 && addVerti == 0)
 	{
-		int min = -2;
-		int max = 2;
+		int min = -1;
+		int max = 1;
 		addHoriz = (rand() % (max - min + 1) + min);
 		addVerti = (rand() % (max - min + 1) + min);
 	}

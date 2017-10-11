@@ -95,8 +95,8 @@ void Player::tryToShoot(MOVE_TYPE moveTry)
 ///
 Bullet Player::shoot()
 {
-	int posX = pos.x + (dimension.x * addShootHoriz);
-	int posY = pos.y + (dimension.y * addShootVerti);
+	int posX = pos.x + (dimension.x / 2) + (dimension.x * addShootHoriz);
+	int posY = pos.y + (dimension.y / 2) + (dimension.y * addShootVerti);
 	Bullet bull(Vector2(posX, posY), addShootHoriz, addShootVerti);
 
 	//reset les valeurs de tir
@@ -143,8 +143,18 @@ void Player::displaySpaceInvader(Window *win, bool erase)
 	int y = (!erase) ? pos.y : oldPos.y;
 
 	// Todo redraw IN THE RECT
+	for (int i = 0; i < dimension.x; ++i)
+	{
+		for (int j = 0; j < dimension.y; ++j)
+		{
+			win->changePixel(x + i, y + j, c, 0x05);
+		}
+	}
 
-	/*win->changePixel(x, y, c);
+	x = x + (dimension.x / 2);
+	y = y + (dimension.y / 2);
+
+	win->changePixel(x, y, c);
 	win->changePixel(x - 1, y, c);
 	win->changePixel(x - 2, y, c);
 	win->changePixel(x - 3, y, c);
@@ -198,15 +208,7 @@ void Player::displaySpaceInvader(Window *win, bool erase)
 	win->changePixel(x - 1, y + 3, c);
 	win->changePixel(x - 2, y + 3, c);
 	win->changePixel(x + 1, y + 3, c);
-	win->changePixel(x + 2, y + 3, c);*/
-
-	for (int i = 0; i < dimension.x; ++i)
-	{
-		for (int j = 0; j < dimension.y; ++j)
-		{
-			win->changePixel(x + i, y + j, c, 0x05);
-		}
-	}
+	win->changePixel(x + 2, y + 3, c);
 
 }
 
