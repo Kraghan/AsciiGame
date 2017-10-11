@@ -10,12 +10,12 @@
 {
 	window = wind;																	//créé un lien du graphic engine
 	player = Player(Vector2(10, Window::UI_HEIGHT + 10));							//créé un player, à la position 10,10
-	gameMap = GameMap(Window::SCREEN_WIDTH,Window::SCREEN_HEIGHT - Window::UI_HEIGHT);
+	gameMap = GameMap(Window::SCREEN_WIDTH / 4,(Window::SCREEN_HEIGHT - Window::UI_HEIGHT) / 4);
 
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
 	CaveSeedInitializer caveInit = CaveSeedInitializer();
-	//caveInit.initialize(&gameMap);
+	caveInit.initialize(&gameMap);
 	window->clear();
 	needRedrawUi = true;
 	timeElapsed = 0.0;
@@ -39,13 +39,24 @@
 			if (blocks[i] == nullptr)
 				continue;
 			Vector2 blockPos = blocks[i]->getPosition();
+			blockPos.x *= 4;
+			blockPos.y *= 4;
 			blockPos.y += Window::UI_HEIGHT;
+			
 			Vector2 blockDim = blocks[i]->getDimension();
-			if ((playerNextPos.x >= blockPos.x && playerNextPos.x < (blockPos.x + blockDim.x)
-				&& playerNextPos.y >= blockPos.y && playerNextPos.y < (blockPos.y + blockDim.y))
-				|| (playerNextPos.x + player.dimension.x >= blockPos.x && playerNextPos.x + player.dimension.x < (blockPos.x + blockDim.x)
-					&& playerNextPos.y + player.dimension.y >= blockPos.y && playerNextPos.y + player.dimension.y < (blockPos.y + blockDim.y)))
+			if (!(playerNextPos.x >= blockPos.x + blockDim.x)
+				&& !(playerNextPos.x + player.dimension.x <= blockPos.x)
+				&& !(playerNextPos.y >= blockPos.y + blockDim.y)
+				&& !(playerNextPos.y + player.dimension.y <= blockPos.y))
 			{
+				if (!(playerNextPos.x >= blockPos.x + blockDim.x)
+					&& !(playerNextPos.x + player.dimension.x <= blockPos.x))
+					player.addHoriz = 0;
+
+				if (!(playerNextPos.y >= blockPos.y + blockDim.y)
+					&& !(playerNextPos.y + player.dimension.y <= blockPos.y))
+					player.addVerti = 0;
+
 				wallCollisionOk = false;
 				break;
 			}
@@ -54,11 +65,6 @@
 		if(wallCollisionOk)
 		{
 			player.update();		//ici actualise les nouvelles positions du joueur
-		}
-		else						//sinon, reset les add/verti du player pour ne pas qu'il bouge !
-		{
-			player.addHoriz = 0;
-			player.addVerti = 0;
 		}
 	}
 	

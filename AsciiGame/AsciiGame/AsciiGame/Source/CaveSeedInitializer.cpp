@@ -6,18 +6,12 @@
 
 	srand(time(NULL));
 
-	if ((dimension.x - 4) % 4 != 0 && (dimension.y - 4) % 4 != 0)
-	{
-		cout << "Erreur : taille de map invalide" << endl;
-		exit(-1);
-	}
 
-
-	abstraction = std::vector<std::vector<bool>>((dimension.x - 4) / 4);
+	abstraction = std::vector<std::vector<bool>>((dimension.x - 2));
 
 	for (unsigned int x = 0; x < abstraction.size(); ++x)
 	{
-		abstraction[x] = std::vector<bool>((dimension.y - 4) / 4);
+		abstraction[x] = std::vector<bool>((dimension.y - 2));
 
 		for (unsigned int y = 0; y < abstraction[x].size(); ++y)
 		{
@@ -40,9 +34,7 @@
 		{
 			if (abstraction[x][y])
 			{
-				for (unsigned short i = 0; i < 4; ++i)
-					for (unsigned short j = 0; j < 4; ++j)
-						map->setBlock((Block*) new NormalBlock(Vector2(x * 4 + i + 2, y * 4 + j + 2)));
+				map->setBlock((Block*) new NormalBlock(Vector2(x + 1, y + 1)));
 			}
 		}
 	}

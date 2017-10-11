@@ -28,7 +28,9 @@
 bool GameMap::isInBound(Vector2 position)
 {
 	// Easy because of unsigned int, can't be negative
-	return position.x <= dimension.x && position.y <= dimension.y + Window::UI_HEIGHT && Window::UI_HEIGHT <= position.y;
+	return position.x <= dimension.x * 4 
+		&& position.y <= dimension.y * 4 + Window::UI_HEIGHT
+		&& Window::UI_HEIGHT <= position.y;
 }
 bool GameMap::isInBound(unsigned int x, unsigned int y)
 {
@@ -81,5 +83,5 @@ void GameMap::update()
 void GameMap::display(Window* window)
 {
 	for (unsigned int i = 0; i < blockMap.size(); ++i)
-		window->changePixel(blockMap[i]->getPosition().x, blockMap[i]->getPosition().y + Window::UI_HEIGHT, blockMap[i]->getSprite());
+		blockMap[i]->display(window);
 }

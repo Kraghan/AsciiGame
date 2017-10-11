@@ -60,5 +60,17 @@ void Block::setIsSolid(bool solid)
 
 Vector2 Block::getDimension()
 {
-	return Vector2(1, 1);
+	return Vector2(4, 4);
+}
+
+void Block::display(Window* window)
+{
+	Vector2 dimension = getDimension();
+	for (unsigned int x = 0; x < dimension.x; ++x)
+	{
+		for (unsigned int y = 0; y < dimension.y; ++y)
+		{
+			window->changePixel(position.x * dimension.x + x, position.y * dimension.y + Window::UI_HEIGHT + y, sprite);
+		}
+	}
 }

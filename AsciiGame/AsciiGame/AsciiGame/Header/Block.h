@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "Vector2.h"
+#include "Window.h"
 
 class Block
 {
@@ -26,6 +27,7 @@ public:
 	Vector2 getPosition();
 	bool getIsSolid();
 	Vector2 getDimension();
+	void display(Window* window);
 
 };
 
