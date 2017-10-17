@@ -19,8 +19,8 @@ private :
 
 public:
 	explicit Block(void);
-	explicit Block(Vector2 pos, char representation, bool isSolid = true);
-	explicit Block(unsigned int x, unsigned int y, char representation, bool isSolid = true);
+	explicit Block(Vector2 pos, char representation, bool isSolid = false);
+	explicit Block(unsigned int x, unsigned int y, char representation, bool isSolid = false);
 	virtual ~Block();
 
 	char getSprite();

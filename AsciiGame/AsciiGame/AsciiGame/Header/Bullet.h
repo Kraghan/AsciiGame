@@ -3,7 +3,7 @@
 #include "Entity.h"
 #include "Window.h"
 
-class Bullet : Entity
+class Bullet : public Entity
 {
 public:
 	char carac = '*';

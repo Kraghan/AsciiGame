@@ -1,4 +1,5 @@
 #include "../Header/GameMap.h"
+#include "../Header/Debug.h"
 
 /*explicit*/ GameMap::GameMap()
 {
@@ -84,4 +85,28 @@ void GameMap::display(Window* window)
 {
 	for (unsigned int i = 0; i < blockMap.size(); ++i)
 		blockMap[i]->display(window);
+}
+
+void GameMap::explode(Vector2 position, unsigned int radius)
+{
+	Debug::log("Debug.txt", "" + std::to_string(position.x) + " " + std::to_string(position.y));
+	Debug::log("Debug.txt", "\n" + std::to_string(radius), true);
+	for (std::vector<Block*>::iterator it = blockMap.begin(); it != blockMap.end();)
+	{
+		if ((*it)->getIsSolid())
+		{
+			it++;
+			continue;
+		}
+		unsigned int x = position.x - ((*it)->position.x * (*it)->getDimension().x);
+		unsigned int y = position.y - ((*it)->position.y * (*it)->getDimension().y);
+
+		if (x + y * y <= radius * radius)
+		{
+			Debug::log("Debug.txt", "\n" + std::to_string((*it)->position.x) + " " + std::to_string((*it)->position.y), true);
+			it = blockMap.erase(it);
+		}
+		else
+			it++;
+	}
 }

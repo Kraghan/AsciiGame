@@ -117,6 +117,7 @@
     <ClCompile Include="Source\BorderInitializer.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\CaveSeedInitializer.cpp" />
+    <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\Event.cpp" />
     <ClCompile Include="Source\GameMap.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Header\BorderInitializer.h" />
     <ClInclude Include="Header\Bullet.h" />
     <ClInclude Include="Header\CaveSeedInitializer.h" />
+    <ClInclude Include="Header\Debug.h" />
     <ClInclude Include="Header\Entity.h" />
     <ClInclude Include="Header\Event.h" />
     <ClInclude Include="Header\GameMap.h" />

@@ -105,6 +105,9 @@
     <ClCompile Include="Source\AsciiGame.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Debug.cpp">
+      <Filter>Fichiers sources\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h">
@@ -146,9 +149,6 @@
     <ClInclude Include="Header\Initializer.h">
       <Filter>Fichiers d%27en-tête\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Header\InputController.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Header\AlphabetDrawer.h">
       <Filter>Fichiers d%27en-tête\Tools</Filter>
     </ClInclude>
@@ -186,6 +186,9 @@
       <Filter>Fichiers d%27en-tête\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Header\Entity.h">
+      <Filter>Fichiers d%27en-tête\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Debug.h">
       <Filter>Fichiers d%27en-tête\Tools</Filter>
     </ClInclude>
   </ItemGroup>

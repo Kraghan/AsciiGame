@@ -5,13 +5,13 @@ class BorderBlock : Block
 {
 public :
 	explicit BorderBlock(void)
-		: Block(Vector2(), 'N')
+		: Block(Vector2(), 'N', true)
 	{
 
 	}
 
 	explicit BorderBlock(Vector2 pos)
-		: Block(pos, 'N')
+		: Block(pos, 'N', true)
 	{
 
 	}

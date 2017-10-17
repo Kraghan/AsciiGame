@@ -15,7 +15,7 @@
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
 	CaveSeedInitializer caveInit = CaveSeedInitializer();
-	caveInit.initialize(&gameMap);
+	//caveInit.initialize(&gameMap);
 	window->clear();
 	needRedrawUi = true;
 	timeElapsed = 0.0;
@@ -28,34 +28,31 @@
 	gameMap.update();
 
 	Vector2 playerNextPos = Vector2(player.pos.x + player.addHoriz * player.speed, player.pos.y + player.addVerti * player.speed);
-	
-	if (gameMap.isInBound(playerNextPos) && gameMap.isInBound(Vector2(playerNextPos.x + player.dimension.x, playerNextPos.y + player.dimension.y)))
+	std::vector<Block*> blocks = gameMap.getBlocks();
+
+	// Si les deux angles (haut gauche et bas droit) du joueur sont dans les limites du jeu
+	if (gameMap.isInBound(playerNextPos) 
+		&& gameMap.isInBound(Vector2(playerNextPos.x + player.dimension.x, playerNextPos.y + player.dimension.y)))
 	{
 		bool wallCollisionOk = true;
-		std::vector<Block*> blocks = gameMap.getBlocks();
 
+		// On check pour tous les blocks si on a une collision
+		// La meilleure opti à envisager serai la quad map
 		for (unsigned int i = 0; i < blocks.size(); ++i)
 		{
-			if (blocks[i] == nullptr)
-				continue;
 			Vector2 blockPos = blocks[i]->getPosition();
+			Vector2 blockDim = blocks[i]->getDimension();
 			blockPos.x *= 4;
 			blockPos.y *= 4;
 			blockPos.y += Window::UI_HEIGHT;
 			
-			Vector2 blockDim = blocks[i]->getDimension();
-			if (!(playerNextPos.x >= blockPos.x + blockDim.x)
-				&& !(playerNextPos.x + player.dimension.x <= blockPos.x)
-				&& !(playerNextPos.y >= blockPos.y + blockDim.y)
-				&& !(playerNextPos.y + player.dimension.y <= blockPos.y))
+			if (collision(playerNextPos,player.dimension,blockPos, blockDim))
 			{
-				if (!(playerNextPos.x >= blockPos.x + blockDim.x)
+				/*if (!(playerNextPos.x >= blockPos.x + blockDim.x)
 					&& !(playerNextPos.x + player.dimension.x <= blockPos.x))
-					player.addHoriz = 0;
 
 				if (!(playerNextPos.y >= blockPos.y + blockDim.y)
-					&& !(playerNextPos.y + player.dimension.y <= blockPos.y))
-					player.addVerti = 0;
+					&& !(playerNextPos.y + player.dimension.y <= blockPos.y))*/
 
 				wallCollisionOk = false;
 				break;
@@ -66,11 +63,41 @@
 		{
 			player.update();		//ici actualise les nouvelles positions du joueur
 		}
+		else
+		{
+			player.addHoriz = 0;
+			player.addVerti = 0;
+		}
 	}
 	
-	for (auto & element : bullet)
+	for (std::vector<Bullet>::iterator it = bullet.begin(); it != bullet.end();)
 	{
-		element.update();
+		Vector2 bulletNextPos = Vector2((*it).position.x + (*it).addHoriz * (*it).speed, (*it).position.y + (*it).addVerti * (*it).speed);
+		bool collide = false;
+		for (unsigned int i = 0; i < blocks.size(); ++i)
+		{
+			Vector2 blockPos = blocks[i]->getPosition();
+			Vector2 blockDim = blocks[i]->getDimension();
+			blockPos.x *= 4;
+			blockPos.y *= 4;
+			blockPos.y += Window::UI_HEIGHT;
+			if (collision(blockPos, blockDim, bulletNextPos,(*it).dimension))
+			{
+				collide = true;
+				break;
+			}
+		}
+		if (!collide)
+		{
+			(*it).update();
+			++it;
+		}
+		else
+		{
+			it = bullet.erase(it);
+			gameMap.explode(bulletNextPos,20);
+		}
+
 	}
 
 	for (auto & element : ia)
@@ -118,7 +145,7 @@
 
 /*virtual*/ void GameStateGame::display()
 {
-	//window->clear();
+	window->clear();
 
 	gameMap.display(window);
 	player.display(window);		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
@@ -277,4 +304,12 @@ void GameStateGame::displayUI()
 	
 
 	
+}
+
+bool GameStateGame::collision(Vector2 positionBox1, Vector2 dimensionBox1, Vector2 positionBox2, Vector2 dimensionBox2)
+{
+	return !(positionBox1.x >= positionBox2.x + dimensionBox2.x)
+		&& !(positionBox1.x + dimensionBox1.x <= positionBox2.x)
+		&& !(positionBox1.y >= positionBox2.y + dimensionBox2.y)
+		&& !(positionBox1.y + dimensionBox1.y <= positionBox2.y);
 }

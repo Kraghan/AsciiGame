@@ -35,6 +35,6 @@ public :
 	std::vector<Block*> getBlocks();
 	void update();
 	void display(Window* window);
-
+	void explode(Vector2 position, unsigned int radius);
 
 };
