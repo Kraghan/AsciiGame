@@ -35,7 +35,7 @@ bool GameMap::isInBound(Vector2 position)
 }
 bool GameMap::isInBound(unsigned int x, unsigned int y)
 {
-	return x < dimension.x && y < dimension.y;
+	return isInBound(Vector2(x, y));
 }
 
 // Get the block at the position 
@@ -98,15 +98,24 @@ void GameMap::explode(Vector2 position, unsigned int radius)
 			it++;
 			continue;
 		}
-		unsigned int x = position.x - ((*it)->position.x * (*it)->getDimension().x);
-		unsigned int y = position.y - ((*it)->position.y * (*it)->getDimension().y);
+		int x = ((*it)->position.x * (*it)->getDimension().x) - position.x;
+		int y = ((*it)->position.y * (*it)->getDimension().y + Window::UI_HEIGHT) - position.y;
 
-		if (x + y * y <= radius * radius)
+		if (x * x + y * y <= radius * radius)
 		{
 			Debug::log("Debug.txt", "\n" + std::to_string((*it)->position.x) + " " + std::to_string((*it)->position.y), true);
 			it = blockMap.erase(it);
 		}
 		else
 			it++;
+	}
+}
+
+void GameMap::debug()
+{
+	Debug::log("DebugGameMap.txt", "");
+	for (std::vector<Block*>::iterator it = blockMap.begin(); it != blockMap.end(); it++)
+	{
+		Debug::log("DebugGameMap.txt", std::to_string((*it)->position.x) + " " + std::to_string((*it)->position.y) + "\n", true);
 	}
 }

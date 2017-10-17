@@ -95,7 +95,7 @@
 		else
 		{
 			it = bullet.erase(it);
-			gameMap.explode(bulletNextPos,20);
+			gameMap.explode(bulletNextPos,12);
 		}
 
 	}

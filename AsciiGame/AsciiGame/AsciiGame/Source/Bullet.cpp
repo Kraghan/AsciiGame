@@ -36,21 +36,21 @@ void Bullet::displayBullet(Window *win, bool erase)
 	int x = (!erase) ? pos.x : oldPos.x;
 	int y = (!erase) ? pos.y : oldPos.y;
 
-	win->changePixel(x, y, c);
-	win->changePixel(x - 1, y, c);
-	win->changePixel(x + 1, y, c);
-	win->changePixel(x, y - 1, c);
-	win->changePixel(x, y + 1, c);
+	win->changePixel(x + dimension.x /2, y + dimension.y / 2, c);
+	win->changePixel(x + dimension.x / 2 - 1 , y + dimension.y / 2, c);
+	win->changePixel(x + dimension.x / 2 + 1, y + dimension.y / 2, c);
+	win->changePixel(x + dimension.x / 2, y + dimension.y / 2 - 1, c);
+	win->changePixel(x + dimension.x / 2, y + dimension.y / 2 + 1, c);
 
-	win->changePixel(x - 2, y, c);
-	win->changePixel(x + 2, y, c);
-	win->changePixel(x, y - 2, c);
-	win->changePixel(x, y + 2, c);
+	win->changePixel(x + dimension.x / 2  - 2, y + dimension.y / 2, c);
+	win->changePixel(x + dimension.x / 2  + 2, y + dimension.y / 2, c);
+	win->changePixel(x + dimension.x / 2, y + dimension.y / 2 - 2, c);
+	win->changePixel(x + dimension.x / 2, y + dimension.y / 2 + 2, c);
 
-	win->changePixel(x + 1, y + 1, c);
-	win->changePixel(x + 1, y - 1, c);
-	win->changePixel(x - 1, y + 1, c);
-	win->changePixel(x - 1, y - 1, c);
+	win->changePixel(x + dimension.x / 2  + 1, y + dimension.y / 2 + 1, c);
+	win->changePixel(x + dimension.x / 2  + 1, y + dimension.y / 2 - 1, c);
+	win->changePixel(x + dimension.x / 2  - 1, y + dimension.y / 2 + 1, c);
+	win->changePixel(x + dimension.x / 2  - 1, y + dimension.y / 2 - 1, c);
 
 }
 
