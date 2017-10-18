@@ -12,8 +12,6 @@
 				map->setBlock((Block*) new BorderBlock(Vector2(x, y)));
 				continue;
 			}
-			else
-				map->setBlock((Block*) new NormalBlock(Vector2(x, y)));
 		}
 	}
 }

@@ -9,7 +9,7 @@
 class Player : public Entity
 {
 public:
-
+	unsigned int lifePoint;
 	Timer timer;
 	float timeReload = 0.3f;
 	bool tryedToMove = true;			//ici à vrai pour afficher le player au début

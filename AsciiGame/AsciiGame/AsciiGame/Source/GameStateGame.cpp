@@ -1,4 +1,5 @@
 #include "../Header/GameStateGame.h"
+#include "../Header/Debug.h"
 
 /*virtual*/ GameStateGame::~GameStateGame(void)
 {
@@ -15,7 +16,7 @@
 	BorderInitializer borderInit = BorderInitializer();
 	borderInit.initialize(&gameMap);
 	CaveSeedInitializer caveInit = CaveSeedInitializer();
-	//caveInit.initialize(&gameMap);
+	caveInit.initialize(&gameMap);
 	window->clear();
 	needRedrawUi = true;
 	timeElapsed = 0.0;
@@ -269,41 +270,50 @@ void GameStateGame::inputPlayer(Event *e)
 
 void GameStateGame::displayUI()
 {
-	if (needRedrawUi)
+	for (unsigned int x = 0; x < Window::SCREEN_WIDTH; ++x)
 	{
-		for (unsigned int x = 0; x < Window::SCREEN_WIDTH; ++x)
-		{
-			window->changePixel(x, 0, '-', 0x03);
-			window->changePixel(x, 1, '-', 0x03);
-			window->changePixel(x, Window::UI_HEIGHT - 2, '=', 0x03);
-			window->changePixel(x, Window::UI_HEIGHT - 1, '=', 0x03);
-		}
-		for (unsigned int y = 2; y < Window::UI_HEIGHT - 2; ++y)
-		{
-			window->changePixel(0, y, '|', 0x03);
-			window->changePixel(Window::SCREEN_WIDTH - 1, y, '|', 0x03);
-			window->changePixel(1, y, '|', 0x03);
-			window->changePixel(Window::SCREEN_WIDTH - 2, y, '|', 0x03);
-		}
-
-		needRedrawUi = false;
+		window->changePixel(x, 0, '-', 0x03);
+		window->changePixel(x, 1, '-', 0x03);
+		window->changePixel(x, Window::UI_HEIGHT - 2, '=', 0x03);
+		window->changePixel(x, Window::UI_HEIGHT - 1, '=', 0x03);
+	}
+	for (unsigned int y = 2; y < Window::UI_HEIGHT - 2; ++y)
+	{
+		window->changePixel(0, y, '|', 0x03);
+		window->changePixel(Window::SCREEN_WIDTH - 1, y, '|', 0x03);
+		window->changePixel(1, y, '|', 0x03);
+		window->changePixel(Window::SCREEN_WIDTH - 2, y, '|', 0x03);
 	}
 
-	Vector2 timerPosition = Vector2(50, 7);
-	AlphabetDrawer::draw0(window, timerPosition);
-	AlphabetDrawer::draw1(window, Vector2(timerPosition.x + 5, timerPosition.y));
-	AlphabetDrawer::draw2(window, Vector2(timerPosition.x + 10, timerPosition.y));
-	AlphabetDrawer::draw3(window, Vector2(timerPosition.x + 15, timerPosition.y));
-	AlphabetDrawer::draw4(window, Vector2(timerPosition.x + 20, timerPosition.y));
-	AlphabetDrawer::draw5(window, Vector2(timerPosition.x + 25, timerPosition.y));
-	AlphabetDrawer::draw6(window, Vector2(timerPosition.x + 30, timerPosition.y));
-	AlphabetDrawer::draw7(window, Vector2(timerPosition.x + 35, timerPosition.y));
-	AlphabetDrawer::draw8(window, Vector2(timerPosition.x + 40, timerPosition.y));
-	AlphabetDrawer::draw9(window, Vector2(timerPosition.x + 45, timerPosition.y));
-
+	Vector2 scorePosition = Vector2(10, 10);
+	AlphabetDrawer::drawWord(window, Vector2(10, 10), "SCORE:");
 	
+	AlphabetDrawer::drawWord(window, Vector2(40, 10), "00000000");
 
-	
+	Vector2 LifePosition = Vector2(110, 10);
+	AlphabetDrawer::drawWord(window, LifePosition, "LIFE:");
+
+	int lifePoint = player.lifePoint;
+	Debug::log("debug.txt", "");
+	for (unsigned int i = 0; i < 5; ++i)
+	{
+		Debug::log("debug.txt",std::to_string(lifePoint),true);
+		lifePoint -= 2;
+		if (lifePoint < 0)
+		{
+			if(lifePoint == -1)
+				AlphabetDrawer::drawHalfHeart(window, Vector2(LifePosition.x + 22 + 15 * i, LifePosition.y - 4));
+			else
+				AlphabetDrawer::drawHeart(window, Vector2(LifePosition.x + 22 + 15 * i, LifePosition.y - 4),1,'X',true);
+		}
+		else
+			AlphabetDrawer::drawHeart(window, Vector2(LifePosition.x + 22 + 15 * i, LifePosition.y - 4));
+	}
+
+	Vector2 AmmoPosition = Vector2(210, 10);
+	AlphabetDrawer::drawWord(window, AmmoPosition, "AMMO:");
+
+	AlphabetDrawer::drawWord(window, Vector2(310, 10), "TIME:");
 }
 
 bool GameStateGame::collision(Vector2 positionBox1, Vector2 dimensionBox1, Vector2 positionBox2, Vector2 dimensionBox2)

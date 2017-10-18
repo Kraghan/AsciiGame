@@ -13,6 +13,8 @@ Player::Player(Vector2 pos)
 	speed = speedPlayer;
 
 	timer = Timer();
+
+	lifePoint = 10;
 }
 
 Player::~Player()
@@ -141,15 +143,6 @@ void Player::displaySpaceInvader(Window *win, bool erase)
 	char c = (!erase) ? carac : ' ';
 	int x = (!erase) ? pos.x : oldPos.x;
 	int y = (!erase) ? pos.y : oldPos.y;
-
-	// Todo redraw IN THE RECT
-	for (int i = 0; i < dimension.x; ++i)
-	{
-		for (int j = 0; j < dimension.y; ++j)
-		{
-			win->changePixel(x + i, y + j, c, 0x05);
-		}
-	}
 
 	x = x + (dimension.x / 2);
 	y = y + (dimension.y / 2);
