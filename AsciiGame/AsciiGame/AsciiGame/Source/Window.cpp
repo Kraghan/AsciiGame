@@ -66,9 +66,9 @@ void Window::display()
 
 void Window::clear(Vector2 position, Vector2 dimension)
 {
-	for (unsigned int i = position.y; i < dimension.y ; ++i)
+	for (unsigned int i = position.y; i < position.y + dimension.y ; ++i)
 	{
-		for (unsigned int j = position.x; j < dimension.x; ++j)
+		for (unsigned int j = position.x; j < position.x + dimension.x; ++j)
 		{
 			buffer[i][j].Attributes = 15;
 			buffer[i][j].Char.AsciiChar = ' ';

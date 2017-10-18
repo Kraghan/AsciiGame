@@ -1,9 +1,21 @@
 #pragma once
 #include "GameState.h"
+#include "AlphabetDrawer.h"
 
 class GameStatePause : GameState
 {
 private:
+	enum FocusButton
+	{
+		FB_RESUME,
+		FB_NEWGAME,
+		FB_QUIT
+	};
+
+	FocusButton focus;
+	Vector2 position;
+
+	void drawContour();
 
 public:
 	virtual ~GameStatePause(void);

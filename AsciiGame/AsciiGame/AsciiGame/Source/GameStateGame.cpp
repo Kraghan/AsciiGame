@@ -13,10 +13,9 @@
 	player = Player(Vector2(10, Window::UI_HEIGHT + 10));							//créé un player, à la position 10,10
 	gameMap = GameMap(Window::SCREEN_WIDTH / 4,(Window::SCREEN_HEIGHT - Window::UI_HEIGHT) / 4);
 
-	BorderInitializer borderInit = BorderInitializer();
-	borderInit.initialize(&gameMap);
-	CaveSeedInitializer caveInit = CaveSeedInitializer();
-	caveInit.initialize(&gameMap);
+	Initializer::initializeBorder(&gameMap);
+	Initializer::initializeCave(&gameMap);
+
 	window->clear();
 	needRedrawUi = true;
 	timeElapsed = 0.0;
@@ -127,7 +126,7 @@
 		if (e->input == Event::INPUT::KB_ESCAPE
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
-			stateMachine->activeState("pause");
+			stateMachine->activeState("pause", true);
 		}
 
 		inputPlayer(e);											//input du joueur in-game
