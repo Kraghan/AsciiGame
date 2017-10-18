@@ -288,7 +288,12 @@ void GameStateGame::displayUI()
 	Vector2 scorePosition = Vector2(10, 10);
 	AlphabetDrawer::drawWord(window, Vector2(10, 10), "SCORE:");
 	
-	AlphabetDrawer::drawWord(window, Vector2(40, 10), "00000000");
+	std::string score = std::to_string(player.score);
+	for(unsigned int i = 10; i < 100000000; i*=10)
+		if (player.score < i)
+			score = "0" + score;
+
+	AlphabetDrawer::drawWord(window, Vector2(40, 10), score);
 
 	Vector2 LifePosition = Vector2(110, 10);
 	AlphabetDrawer::drawWord(window, LifePosition, "LIFE:");

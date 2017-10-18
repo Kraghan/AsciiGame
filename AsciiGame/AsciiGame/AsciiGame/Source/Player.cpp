@@ -16,6 +16,7 @@ Player::Player(Vector2 pos)
 
 	lifePoint = 10;
 	ammunition = 10;
+	score = 0;
 }
 
 Player::~Player()
