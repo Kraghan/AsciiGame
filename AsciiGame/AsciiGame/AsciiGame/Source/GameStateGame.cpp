@@ -317,6 +317,9 @@ void GameStateGame::displayUI()
 		AlphabetDrawer::drawAmmo(window, Vector2(AmmoPosition.x + 25 + 6 * i, AmmoPosition.y - 4));
 
 	AlphabetDrawer::drawWord(window, Vector2(310, 10), "TIME:");
+	int minute = timeElapsed / 60;
+	int seconde = (int)timeElapsed % 60;
+	AlphabetDrawer::drawWord(window, Vector2(332, 10), (minute < 10 ? "0" : "" ) + std::to_string(minute)+":"+ (seconde < 10 ? "0" : "") + std::to_string(seconde));
 }
 
 bool GameStateGame::collision(Vector2 positionBox1, Vector2 dimensionBox1, Vector2 positionBox2, Vector2 dimensionBox2)

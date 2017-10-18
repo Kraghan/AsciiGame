@@ -45,7 +45,6 @@ public:
 
 private:
 	void inputPlayer(Event *e);
-	void displayBullet(Bullet &bullet);
 	void displayUI();
 	bool collision(Vector2 positionBox1, Vector2 dimensionBox1, Vector2 positionBox2, Vector2 dimensionBox2);
 };

@@ -29,7 +29,7 @@ public:
 	~Player();
 
 	void tryToMove(MOVE_TYPE moveType);					//déplace le joueur
-	void stopMove(MOVE_TYPE moveType);								//stop le joueur
+	void stopMove(MOVE_TYPE moveType);					//stop le joueur
 	void tryToShoot(MOVE_TYPE moveType);
 
 	void display(Window *win);
