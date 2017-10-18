@@ -864,6 +864,30 @@ void AlphabetDrawer::draw9(Window* window, Vector2 pos, unsigned int fontSize, c
 
 /*static*/ void AlphabetDrawer::drawAmmo(Window* window, Vector2 pos, unsigned int fontSize, char caractere, int color)
 {
+	drawPixel(window, pos.x + 2 * fontSize, pos.y, fontSize, caractere, 0x0E);
+	
+	drawPixel(window, pos.x + 1 * fontSize, pos.y + fontSize, fontSize, caractere, 0x0E);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + fontSize, fontSize, caractere, 0x0E);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + fontSize, fontSize, caractere, 6);
+
+	for (unsigned int i = 0; i < 7; ++i)
+	{
+		drawPixel(window, pos.x, pos.y + (2 + i) * fontSize, fontSize, caractere, 0x0E);
+		drawPixel(window, pos.x + 1 * fontSize, pos.y + (2 + i) * fontSize, fontSize, caractere, 0x0E);
+		drawPixel(window, pos.x + 2 * fontSize, pos.y + (2 + i) * fontSize, fontSize, caractere, 0x0E);
+		drawPixel(window, pos.x + 3 * fontSize, pos.y + (2 + i) * fontSize, fontSize, caractere, 0x0E);
+		drawPixel(window, pos.x + 4 * fontSize, pos.y + (2 + i) * fontSize, fontSize, caractere, 6);
+	}
+
+	drawPixel(window, pos.x + 1 * fontSize, pos.y + 9 * fontSize, fontSize, caractere, 0x0E);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 9 * fontSize, fontSize, caractere, 0x0E);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 9 * fontSize, fontSize, caractere, 0x0E);
+
+	drawPixel(window, pos.x, pos.y + 10 * fontSize, fontSize, caractere, 0x0E);
+	drawPixel(window, pos.x + 1 * fontSize, pos.y + 10 * fontSize, fontSize, caractere, 0x0E);
+	drawPixel(window, pos.x + 2 * fontSize, pos.y + 10 * fontSize, fontSize, caractere, 0x0E);
+	drawPixel(window, pos.x + 3 * fontSize, pos.y + 10 * fontSize, fontSize, caractere, 0x0E);
+	drawPixel(window, pos.x + 4 * fontSize, pos.y + 10 * fontSize, fontSize, caractere, 6);
 
 }
 

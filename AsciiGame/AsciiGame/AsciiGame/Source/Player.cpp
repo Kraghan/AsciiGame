@@ -15,6 +15,7 @@ Player::Player(Vector2 pos)
 	timer = Timer();
 
 	lifePoint = 10;
+	ammunition = 10;
 }
 
 Player::~Player()
@@ -105,6 +106,7 @@ Bullet Player::shoot()
 	addShootHoriz = 0;
 	addShootVerti = 0;
 	bulletToShoot = false;
+	--ammunition;
 
 	timer.start();
 
@@ -215,4 +217,9 @@ void Player::update()
 	pos.y += addVerti * speed;
 
 	setupRealPos();
+}
+
+bool Player::canShoot()
+{
+	return bulletToShoot && ammunition != 0;
 }

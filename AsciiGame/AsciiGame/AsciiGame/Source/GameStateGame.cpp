@@ -151,7 +151,7 @@
 	gameMap.display(window);
 	player.display(window);		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
 	
-	if (player.bulletToShoot)
+	if (player.canShoot())
 		bullet.push_back(player.shoot());
 
 	for (auto & element : bullet)
@@ -312,6 +312,9 @@ void GameStateGame::displayUI()
 
 	Vector2 AmmoPosition = Vector2(210, 10);
 	AlphabetDrawer::drawWord(window, AmmoPosition, "AMMO:");
+
+	for (unsigned int i = 0; i < player.ammunition; ++i)
+		AlphabetDrawer::drawAmmo(window, Vector2(AmmoPosition.x + 25 + 6 * i, AmmoPosition.y - 4));
 
 	AlphabetDrawer::drawWord(window, Vector2(310, 10), "TIME:");
 }

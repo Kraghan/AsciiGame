@@ -10,6 +10,7 @@ class Player : public Entity
 {
 public:
 	unsigned int lifePoint;
+	unsigned int ammunition;
 	Timer timer;
 	float timeReload = 0.3f;
 	bool tryedToMove = true;			//ici à vrai pour afficher le player au début
@@ -34,6 +35,8 @@ public:
 	void display(Window *win);
 	Bullet shoot();
 	void update(); //selon move, change pos;
+
+	bool canShoot();
 
 private:
 	void changeHorizVerti(bool stop, bool bullet);
