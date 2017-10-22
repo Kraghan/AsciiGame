@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "../Header/GraphicEngine.h"
 #include "../Header/InputController.h"
 #include "../Header/Timer.h"
 #include "../Header/GameStateMachine.h"

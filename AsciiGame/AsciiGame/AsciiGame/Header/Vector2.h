@@ -3,7 +3,7 @@
 class Vector2
 {
 public :
-	unsigned x, y;
+	unsigned int x, y;
 
 	explicit Vector2(void)
 	{

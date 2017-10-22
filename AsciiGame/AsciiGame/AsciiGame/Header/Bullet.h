@@ -18,6 +18,5 @@ public:
 	void update(); //selon move, change pos;
 
 private:
-	void displayBullet(Window *win, bool erase = false);
 };
 

@@ -42,6 +42,5 @@ public:
 
 private:
 	void changeHorizVerti(bool stop, bool bullet);
-	void displaySpaceInvader(Window *win, bool erase = false);	
 };
 

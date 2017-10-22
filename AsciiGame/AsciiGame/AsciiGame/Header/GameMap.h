@@ -36,6 +36,7 @@ public :
 	void update();
 	void display(Window* window);
 	void explode(Vector2 position, unsigned int radius);
+	void clear();
 	void debug();
 
 };
