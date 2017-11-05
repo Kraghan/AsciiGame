@@ -152,9 +152,6 @@
     <ClInclude Include="Header\Window.h">
       <Filter>Fichiers d%27en-tête\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Header\InputController.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Header\BorderBlock.h">
       <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
     </ClInclude>
