@@ -13,7 +13,7 @@ Player::Player(Vector2 pos)
 	timer = Timer();
 
 	lifePoint = 10;
-	ammunition = 10;
+	ammunition = 12;
 	score = 0;
 }
 
@@ -208,4 +208,18 @@ void Player::update()
 bool Player::canShoot()
 {
 	return bulletToShoot && ammunition != 0;
+}
+
+void Player::addLifePoint(unsigned int health)
+{
+	lifePoint += health;
+	if (lifePoint > 10)
+		lifePoint = 10;
+}
+
+void Player::addAmmo(unsigned int ammo)
+{
+	ammunition += ammo;
+	if (ammunition > 12)
+		ammunition = 12;
 }

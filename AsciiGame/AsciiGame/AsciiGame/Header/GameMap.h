@@ -4,6 +4,9 @@
 #include "Block.h"
 #include "NormalBlock.h"
 #include "BorderBlock.h"
+#include "AmmoBlock.h"
+#include "LifeBlock.h"
+#include "ScoreBlock.h"
 #include "Vector2.h"
 #include "Window.h"
 
@@ -38,5 +41,7 @@ public :
 	void explode(Vector2 position, unsigned int radius);
 	void clear();
 	void debug();
+
+	void destroyBlock(Vector2 position);
 
 };

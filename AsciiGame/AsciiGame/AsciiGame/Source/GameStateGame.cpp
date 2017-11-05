@@ -17,6 +17,7 @@
 
 	Initializer::initializeBorder(&gameMap);
 	Initializer::initializeCave(&gameMap);
+	Initializer::initializeCollectible(&gameMap, 5, 2, 2);
 
 	window->clear();
 	needRedrawUi = true;
@@ -40,8 +41,10 @@
 
 		// On check pour tous les blocks si on a une collision
 		// La meilleure opti à envisager serai la quad map
+		//Debug::log("Debug2.txt","");
 		for (unsigned int i = 0; i < blocks.size(); ++i)
 		{
+			//Debug::log("Debug2.txt", std::to_string(blocks[i]->getIsSolid())+"\n",true);
 			Vector2 blockPos = blocks[i]->getPosition();
 			Vector2 blockDim = blocks[i]->getDimension();
 			blockPos.x *= 4;
@@ -50,14 +53,17 @@
 			
 			if (collision(playerNextPos,player.bounds.dimension,blockPos, blockDim))
 			{
-				/*if (!(playerNextPos.x >= blockPos.x + blockDim.x)
-					&& !(playerNextPos.x + player.dimension.x <= blockPos.x))
+				if (blocks[i]->getIsSolid())
+				{
+					wallCollisionOk = false;
+					break;
+				}
 
-				if (!(playerNextPos.y >= blockPos.y + blockDim.y)
-					&& !(playerNextPos.y + player.dimension.y <= blockPos.y))*/
-
-				wallCollisionOk = false;
-				break;
+				if (blocks[i]->getIsCollectable())
+				{
+					blocks[i]->collect(&player);
+					gameMap.destroyBlock(blocks[i]->getPosition());
+				}
 			}
 		}
 
@@ -78,11 +84,14 @@
 		bool collide = false;
 		for (unsigned int i = 0; i < blocks.size(); ++i)
 		{
+			if (!blocks[i]->getIsSolid())
+				continue;
 			Vector2 blockPos = blocks[i]->getPosition();
 			Vector2 blockDim = blocks[i]->getDimension();
 			blockPos.x *= 4;
 			blockPos.y *= 4;
 			blockPos.y += Window::UI_HEIGHT;
+
 			if (collision(blockPos, blockDim, bulletNextPos,(*it).bounds.dimension))
 			{
 				collide = true;
@@ -290,10 +299,8 @@ void GameStateGame::displayUI()
 	AlphabetDrawer::drawWord(window, LifePosition, "LIFE:");
 
 	int lifePoint = player.lifePoint;
-	Debug::log("debug.txt", "");
 	for (unsigned int i = 0; i < 5; ++i)
 	{
-		Debug::log("debug.txt",std::to_string(lifePoint),true);
 		lifePoint -= 2;
 		if (lifePoint < 0)
 		{

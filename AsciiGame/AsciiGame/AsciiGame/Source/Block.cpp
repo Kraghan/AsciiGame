@@ -6,18 +6,22 @@ Block::Block()
 
 }
 
-Block::Block(unsigned int x, unsigned int y, char representation, bool solid)
+Block::Block(unsigned int x, unsigned int y, char representation, bool solid, bool collectable)
 	: position(Vector2(x,y))
 	, sprite(representation)
 	, isSolid(solid)
+	, isCollectable(collectable)
+	, isUnbreakable(false)
 {
 
 }
 
-Block::Block(Vector2 pos, char representation, bool solid)
+Block::Block(Vector2 pos, char representation, bool solid, bool collectable)
 	: position(pos)
 	, sprite(representation)
 	, isSolid(solid)
+	, isCollectable(collectable)
+	, isUnbreakable(false)
 {
 
 }
@@ -43,6 +47,11 @@ bool Block::getIsSolid()
 	return isSolid;
 }
 
+bool Block::getIsCollectable()
+{
+	return isCollectable;
+}
+
 void Block::setSprite(char representation)
 {
 	sprite = representation;
@@ -63,7 +72,7 @@ Vector2 Block::getDimension()
 	return Vector2(4, 4);
 }
 
-void Block::display(Window* window)
+/*virtual*/ void Block::display(Window* window)
 {
 	Vector2 dimension = getDimension();
 	for (unsigned int x = 0; x < dimension.x; ++x)
@@ -73,4 +82,9 @@ void Block::display(Window* window)
 			window->changePixel(position.x * dimension.x + x, position.y * dimension.y + Window::UI_HEIGHT + y, sprite);
 		}
 	}
+}
+
+/*virtual*/ void Block::collect(Player* player)
+{
+	
 }

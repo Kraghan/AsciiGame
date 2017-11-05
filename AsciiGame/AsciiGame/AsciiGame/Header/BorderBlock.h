@@ -5,14 +5,14 @@ class BorderBlock : Block
 {
 public :
 	explicit BorderBlock(void)
-		: Block(Vector2(), 'N', true)
+		: Block(Vector2(), 'N')
 	{
-
+		isUnbreakable = true;
 	}
 
 	explicit BorderBlock(Vector2 pos)
-		: Block(pos, 'N', true)
+		: Block(pos, 'N')
 	{
-
+		isUnbreakable = true;
 	}
 };

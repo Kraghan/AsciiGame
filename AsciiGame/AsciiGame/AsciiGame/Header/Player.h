@@ -39,6 +39,8 @@ public:
 	void update(); //selon move, change pos;
 
 	bool canShoot();
+	void addLifePoint(unsigned int health);
+	void addAmmo(unsigned int ammo);
 
 private:
 	void changeHorizVerti(bool stop, bool bullet);

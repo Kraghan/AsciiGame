@@ -89,11 +89,9 @@ void GameMap::display(Window* window)
 
 void GameMap::explode(Vector2 position, unsigned int radius)
 {
-	Debug::log("Debug.txt", "" + std::to_string(position.x) + " " + std::to_string(position.y));
-	Debug::log("Debug.txt", "\n" + std::to_string(radius), true);
 	for (std::vector<Block*>::iterator it = blockMap.begin(); it != blockMap.end();)
 	{
-		if ((*it)->getIsSolid())
+		if (!(*it)->getIsSolid() || (*it)->isUnbreakable)
 		{
 			it++;
 			continue;
@@ -103,7 +101,6 @@ void GameMap::explode(Vector2 position, unsigned int radius)
 
 		if (x * x + y * y <= (int) (radius * radius))
 		{
-			Debug::log("Debug.txt", "\n" + std::to_string((*it)->position.x) + " " + std::to_string((*it)->position.y), true);
 			delete(*it);
 			it = blockMap.erase(it);
 		}
@@ -127,5 +124,19 @@ void GameMap::clear()
 	{
 		delete(*it);
 		it = blockMap.erase(it);
+	}
+}
+
+void GameMap::destroyBlock(Vector2 position)
+{
+	for (std::vector<Block*>::iterator it = blockMap.begin(); it != blockMap.end();)
+	{
+		if ((*it)->position.x == position.x && (*it)->position.y == position.y)
+		{
+			delete(*it);
+			blockMap.erase(it);
+			return;
+		}
+		++it;
 	}
 }

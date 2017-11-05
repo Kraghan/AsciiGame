@@ -1,4 +1,5 @@
 #include "../Header/Initializer.h"
+#include "../Header/Debug.h"
 
 std::vector<std::vector<bool>> Initializer::abstraction = std::vector<std::vector<bool>>();
 
@@ -54,6 +55,57 @@ std::vector<std::vector<bool>> Initializer::abstraction = std::vector<std::vecto
 			}
 		}
 	}
+}
+
+/*static*/ void Initializer::initializeCollectible(GameMap* map, unsigned int nbScoreBlock, unsigned int nbAmmoBlock, unsigned int nbHeartBlock)
+{
+	Vector2 dimension = map->getDimension();
+	unsigned int nbBlock = dimension.x * dimension.y;
+	float spawnRate = (float)nbBlock / (float)(nbScoreBlock + nbAmmoBlock + nbHeartBlock);
+	unsigned int scoreSet = 0, heartSet = 0, ammoSet = 0, cpt = 0;
+	bool lockScore = false, lockHeart = false, lockAmmo = false;
+	srand((unsigned int)time(NULL));
+
+	for (unsigned int x = 0; x < dimension.x; ++x)
+	{
+		for (unsigned int y = 0; y < dimension.y; ++y)
+		{
+			++cpt;
+			if (cpt >= spawnRate)
+			{
+				cpt = 0; 
+				int random = rand() % 3;
+
+				/*while ((random == 0 && scoreSet != nbScoreBlock)
+					|| (random == 1 && heartSet != nbHeartBlock)
+					|| (random == 2 && ammoSet != nbAmmoBlock))
+				{
+					random = rand() % 3;
+				}*/
+
+				if (random == 0 || lockScore)
+				{
+					map->setBlock((Block*) new ScoreBlock(Vector2(x, y)));
+
+					scoreSet++;
+				}
+				else if (random == 1 || lockHeart)
+				{
+					map->setBlock((Block*) new LifeBlock(Vector2(x, y)));
+
+					heartSet++;
+				}
+				else if (random == 2 || lockAmmo)
+				{
+					map->setBlock((Block*) new AmmoBlock(Vector2(x, y)));
+
+					ammoSet++;
+				}
+			}
+		}
+	}
+
+	
 }
 
 unsigned short Initializer::getNumberOfNeighbour(Vector2 pos)

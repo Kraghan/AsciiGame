@@ -70,6 +70,9 @@
     <Filter Include="Fichiers sources\Tools\Physics">
       <UniqueIdentifier>{b01773b1-5189-44f4-af6a-d8b2160f9aaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Map\Blocks">
+      <UniqueIdentifier>{94d74990-e7a2-450e-8959-10a12659c6dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameStateGame.cpp">
@@ -137,6 +140,15 @@
     </ClCompile>
     <ClCompile Include="Source\AABB.cpp">
       <Filter>Fichiers sources\Tools\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AmmoBlock.cpp">
+      <Filter>Fichiers sources\Map\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\LifeBlock.cpp">
+      <Filter>Fichiers sources\Map\Blocks</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ScoreBlock.cpp">
+      <Filter>Fichiers sources\Map\Blocks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +229,15 @@
     </ClInclude>
     <ClInclude Include="Header\QuadTree.h">
       <Filter>Fichiers d%27en-tête\Map\QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\ScoreBlock.h">
+      <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\AmmoBlock.h">
+      <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\LifeBlock.h">
+      <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
