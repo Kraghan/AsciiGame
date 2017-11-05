@@ -3,7 +3,6 @@
 IA::IA(Vector2 pos)
 	: Entity(pos, Vector2(dimensionBulletX, dimensionBulletY))
 {
-	setupRealPos();						//entity
 
 	speed = speedIA;
 
@@ -28,10 +27,44 @@ IA::~IA()
 ///
 void IA::display(Window *win)
 {
-	displayIA(win, true);	//enlève l'ancien en mettant du blanc
-	displayIA(win);		//affiche la nouvelle positions
+	int x = bounds.position.x;
+	int y = bounds.position.y;
 
-	oldPos = pos;
+	win->changePixel(x, y, carac, color);
+
+	win->changePixel(x - 1, y, carac, color);
+	win->changePixel(x + 1, y, carac, color);
+	win->changePixel(x, y - 1, carac, color);
+	win->changePixel(x, y + 1, carac, color);
+
+	win->changePixel(x - 2, y, carac, color);
+	win->changePixel(x + 2, y, carac, color);
+	win->changePixel(x, y - 2, carac, color);
+	win->changePixel(x, y + 2, carac, color);
+
+	win->changePixel(x + 2, y + 1, carac, color);
+	win->changePixel(x + 2, y - 1, carac, color);
+
+	win->changePixel(x - 2, y + 1, carac, color);
+	win->changePixel(x - 2, y - 1, carac, color);
+
+	win->changePixel(x + 1, y + 1, carac, color);
+	win->changePixel(x - 1, y + 1, carac, color);
+
+	win->changePixel(x + 2, y + 2, carac, color);
+	win->changePixel(x - 2, y + 2, carac, color);
+
+	win->changePixel(x + 2, y - 2, carac, color);
+	win->changePixel(x - 2, y - 2, carac, color);
+
+	win->changePixel(x + 1, y + 2, carac, color);
+	win->changePixel(x - 1, y + 2, carac, color);
+
+	win->changePixel(x, y + 3, carac, color);
+	win->changePixel(x + 1, y + 3, carac, color);
+	win->changePixel(x - 1, y + 3, carac, color);
+
+	oldPos = bounds.position;
 }
 
 ///
@@ -40,42 +73,7 @@ void IA::display(Window *win)
 void IA::displayIA(Window *win, bool erase)
 {
 	char c = (!erase) ? carac : ' ';
-	int x = (!erase) ? pos.x : oldPos.x;
-	int y = (!erase) ? pos.y : oldPos.y;
-
-	win->changePixel(x, y, c);
-
-	win->changePixel(x - 1, y, c);
-	win->changePixel(x + 1, y, c);
-	win->changePixel(x, y - 1, c);
-	win->changePixel(x, y + 1, c);
-
-	win->changePixel(x - 2, y, c);
-	win->changePixel(x + 2, y, c);
-	win->changePixel(x, y - 2, c);
-	win->changePixel(x, y + 2, c);
-
-	win->changePixel(x + 2, y + 1, c);
-	win->changePixel(x + 2, y - 1, c);
-
-	win->changePixel(x - 2, y + 1, c);
-	win->changePixel(x - 2, y - 1, c);
-
-	win->changePixel(x + 1, y + 1, c);
-	win->changePixel(x - 1, y + 1, c);
-
-	win->changePixel(x + 2, y + 2, c);
-	win->changePixel(x - 2, y + 2, c);
-
-	win->changePixel(x + 2, y - 2, c);
-	win->changePixel(x - 2, y - 2, c);
-
-	win->changePixel(x + 1, y + 2, c);
-	win->changePixel(x - 1, y + 2, c);
-
-	win->changePixel(x, y + 3, c);
-	win->changePixel(x + 1, y + 3, c);
-	win->changePixel(x - 1, y + 3, c);
+	
 
 }
 
@@ -84,8 +82,6 @@ void IA::displayIA(Window *win, bool erase)
 ///
 void IA::update()
 {
-	pos.x += addHoriz * speed;
-	pos.y += addVerti * speed;
-
-	setupRealPos();
+	bounds.position.x += addHoriz * speed;
+	bounds.position.y += addVerti * speed;
 }

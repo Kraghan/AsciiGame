@@ -8,10 +8,11 @@ class Initializer
 private : 
 	static const unsigned int PROBABILITY = 45;
 	static const unsigned int ITERATION = 5;
+	static std::vector<std::vector<bool>> abstraction;
 
-	static unsigned short getNumberOfNeighbour(Vector2 pos, std::vector<std::vector<bool>> abstraction);
+	static unsigned short getNumberOfNeighbour(Vector2 pos);
 
-	static std::vector<std::vector<bool>> process(std::vector<std::vector<bool>> abstraction);
+	static std::vector<std::vector<bool>> process();
 public : 
 	explicit Initializer() {};
 

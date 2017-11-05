@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\GameStates">
-      <UniqueIdentifier>{73c8fa98-b516-49a8-af8c-a75de5c7807c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\Map">
       <UniqueIdentifier>{a0b7b3f4-983b-4e94-893a-0bbc6b683ec2}</UniqueIdentifier>
     </Filter>
@@ -24,9 +21,6 @@
     </Filter>
     <Filter Include="Fichiers d%27en-tête\Tools">
       <UniqueIdentifier>{6a24adc5-f4dc-4447-8328-2a583047ea48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\GameStates">
-      <UniqueIdentifier>{418ed20e-792d-4eb6-abbe-59fb9f4a8e9d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Fichiers sources\Map">
       <UniqueIdentifier>{c391a971-7b63-4932-b3be-df118bbdd231}</UniqueIdentifier>
@@ -40,31 +34,52 @@
     <Filter Include="Fichiers sources\Map\QuadTree">
       <UniqueIdentifier>{b5773df6-7ede-4128-851d-3747d298b7b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Tools\Physics">
+      <UniqueIdentifier>{33c3c445-dd4e-4387-90b9-a56ef2c9db7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Tools\Helper">
+      <UniqueIdentifier>{088de77e-f031-4bd1-9fae-53ac7bf7835a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\StateMachine">
+      <UniqueIdentifier>{73c8fa98-b516-49a8-af8c-a75de5c7807c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\StateMachine\States">
+      <UniqueIdentifier>{dc24f23f-c49f-476e-8bc9-80d77f607827}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\StateMachine">
+      <UniqueIdentifier>{eae84222-2df7-48ae-8deb-3ece58c5060c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\StateMachine\States">
+      <UniqueIdentifier>{418ed20e-792d-4eb6-abbe-59fb9f4a8e9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Tools\Helper">
+      <UniqueIdentifier>{b00c1593-7c01-4ebe-902e-8c1f982c6171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Tools\Entity">
+      <UniqueIdentifier>{ed6a218b-4fe4-4869-b5c2-dfac8748ade0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Tools\System">
+      <UniqueIdentifier>{1ac70957-16ef-4c0c-9883-443fa796ad7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Tools\Entity">
+      <UniqueIdentifier>{b4941898-5d27-4dab-80d7-69b1559a4245}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Tools\System">
+      <UniqueIdentifier>{185b9a24-bfaf-46c1-a74a-e42c0d33e009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Tools\Physics">
+      <UniqueIdentifier>{b01773b1-5189-44f4-af6a-d8b2160f9aaf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\GameStateGame.cpp">
-      <Filter>Fichiers sources\GameStates</Filter>
+      <Filter>Fichiers sources\StateMachine\States</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameStateMenu.cpp">
-      <Filter>Fichiers sources\GameStates</Filter>
+      <Filter>Fichiers sources\StateMachine\States</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameStatePause.cpp">
-      <Filter>Fichiers sources\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Timer.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameStateMachine.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GraphicEngine.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InputController.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameState.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
+      <Filter>Fichiers sources\StateMachine\States</Filter>
     </ClCompile>
     <ClCompile Include="Source\Block.cpp">
       <Filter>Fichiers sources\Map</Filter>
@@ -73,84 +88,69 @@
       <Filter>Fichiers sources\Map</Filter>
     </ClCompile>
     <ClCompile Include="Source\Event.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Event.cpp">
       <Filter>Fichiers de ressources</Filter>
     </ClCompile>
-    <ClCompile Include="Source\AlphabetDrawer.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Window.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
     <ClCompile Include="Source\IA.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Bullet.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Entity.cpp">
       <Filter>Fichiers sources\Tools</Filter>
     </ClCompile>
     <ClCompile Include="Source\AsciiGame.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Debug.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Initializer.cpp">
       <Filter>Fichiers sources\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AlphabetDrawer.cpp">
+      <Filter>Fichiers sources\Tools\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Debug.cpp">
+      <Filter>Fichiers sources\Tools\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameState.cpp">
+      <Filter>Fichiers sources\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameStateMachine.cpp">
+      <Filter>Fichiers sources\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet.cpp">
+      <Filter>Fichiers sources\Tools\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Entity.cpp">
+      <Filter>Fichiers sources\Tools\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Fichiers sources\Tools\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Event.cpp">
+      <Filter>Fichiers sources\Tools\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InputController.cpp">
+      <Filter>Fichiers sources\Tools\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Window.cpp">
+      <Filter>Fichiers sources\Tools\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Timer.cpp">
+      <Filter>Fichiers sources\Tools\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\QuadTree.cpp">
+      <Filter>Fichiers sources\Map\QuadTree</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AABB.cpp">
+      <Filter>Fichiers sources\Tools\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h">
       <Filter>Fichiers d%27en-tête\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Event.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="Header\GameMap.h">
       <Filter>Fichiers d%27en-tête\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\GameState.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\GameStateGame.h">
-      <Filter>Fichiers d%27en-tête\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\GameStateMenu.h">
-      <Filter>Fichiers d%27en-tête\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\GameStatePause.h">
-      <Filter>Fichiers d%27en-tête\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\GameStateMachine.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\GraphicEngine.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Timer.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Vector2.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Header\NormalBlock.h">
       <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
     </ClInclude>
     <ClInclude Include="Header\Initializer.h">
       <Filter>Fichiers d%27en-tête\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\AlphabetDrawer.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Window.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
     </ClInclude>
     <ClInclude Include="Header\BorderBlock.h">
       <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
@@ -161,20 +161,62 @@
     <ClInclude Include="Header\InputController.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Player.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Bullet.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="Header\IA.h">
       <Filter>Fichiers d%27en-tête\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Entity.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
+    <ClInclude Include="Header\GameStateGame.h">
+      <Filter>Fichiers d%27en-tête\StateMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameStateMenu.h">
+      <Filter>Fichiers d%27en-tête\StateMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameStatePause.h">
+      <Filter>Fichiers d%27en-tête\StateMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameState.h">
+      <Filter>Fichiers d%27en-tête\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameStateMachine.h">
+      <Filter>Fichiers d%27en-tête\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Vector2.h">
+      <Filter>Fichiers d%27en-tête\Tools\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\AlphabetDrawer.h">
+      <Filter>Fichiers d%27en-tête\Tools\Helper</Filter>
     </ClInclude>
     <ClInclude Include="Header\Debug.h">
-      <Filter>Fichiers d%27en-tête\Tools</Filter>
+      <Filter>Fichiers d%27en-tête\Tools\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\BorderBlock.h">
+      <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Entity.h">
+      <Filter>Fichiers d%27en-tête\Tools\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Bullet.h">
+      <Filter>Fichiers d%27en-tête\Tools\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Player.h">
+      <Filter>Fichiers d%27en-tête\Tools\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Window.h">
+      <Filter>Fichiers d%27en-tête\Tools\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Timer.h">
+      <Filter>Fichiers d%27en-tête\Tools\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Event.h">
+      <Filter>Fichiers d%27en-tête\Tools\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\InputController.h">
+      <Filter>Fichiers d%27en-tête\Tools\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\AABB.h">
+      <Filter>Fichiers d%27en-tête\Tools\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\QuadTree.h">
+      <Filter>Fichiers d%27en-tête\Map\QuadTree</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

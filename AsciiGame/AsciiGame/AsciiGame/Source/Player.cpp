@@ -8,8 +8,6 @@ Player::Player()
 Player::Player(Vector2 pos)
 	: Entity(pos, Vector2(11, 9))
 {
-	setupRealPos();		//entity
-
 	speed = speedPlayer;
 
 	timer = Timer();
@@ -99,8 +97,8 @@ void Player::tryToShoot(MOVE_TYPE moveTry)
 ///
 Bullet Player::shoot()
 {
-	int posX = pos.x + (dimension.x / 2) + (dimension.x * addShootHoriz);
-	int posY = pos.y + (dimension.y / 2) + (dimension.y * addShootVerti);
+	int posX = bounds.position.x + (bounds.dimension.x / 2) + (bounds.dimension.x * addShootHoriz);
+	int posY = bounds.position.y + (bounds.dimension.y / 2) + (bounds.dimension.y * addShootVerti);
 	Bullet bull(Vector2(posX, posY), addShootHoriz, addShootVerti);
 
 	//reset les valeurs de tir
@@ -132,80 +130,69 @@ void Player::stopMove(MOVE_TYPE moveTry)
 ///
 void Player::display(Window *win)
 {
-	displaySpaceInvader(win, true);	//enlève l'ancien en mettant du blanc
-	displaySpaceInvader(win);		//affiche la nouvelle positions
+	int x = bounds.position.x;
+	int y = bounds.position.y;
 
-	oldPos = pos;
-}
+	x = x + (bounds.dimension.x / 2);
+	y = y + (bounds.dimension.y / 2);
 
-///
-/// affiche le sprite de l'objet: spaceInvader
-///
-void Player::displaySpaceInvader(Window *win, bool erase)
-{
-	char c = (!erase) ? carac : ' ';
-	int x = (!erase) ? pos.x : oldPos.x;
-	int y = (!erase) ? pos.y : oldPos.y;
+	win->changePixel(x, y, carac, color);
+	win->changePixel(x - 1, y, carac, color);
+	win->changePixel(x - 2, y, carac, color);
+	win->changePixel(x - 3, y, carac, color);
+	win->changePixel(x - 4, y, carac, color);
+	win->changePixel(x - 5, y, carac, color);
+	win->changePixel(x + 1, y, carac, color);
+	win->changePixel(x + 2, y, carac, color);
+	win->changePixel(x + 3, y, carac, color);
+	win->changePixel(x + 4, y, carac, color);
+	win->changePixel(x + 5, y, carac, color);
 
-	x = x + (dimension.x / 2);
-	y = y + (dimension.y / 2);
+	win->changePixel(x, y - 1, carac, color);
+	win->changePixel(x + 1, y - 1, carac, color);
+	win->changePixel(x - 1, y - 1, carac, color);
 
-	win->changePixel(x, y, c);
-	win->changePixel(x - 1, y, c);
-	win->changePixel(x - 2, y, c);
-	win->changePixel(x - 3, y, c);
-	win->changePixel(x - 4, y, c);
-	win->changePixel(x - 5, y, c);
-	win->changePixel(x + 1, y, c);
-	win->changePixel(x + 2, y, c);
-	win->changePixel(x + 3, y, c);
-	win->changePixel(x + 4, y, c);
-	win->changePixel(x + 5, y, c);
+	win->changePixel(x + 3, y - 1, carac, color);
+	win->changePixel(x - 3, y - 1, carac, color);
 
-	win->changePixel(x, y - 1, c);
-	win->changePixel(x + 1, y - 1, c);
-	win->changePixel(x - 1, y - 1, c);
-	
-	win->changePixel(x + 3, y - 1, c);
-	win->changePixel(x - 3, y - 1, c);
+	win->changePixel(x + 4, y - 1, carac, color);
+	win->changePixel(x - 4, y - 1, carac, color);
 
-	win->changePixel(x + 4, y - 1, c);
-	win->changePixel(x - 4, y - 1, c);
+	win->changePixel(x, y - 2, carac, color);
+	win->changePixel(x - 1, y - 2, carac, color);
+	win->changePixel(x + 1, y - 2, carac, color);
+	win->changePixel(x - 2, y - 2, carac, color);
+	win->changePixel(x + 2, y - 2, carac, color);
+	win->changePixel(x - 3, y - 2, carac, color);
+	win->changePixel(x + 3, y - 2, carac, color);
 
-	win->changePixel(x, y - 2, c);
-	win->changePixel(x - 1, y - 2, c);
-	win->changePixel(x + 1, y - 2, c);
-	win->changePixel(x - 2, y - 2, c);
-	win->changePixel(x + 2, y - 2, c);
-	win->changePixel(x - 3, y - 2, c);
-	win->changePixel(x + 3, y - 2, c);
+	win->changePixel(x - 2, y - 3, carac, color);
+	win->changePixel(x + 2, y - 3, carac, color);
 
-	win->changePixel(x - 2, y - 3, c);
-	win->changePixel(x + 2, y - 3, c);
+	win->changePixel(x - 3, y - 4, carac, color);
+	win->changePixel(x + 3, y - 4, carac, color);
 
-	win->changePixel(x - 3, y - 4, c);
-	win->changePixel(x + 3, y - 4, c);
+	win->changePixel(x, y + 1, carac, color);
+	win->changePixel(x - 1, y + 1, carac, color);
+	win->changePixel(x - 2, y + 1, carac, color);
+	win->changePixel(x - 3, y + 1, carac, color);
+	win->changePixel(x - 5, y + 1, carac, color);
+	win->changePixel(x + 1, y + 1, carac, color);
+	win->changePixel(x + 2, y + 1, carac, color);
+	win->changePixel(x + 3, y + 1, carac, color);
+	win->changePixel(x + 5, y + 1, carac, color);
 
-	win->changePixel(x, y + 1, c);
-	win->changePixel(x - 1, y + 1, c);
-	win->changePixel(x - 2, y + 1, c);
-	win->changePixel(x - 3, y + 1, c);
-	win->changePixel(x - 5, y + 1, c);
-	win->changePixel(x + 1, y + 1, c);
-	win->changePixel(x + 2, y + 1, c);
-	win->changePixel(x + 3, y + 1, c);
-	win->changePixel(x + 5, y + 1, c);
+	win->changePixel(x - 3, y + 2, carac, color);
+	win->changePixel(x - 5, y + 2, carac, color);
+	win->changePixel(x + 3, y + 2, carac, color);
+	win->changePixel(x + 5, y + 2, carac, color);
 
-	win->changePixel(x - 3, y + 2, c);
-	win->changePixel(x - 5, y + 2, c);
-	win->changePixel(x + 3, y + 2, c);
-	win->changePixel(x + 5, y + 2, c);
+	win->changePixel(x - 1, y + 3, carac, color);
+	win->changePixel(x - 2, y + 3, carac, color);
+	win->changePixel(x + 1, y + 3, carac, color);
+	win->changePixel(x + 2, y + 3, carac, color);
 
-	win->changePixel(x - 1, y + 3, c);
-	win->changePixel(x - 2, y + 3, c);
-	win->changePixel(x + 1, y + 3, c);
-	win->changePixel(x + 2, y + 3, c);
-
+	oldPos = bounds.position;
 }
 
 ///
@@ -214,10 +201,8 @@ void Player::displaySpaceInvader(Window *win, bool erase)
 void Player::update()
 {
 	//ici, actualiser la position du joueur
-	pos.x += addHoriz * speed;
-	pos.y += addVerti * speed;
-
-	setupRealPos();
+	bounds.position.x += addHoriz * speed;
+	bounds.position.y += addVerti * speed;
 }
 
 bool Player::canShoot()

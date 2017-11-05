@@ -101,9 +101,10 @@ void GameMap::explode(Vector2 position, unsigned int radius)
 		int x = ((*it)->position.x * (*it)->getDimension().x) - position.x;
 		int y = ((*it)->position.y * (*it)->getDimension().y + Window::UI_HEIGHT) - position.y;
 
-		if (x * x + y * y <= radius * radius)
+		if (x * x + y * y <= (int) (radius * radius))
 		{
 			Debug::log("Debug.txt", "\n" + std::to_string((*it)->position.x) + " " + std::to_string((*it)->position.y), true);
+			delete(*it);
 			it = blockMap.erase(it);
 		}
 		else
@@ -117,5 +118,14 @@ void GameMap::debug()
 	for (std::vector<Block*>::iterator it = blockMap.begin(); it != blockMap.end(); it++)
 	{
 		Debug::log("DebugGameMap.txt", std::to_string((*it)->position.x) + " " + std::to_string((*it)->position.y) + "\n", true);
+	}
+}
+
+void GameMap::clear()
+{
+	for (std::vector<Block*>::iterator it = blockMap.begin(); it != blockMap.end();)
+	{
+		delete(*it);
+		it = blockMap.erase(it);
 	}
 }

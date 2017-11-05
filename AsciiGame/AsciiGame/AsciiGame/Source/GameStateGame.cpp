@@ -11,6 +11,8 @@
 {
 	window = wind;																	//créé un lien du graphic engine
 	player = Player(Vector2(10, Window::UI_HEIGHT + 10));							//créé un player, à la position 10,10
+	
+	gameMap.clear();
 	gameMap = GameMap(Window::SCREEN_WIDTH / 4,(Window::SCREEN_HEIGHT - Window::UI_HEIGHT) / 4);
 
 	Initializer::initializeBorder(&gameMap);
@@ -27,12 +29,12 @@
 	timeElapsed += Timer::SECONDS_PER_UPDATE;
 	gameMap.update();
 
-	Vector2 playerNextPos = Vector2(player.pos.x + player.addHoriz * player.speed, player.pos.y + player.addVerti * player.speed);
+	Vector2 playerNextPos = Vector2(player.bounds.position.x + player.addHoriz * player.speed, player.bounds.position.y + player.addVerti * player.speed);
 	std::vector<Block*> blocks = gameMap.getBlocks();
 
 	// Si les deux angles (haut gauche et bas droit) du joueur sont dans les limites du jeu
 	if (gameMap.isInBound(playerNextPos) 
-		&& gameMap.isInBound(Vector2(playerNextPos.x + player.dimension.x, playerNextPos.y + player.dimension.y)))
+		&& gameMap.isInBound(Vector2(playerNextPos.x + player.bounds.dimension.x, playerNextPos.y + player.bounds.dimension.y)))
 	{
 		bool wallCollisionOk = true;
 
@@ -46,7 +48,7 @@
 			blockPos.y *= 4;
 			blockPos.y += Window::UI_HEIGHT;
 			
-			if (collision(playerNextPos,player.dimension,blockPos, blockDim))
+			if (collision(playerNextPos,player.bounds.dimension,blockPos, blockDim))
 			{
 				/*if (!(playerNextPos.x >= blockPos.x + blockDim.x)
 					&& !(playerNextPos.x + player.dimension.x <= blockPos.x))
@@ -72,7 +74,7 @@
 	
 	for (std::vector<Bullet>::iterator it = bullet.begin(); it != bullet.end();)
 	{
-		Vector2 bulletNextPos = Vector2((*it).position.x + (*it).addHoriz * (*it).speed, (*it).position.y + (*it).addVerti * (*it).speed);
+		Vector2 bulletNextPos = Vector2((*it).bounds.position.x + (*it).addHoriz * (*it).speed, (*it).bounds.position.y + (*it).addVerti * (*it).speed);
 		bool collide = false;
 		for (unsigned int i = 0; i < blocks.size(); ++i)
 		{
@@ -81,7 +83,7 @@
 			blockPos.x *= 4;
 			blockPos.y *= 4;
 			blockPos.y += Window::UI_HEIGHT;
-			if (collision(blockPos, blockDim, bulletNextPos,(*it).dimension))
+			if (collision(blockPos, blockDim, bulletNextPos,(*it).bounds.dimension))
 			{
 				collide = true;
 				break;
@@ -104,16 +106,6 @@
 	{
 		element.update();
 	}
-
-	//parcourt tous les bullet prï¿½sents...
-	/*for (auto & element : bullet)
-	{
-		displayBullet(element);
-		element.update();
-	}*/
-	//Bullet ?? list de bullet
-
-	//window->drawColorWithCode();
 
 }
 
@@ -321,7 +313,7 @@ void GameStateGame::displayUI()
 		AlphabetDrawer::drawAmmo(window, Vector2(AmmoPosition.x + 25 + 6 * i, AmmoPosition.y - 4));
 
 	AlphabetDrawer::drawWord(window, Vector2(310, 10), "TIME:");
-	int minute = timeElapsed / 60;
+	int minute = (int)timeElapsed / 60;
 	int seconde = (int)timeElapsed % 60;
 	AlphabetDrawer::drawWord(window, Vector2(332, 10), (minute < 10 ? "0" : "" ) + std::to_string(minute)+":"+ (seconde < 10 ? "0" : "") + std::to_string(seconde));
 }

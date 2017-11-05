@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vector2.h"
+#include "AABB.h"
 
 class Entity
 {
@@ -19,11 +20,9 @@ public:
 		M_DOWN_LEFT = 7
 	};
 
-	Vector2 position;
-	Vector2 dimension;
+	AABB bounds;
 
 	Vector2 oldPos;
-	Vector2 pos;
 
 	int speed = 1;
 
@@ -36,8 +35,5 @@ public:
 	Entity();
 	Entity(Vector2 pos, Vector2 dim);
 	virtual ~Entity();
-
-protected:
-	void setupRealPos();	//actualise la position pour les colisions
 };
 
