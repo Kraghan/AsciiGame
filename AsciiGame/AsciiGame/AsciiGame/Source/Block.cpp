@@ -6,22 +6,22 @@ Block::Block()
 
 }
 
-Block::Block(unsigned int x, unsigned int y, char representation, bool solid, bool collectable)
+Block::Block(unsigned int x, unsigned int y, char representation, bool solid, bool collectable, bool unbreakable)
 	: position(Vector2(x,y))
 	, sprite(representation)
 	, isSolid(solid)
 	, isCollectable(collectable)
-	, isUnbreakable(false)
+	, isUnbreakable(unbreakable)
 {
 
 }
 
-Block::Block(Vector2 pos, char representation, bool solid, bool collectable)
+Block::Block(Vector2 pos, char representation, bool solid, bool collectable, bool unbreakable)
 	: position(pos)
 	, sprite(representation)
 	, isSolid(solid)
 	, isCollectable(collectable)
-	, isUnbreakable(false)
+	, isUnbreakable(unbreakable)
 {
 
 }
@@ -87,4 +87,9 @@ Vector2 Block::getDimension()
 /*virtual*/ void Block::collect(Player* player)
 {
 	
+}
+
+bool Block::getIsUnbreakable()
+{
+	return isUnbreakable;
 }

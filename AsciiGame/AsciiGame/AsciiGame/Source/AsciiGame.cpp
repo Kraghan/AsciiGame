@@ -10,6 +10,7 @@
 #include "../Header/GameStateGame.h"
 #include "../Header/GameStateMenu.h"
 #include "../Header/GameStatePause.h"
+#include "../Header/GameStateGamePreparation.h"
 #include "../Header/Window.h"
 
 using namespace std;
@@ -26,9 +27,10 @@ int main()
 	// Initialization
 	stateMachine = GameStateMachine(&window);
 	stateMachine.registerGameState("menu", (GameState*) new GameStateMenu());
+	stateMachine.registerGameState("preparation", (GameState*) new GameStateGamePreparation());
 	stateMachine.registerGameState("game", (GameState*) new GameStateGame());
 	stateMachine.registerGameState("pause", (GameState*) new GameStatePause());
-	stateMachine.activeState("menu", true);
+	stateMachine.activeState("preparation", true);
 	//input = InputController();
 	timer = Timer();
 	timer.start();

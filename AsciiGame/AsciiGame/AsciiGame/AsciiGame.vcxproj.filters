@@ -150,6 +150,9 @@
     <ClCompile Include="Source\ScoreBlock.cpp">
       <Filter>Fichiers sources\Map\Blocks</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameStateGamePreparation.cpp">
+      <Filter>Fichiers sources\StateMachine\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h">
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="Header\LifeBlock.h">
       <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameStateGamePreparation.h">
+      <Filter>Fichiers d%27en-tête\StateMachine\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

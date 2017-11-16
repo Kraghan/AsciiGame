@@ -17,7 +17,7 @@
 
 	Initializer::initializeBorder(&gameMap);
 	Initializer::initializeCave(&gameMap);
-	Initializer::initializeCollectible(&gameMap, 5, 2, 2);
+	Initializer::initializeCollectible(&gameMap, 10, 10, 10);
 
 	window->clear();
 	needRedrawUi = true;
@@ -32,6 +32,11 @@
 
 	Vector2 playerNextPos = Vector2(player.bounds.position.x + player.addHoriz * player.speed, player.bounds.position.y + player.addVerti * player.speed);
 	std::vector<Block*> blocks = gameMap.getBlocks();
+
+	if (player.canShoot())
+		bullet.push_back(player.shoot());
+	else
+		player.bulletToShoot = false;
 
 	// Si les deux angles (haut gauche et bas droit) du joueur sont dans les limites du jeu
 	if (gameMap.isInBound(playerNextPos) 
@@ -150,9 +155,6 @@
 
 	gameMap.display(window);
 	player.display(window);		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
-	
-	if (player.canShoot())
-		bullet.push_back(player.shoot());
 
 	for (auto & element : bullet)
 	{

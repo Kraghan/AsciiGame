@@ -123,6 +123,7 @@
     <ClCompile Include="Source\GameMap.cpp" />
     <ClCompile Include="Source\GameState.cpp" />
     <ClCompile Include="Source\GameStateGame.cpp" />
+    <ClCompile Include="Source\GameStateGamePreparation.cpp" />
     <ClCompile Include="Source\GameStateMachine.cpp" />
     <ClCompile Include="Source\GameStateMenu.cpp" />
     <ClCompile Include="Source\GameStatePause.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Header\GameMap.h" />
     <ClInclude Include="Header\GameState.h" />
     <ClInclude Include="Header\GameStateGame.h" />
+    <ClInclude Include="Header\GameStateGamePreparation.h" />
     <ClInclude Include="Header\GameStateMachine.h" />
     <ClInclude Include="Header\GameStateMenu.h" />
     <ClInclude Include="Header\GameStatePause.h" />

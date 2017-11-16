@@ -58,6 +58,7 @@ void GameMap::setBlock(Block* block)
 	for (unsigned int i = 0; i < blockMap.size(); ++i)
 		if (blockMap[i]->getPosition().x == block->getPosition().x && blockMap[i]->getPosition().y == block->getPosition().y)
 		{
+			delete(blockMap[i]);
 			blockMap[i] = block;
 			return;
 		}

@@ -23,13 +23,13 @@ private :
 	SMALL_RECT rcRegion;
 
 	// Must be equal to SCREEN_WIDTH and SCREEN_HEIGHT
-	CHAR_INFO buffer[200][400];
+	CHAR_INFO buffer[240][400];
 
 	InputController input;					//input controller
 	stack<Event*> eventStack;
 public :
 	const static unsigned int SCREEN_WIDTH = 400;
-	const static unsigned int SCREEN_HEIGHT = 200;
+	const static unsigned int SCREEN_HEIGHT = 240;
 	const static unsigned int UI_HEIGHT = 25;
 	const static unsigned int FONT_SIZE = 3;
 	const static unsigned int MAX_WIDTH = 1285;

@@ -71,17 +71,14 @@ std::vector<std::vector<bool>> Initializer::abstraction = std::vector<std::vecto
 		for (unsigned int y = 0; y < dimension.y; ++y)
 		{
 			++cpt;
+			Block* block = map->getBlock(Vector2(x, y));
+			if (block == nullptr || block->getIsUnbreakable())
+				continue;
+
 			if (cpt >= spawnRate)
 			{
 				cpt = 0; 
 				int random = rand() % 3;
-
-				/*while ((random == 0 && scoreSet != nbScoreBlock)
-					|| (random == 1 && heartSet != nbHeartBlock)
-					|| (random == 2 && ammoSet != nbAmmoBlock))
-				{
-					random = rand() % 3;
-				}*/
 
 				if (random == 0 || lockScore)
 				{
