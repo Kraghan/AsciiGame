@@ -85,7 +85,7 @@ void Player::tryToMove(MOVE_TYPE moveTry)
 ///
 void Player::tryToShoot(MOVE_TYPE moveTry)
 {
-	if (timer.getElapsedSeconds() < timeReload)
+	if (timer.getElapsedSeconds() < weapon->getTimeBetweenShoot())
 		return;
 	moveType = moveTry;							//change l'enum pour définir ou on tir
 	bulletToShoot = true;
@@ -95,11 +95,12 @@ void Player::tryToShoot(MOVE_TYPE moveTry)
 ///
 /// créé un bullet (position, orientation)
 ///
-Bullet Player::shoot()
+std::vector<Bullet> Player::shoot()
 {
 	int posX = bounds.position.x + (bounds.dimension.x / 2) + (bounds.dimension.x * addShootHoriz);
 	int posY = bounds.position.y + (bounds.dimension.y / 2) + (bounds.dimension.y * addShootVerti);
-	Bullet bull(Vector2(posX, posY), addShootHoriz, addShootVerti);
+	
+	std::vector<Bullet> vec = weapon->shoot(Vector2(posX,posY),addShootHoriz, addShootVerti );
 
 	//reset les valeurs de tir
 	addShootHoriz = 0;
@@ -109,7 +110,7 @@ Bullet Player::shoot()
 
 	timer.start();
 
-	return (bull);
+	return (vec);
 }
 
 ///
@@ -222,4 +223,14 @@ void Player::addAmmo(unsigned int ammo)
 	ammunition += ammo;
 	if (ammunition > 12)
 		ammunition = 12;
+}
+
+void Player::setWeapon(Weapon* weap)
+{
+	weapon = weap;
+}
+
+Weapon* Player::getWeapon()
+{
+	return weapon;
 }

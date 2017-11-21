@@ -30,7 +30,7 @@ int main()
 	stateMachine.registerGameState("preparation", (GameState*) new GameStateGamePreparation());
 	stateMachine.registerGameState("game", (GameState*) new GameStateGame());
 	stateMachine.registerGameState("pause", (GameState*) new GameStatePause());
-	stateMachine.activeState("preparation", true);
+	stateMachine.activeState("menu", true);
 	//input = InputController();
 	timer = Timer();
 	timer.start();

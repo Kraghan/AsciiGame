@@ -19,6 +19,34 @@ std::vector<std::vector<bool>> Initializer::abstraction = std::vector<std::vecto
 	}
 }
 
+/*static*/ void Initializer::initializePreparationBorder(GameMap* map)
+{
+	Vector2 dimension = map->getDimension();
+	for (unsigned int x = 0; x < dimension.x; ++x)
+	{
+		map->setBlock((Block*) new BorderBlock(Vector2(54 + x, 0)));
+		map->setBlock((Block*) new BorderBlock(Vector2(54 + x, dimension.y - 1)));
+	}
+
+	for (unsigned int y = 1; y < dimension.y - 1; ++y)
+	{
+		map->setBlock((Block*) new BorderBlock(Vector2(54, y)));
+		map->setBlock((Block*) new BorderBlock(Vector2(54 + dimension.x - 1, y)));
+	}
+}
+
+/*static*/ void Initializer::initializePreparationWall(GameMap* map)
+{
+	Vector2 dimension = map->getDimension();
+	for (unsigned int x = 0; x < 10; ++x)
+	{
+		for (unsigned int y = 1; y < dimension.y - 1; ++y)
+		{
+			map->setBlock((Block*) new NormalBlock(Vector2(80 + x,y)));
+		}
+	}
+}
+
 
 /*static*/ void Initializer::initializeCave(GameMap* map)
 {

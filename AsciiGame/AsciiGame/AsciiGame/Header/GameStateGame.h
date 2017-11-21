@@ -7,6 +7,9 @@
 #include "Bullet.h"
 #include "AlphabetDrawer.h"
 #include "IA.h"
+#include "Shotgun.h"
+#include "BombThrower.h"
+#include "Laser.h"
 
 #include <vector>
 
@@ -41,6 +44,8 @@ public:
 
 	// Called when the state is set to inactive
 	void virtual onExit(void);
+
+	void setPlayerWeapon(Weapon* weapon);
 
 private:
 	void inputPlayer(Event *e);

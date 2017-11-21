@@ -7,6 +7,7 @@ Bullet::Bullet(Vector2 pos, int addH, int addV)
 	addVerti = addV;					//entity
 
 	speed = speedBullet;
+	delay = 0;
 }
 
 
@@ -48,6 +49,17 @@ void Bullet::display(Window *win)
 ///
 void Bullet::update()
 {
-	bounds.position.x += addHoriz * speed;
-	bounds.position.y += addVerti * speed;
+	if (delay != 0)
+		delay--;
+	
+	if (delay == 0)
+	{
+		bounds.position.x += addHoriz * speed;
+		bounds.position.y += addVerti * speed;
+	}
+}
+
+void Bullet::setDelay(int del)
+{
+	delay = del;
 }

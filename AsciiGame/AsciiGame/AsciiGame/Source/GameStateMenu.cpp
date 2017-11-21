@@ -57,7 +57,7 @@
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
 			if (focus == FB_PLAY)
-				stateMachine->activeState("game", true);
+				stateMachine->activeState("preparation", true);
 			else if (focus == FB_QUIT)
 				return false;
 		}

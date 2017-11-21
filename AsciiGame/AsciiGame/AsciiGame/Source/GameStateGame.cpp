@@ -11,6 +11,7 @@
 {
 	window = wind;																	//créé un lien du graphic engine
 	player = Player(Vector2(10, Window::UI_HEIGHT + 10));							//créé un player, à la position 10,10
+	player.setWeapon(new BombThrower());
 	
 	gameMap.clear();
 	gameMap = GameMap(Window::SCREEN_WIDTH / 4,(Window::SCREEN_HEIGHT - Window::UI_HEIGHT) / 4);
@@ -34,7 +35,10 @@
 	std::vector<Block*> blocks = gameMap.getBlocks();
 
 	if (player.canShoot())
-		bullet.push_back(player.shoot());
+	{
+		std::vector<Bullet> vec = player.shoot();
+		bullet.insert(bullet.end(), vec.begin(), vec.end());
+	}
 	else
 		player.bulletToShoot = false;
 
@@ -111,7 +115,7 @@
 		else
 		{
 			it = bullet.erase(it);
-			gameMap.explode(bulletNextPos,12);
+			gameMap.explode(bulletNextPos,player.getWeapon()->getRadius());
 		}
 
 	}
@@ -333,4 +337,9 @@ bool GameStateGame::collision(Vector2 positionBox1, Vector2 dimensionBox1, Vecto
 		&& !(positionBox1.x + dimensionBox1.x <= positionBox2.x)
 		&& !(positionBox1.y >= positionBox2.y + dimensionBox2.y)
 		&& !(positionBox1.y + dimensionBox1.y <= positionBox2.y);
+}
+
+void GameStateGame::setPlayerWeapon(Weapon* weapon)
+{
+	player.setWeapon(weapon);
 }

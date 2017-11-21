@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Bullet.h"
 #include "Timer.h"
+#include "Weapon.h"
 #include <iostream>
 
 class Player : public Entity
@@ -14,16 +15,17 @@ public:
 	unsigned int score;
 
 	Timer timer;
-	float timeReload = 0.3f;
 	bool tryedToMove = true;			//ici à vrai pour afficher le player au début
 
 	char carac = 'P';
 	int color = 15;
 	int speedPlayer = 1;
 
-	bool bulletToShoot = false;			//le joueur doit-il tirrer un bullet ?
+	bool bulletToShoot = false;			//le joueur doit-il tirer un bullet ?
 	int addShootHoriz = 0;
 	int addShootVerti = 0;
+
+	Weapon* weapon;
 
 public:
 	Player();
@@ -35,12 +37,14 @@ public:
 	void tryToShoot(MOVE_TYPE moveType);
 
 	void display(Window *win);
-	Bullet shoot();
+	std::vector<Bullet> shoot();
 	void update(); //selon move, change pos;
 
 	bool canShoot();
 	void addLifePoint(unsigned int health);
 	void addAmmo(unsigned int ammo);
+	void setWeapon(Weapon* weap);
+	Weapon* getWeapon();
 
 private:
 	void changeHorizVerti(bool stop, bool bullet);

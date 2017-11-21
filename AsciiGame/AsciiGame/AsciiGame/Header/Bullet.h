@@ -5,6 +5,8 @@
 
 class Bullet : public Entity
 {
+private : 
+	int delay;
 public:
 	char carac = '*';
 	int color = 7;
@@ -16,7 +18,7 @@ public:
 
 	void display(Window *win);
 	void update(); //selon move, change pos;
-
+	void setDelay(int delay);
 private:
 };
 

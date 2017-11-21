@@ -1,7 +1,7 @@
 #pragma once
 #include "Block.h"
 
-class NormalBlock : Block
+class NormalBlock : public Block
 {
 public:
 	explicit NormalBlock(void)

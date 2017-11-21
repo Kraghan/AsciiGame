@@ -32,8 +32,8 @@ public :
 	const static unsigned int SCREEN_HEIGHT = 240;
 	const static unsigned int UI_HEIGHT = 25;
 	const static unsigned int FONT_SIZE = 3;
-	const static unsigned int MAX_WIDTH = 1285;
-	const static unsigned int MAX_HEIGHT = 785;
+	const static unsigned int MAX_WIDTH = 1235;
+	const static unsigned int MAX_HEIGHT = 760;
 
 	explicit Window();
 	virtual ~Window();

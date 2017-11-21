@@ -18,6 +18,10 @@ public :
 
 	static void initializeBorder(GameMap* map);
 
+	static void initializePreparationBorder(GameMap* map);
+
+	static void initializePreparationWall(GameMap* map);
+
 	static void initializeCave(GameMap* map);
 
 	static void initializeCollectible(GameMap* map, unsigned int nbScoreBlock, unsigned int nbAmmoBlock, unsigned int nbHeartBlock);
