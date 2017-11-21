@@ -12,6 +12,7 @@
 #include "Laser.h"
 
 #include <vector>
+#include <thread>
 
 class GameStateGame : GameState
 {
@@ -46,6 +47,9 @@ public:
 	void virtual onExit(void);
 
 	void setPlayerWeapon(Weapon* weapon);
+
+	static void loadingScreen(Window* window);
+	static bool loadingScreenOn;
 
 private:
 	void inputPlayer(Event *e);

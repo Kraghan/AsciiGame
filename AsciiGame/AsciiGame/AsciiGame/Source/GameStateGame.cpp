@@ -1,6 +1,8 @@
 #include "../Header/GameStateGame.h"
 #include "../Header/Debug.h"
 
+bool GameStateGame::loadingScreenOn = false;
+
 /*virtual*/ GameStateGame::~GameStateGame(void)
 {
 	// Nothing to do
@@ -9,8 +11,9 @@
 // Used to initialize the state
 /*virtual*/ void GameStateGame::init(Window* wind)
 {
-	window = wind;																	//créé un lien du graphic engine
-	player = Player(Vector2(10, Window::UI_HEIGHT + 10));							//créé un player, à la position 10,10
+	std::thread loading(GameStateGame::loadingScreen, wind);
+	window = wind;
+	player = Player(Vector2(10, Window::UI_HEIGHT + 10));
 	player.setWeapon(new BombThrower());
 	
 	gameMap.clear();
@@ -20,8 +23,10 @@
 	Initializer::initializeCave(&gameMap);
 	Initializer::initializeCollectible(&gameMap, 10, 10, 10);
 
+	GameStateGame::loadingScreenOn = false;
+	loading.join();
+
 	window->clear();
-	needRedrawUi = true;
 	timeElapsed = 0.0;
 }
 
@@ -342,4 +347,48 @@ bool GameStateGame::collision(Vector2 positionBox1, Vector2 dimensionBox1, Vecto
 void GameStateGame::setPlayerWeapon(Weapon* weapon)
 {
 	player.setWeapon(weapon);
+}
+
+void GameStateGame::loadingScreen(Window* window)
+{
+	GameStateGame::loadingScreenOn = true;
+	Timer timer = Timer();
+	timer.start();
+	double previous = timer.getElapsedSeconds();
+	double lag = 0.0;
+
+	int stateLoading = 0;
+
+	while (GameStateGame::loadingScreenOn)
+	{
+		// Time elapsed calculation since the last loop
+		double current = timer.getElapsedSeconds();
+		double elapsed = current - previous;
+		previous = current;
+		lag += elapsed;
+
+		// Lag compensation + FPS limitation
+		while (lag >= 1.0f/9.0f)
+		{
+			lag -= 1.0f/9.0f;
+			stateLoading++;
+			if (stateLoading == 3)
+				stateLoading = 0;
+		}
+
+		window->clear();
+		switch (stateLoading)
+		{
+		case 0 :
+			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading l", 4, 'X', 0x0A);
+			break;
+		case 1 : 
+			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading ll", 4, 'X', 0x0A);
+			break;
+		case 2 :
+			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading lll", 4, 'X', 0x0A);
+			break;
+		}
+		window->display();
+	}
 }
