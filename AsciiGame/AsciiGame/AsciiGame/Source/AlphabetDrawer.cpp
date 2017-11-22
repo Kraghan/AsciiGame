@@ -855,6 +855,10 @@ void AlphabetDrawer::draw9(Window* window, Vector2 pos, unsigned int fontSize, c
 			drawColumn(window, Vector2(pos.x + offset, pos.y), fontSize, caractere, color);
 			offset += 3 * fontSize;
 			break;
+		case '.':
+			drawDot(window, Vector2(pos.x + offset, pos.y), fontSize, caractere, color);
+			offset += 3 * fontSize;
+			break;
 		default:
 			offset += 5 * fontSize;
 			break;
@@ -1041,6 +1045,15 @@ void AlphabetDrawer::draw9(Window* window, Vector2 pos, unsigned int fontSize, c
 
 	drawPixel(window, pos.x, pos.y + 4 * fontSize, fontSize, caractere, color);
 	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize , fontSize, caractere, color);
+}
+
+/*static*/ void AlphabetDrawer::drawDot(Window* window, Vector2 pos, unsigned int fontSize, char caractere, int color)
+{
+	drawPixel(window, pos.x, pos.y + 3 * fontSize, fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 3 * fontSize, fontSize, caractere, color);
+
+	drawPixel(window, pos.x, pos.y + 4 * fontSize, fontSize, caractere, color);
+	drawPixel(window, pos.x + fontSize, pos.y + 4 * fontSize, fontSize, caractere, color);
 }
 
 /*static*/ void AlphabetDrawer::drawPlus(Window* window, Vector2 pos, unsigned int fontSize, char caractere, int color)

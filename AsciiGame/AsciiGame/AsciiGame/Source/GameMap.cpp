@@ -3,21 +3,20 @@
 
 /*explicit*/ GameMap::GameMap()
 {
-	blockMap = std::vector<Block*>(dimension.x * dimension.y);
-	needRedraw = true;
+	blockMap = std::vector<Block*>();
+	blockMap.reserve(dimension.x * dimension.y);
 }
 /*explicit*/ GameMap::GameMap(Vector2 dim)
 	: dimension(dim)
 {
-	blockMap = std::vector<Block*>(dimension.x * dimension.y);
-	needRedraw = true;
+	blockMap = std::vector<Block*>();
+	blockMap.reserve(dimension.x * dimension.y);
 }
 /*explicit*/ GameMap::GameMap(unsigned int x, unsigned int y)
 	: dimension(Vector2(x,y))
 {
 	
 	blockMap = std::vector<Block*>();
-	needRedraw = true;
 }
 
 /*virtual*/ GameMap::~GameMap()

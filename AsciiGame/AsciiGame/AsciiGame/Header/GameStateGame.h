@@ -48,11 +48,12 @@ public:
 
 	void setPlayerWeapon(Weapon* weapon);
 
-	static void loadingScreen(Window* window);
+	static void loadingScreen(Window* window, GameStateGame* state);
 	static bool loadingScreenOn;
 
 private:
 	void inputPlayer(Event *e);
 	void displayUI();
 	bool collision(Vector2 positionBox1, Vector2 dimensionBox1, Vector2 positionBox2, Vector2 dimensionBox2);
+	void resetTimer();
 };

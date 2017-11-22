@@ -49,6 +49,7 @@ public :
 	static void draw7(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 	static void draw8(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 	static void draw9(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void drawDot(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 	static void drawColumn(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 	static void drawPlus(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 	static void drawMinus(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);

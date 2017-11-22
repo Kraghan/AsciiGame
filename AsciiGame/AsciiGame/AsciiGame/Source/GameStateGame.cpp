@@ -11,7 +11,7 @@ bool GameStateGame::loadingScreenOn = false;
 // Used to initialize the state
 /*virtual*/ void GameStateGame::init(Window* wind)
 {
-	std::thread loading(GameStateGame::loadingScreen, wind);
+	std::thread loading(GameStateGame::loadingScreen, wind, this);
 	window = wind;
 	player = Player(Vector2(10, Window::UI_HEIGHT + 10));
 	player.setWeapon(new BombThrower());
@@ -25,15 +25,13 @@ bool GameStateGame::loadingScreenOn = false;
 
 	GameStateGame::loadingScreenOn = false;
 	loading.join();
-
-	window->clear();
-	timeElapsed = 0.0;
 }
 
 // Update the game logic
 /*virtual*/ void GameStateGame::update()
 {
 	timeElapsed += Timer::SECONDS_PER_UPDATE;
+	Debug::log("timer.txt", std::to_string(timeElapsed), true);
 	gameMap.update();
 
 	Vector2 playerNextPos = Vector2(player.bounds.position.x + player.addHoriz * player.speed, player.bounds.position.y + player.addVerti * player.speed);
@@ -349,7 +347,7 @@ void GameStateGame::setPlayerWeapon(Weapon* weapon)
 	player.setWeapon(weapon);
 }
 
-void GameStateGame::loadingScreen(Window* window)
+void GameStateGame::loadingScreen(Window* window, GameStateGame* state)
 {
 	GameStateGame::loadingScreenOn = true;
 	Timer timer = Timer();
@@ -358,8 +356,9 @@ void GameStateGame::loadingScreen(Window* window)
 	double lag = 0.0;
 
 	int stateLoading = 0;
-
-	while (GameStateGame::loadingScreenOn)
+	bool running = true;
+	double animationElapsed = 0.0;
+	while (running)
 	{
 		// Time elapsed calculation since the last loop
 		double current = timer.getElapsedSeconds();
@@ -367,28 +366,63 @@ void GameStateGame::loadingScreen(Window* window)
 		previous = current;
 		lag += elapsed;
 
-		// Lag compensation + FPS limitation
-		while (lag >= 1.0f/9.0f)
+		Event* e = window->popEvent();
+		while (e != nullptr)
 		{
-			lag -= 1.0f/9.0f;
-			stateLoading++;
-			if (stateLoading == 3)
-				stateLoading = 0;
+			if (!GameStateGame::loadingScreenOn && 
+				(e->input == Event::INPUT::KB_ENTER || e->input == Event::INPUT::KB_SPACE)
+				&& (e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED || e->typeInput == Event::TYPE_INPUT_EVENT::TI_HOLDING))
+			{
+				running = false;
+			}
+			e = window->popEvent();
+		}
+
+
+		// Lag compensation + FPS limitation
+		while (lag >= Timer::SECONDS_PER_UPDATE)
+		{
+			window->update();
+
+			animationElapsed += Timer::SECONDS_PER_UPDATE;
+
+			if (animationElapsed >= 1.0 / 5.0)
+			{
+				stateLoading++;
+				if (stateLoading == 4)
+					stateLoading = 0;
+				animationElapsed = 0.0;
+			}
+
+			lag -= Timer::SECONDS_PER_UPDATE;
 		}
 
 		window->clear();
 		switch (stateLoading)
 		{
 		case 0 :
-			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading l", 4, 'X', 0x0A);
+			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading", 4, 'X', 0x0A);
 			break;
 		case 1 : 
-			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading ll", 4, 'X', 0x0A);
+			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading.", 4, 'X', 0x0A);
 			break;
 		case 2 :
-			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading lll", 4, 'X', 0x0A);
+			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading..", 4, 'X', 0x0A);
+			break;
+		case 3:
+			AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 - 80, Window::SCREEN_HEIGHT / 2 - 20), "Loading...", 4, 'X', 0x0A);
 			break;
 		}
+
+		if(!GameStateGame::loadingScreenOn)
+			AlphabetDrawer::drawWord(window, Vector2(40, Window::SCREEN_HEIGHT - 30), "Press enter or space to continue", 2);
 		window->display();
 	}
+
+	state->resetTimer();
+}
+
+void GameStateGame::resetTimer()
+{
+	timeElapsed = 0.0;
 }
