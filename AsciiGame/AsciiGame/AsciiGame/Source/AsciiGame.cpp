@@ -64,32 +64,9 @@ int main()
 	window.clear();
 
 	// Bonus ;)
-	AlphabetDrawer::drawB(&window, Vector2(105, 34), 1, 'X');
-	AlphabetDrawer::drawY(&window, Vector2(110, 34), 1, 'X');
-	AlphabetDrawer::drawE(&window, Vector2(114, 34), 1, 'X');
+	AlphabetDrawer::drawWord(&window, Vector2(Window::SCREEN_WIDTH / 2 - 70,Window::SCREEN_HEIGHT / 2 - 20),"BYE BYE", 4, 'X', 0x09);
+	AlphabetDrawer::drawWord(&window, Vector2(Window::SCREEN_WIDTH / 2 - 170, Window::SCREEN_HEIGHT / 2 + 10), "Thanks for playing", 4, 'X', 0x09);
 
-	AlphabetDrawer::drawB(&window, Vector2(124, 34), 1, 'X');
-	AlphabetDrawer::drawY(&window, Vector2(129, 34), 1, 'X');
-	AlphabetDrawer::drawE(&window, Vector2(134, 34), 1, 'X');
-
-	AlphabetDrawer::drawT(&window, Vector2(79, 44), 1, 'X');
-	AlphabetDrawer::drawH(&window, Vector2(84, 44), 1, 'X');
-	AlphabetDrawer::drawA(&window, Vector2(89, 44), 1, 'X');
-	AlphabetDrawer::drawN(&window, Vector2(94, 44), 1, 'X');
-	AlphabetDrawer::drawK(&window, Vector2(99, 44), 1, 'X');
-	AlphabetDrawer::drawS(&window, Vector2(104, 44), 1, 'X');
-
-	AlphabetDrawer::drawF(&window, Vector2(114, 44), 1, 'X');
-	AlphabetDrawer::drawO(&window, Vector2(119, 44), 1, 'X');
-	AlphabetDrawer::drawR(&window, Vector2(124, 44), 1, 'X');
-
-	AlphabetDrawer::drawP(&window, Vector2(134, 44), 1, 'X');
-	AlphabetDrawer::drawL(&window, Vector2(139, 44), 1, 'X');
-	AlphabetDrawer::drawA(&window, Vector2(144, 44), 1, 'X');
-	AlphabetDrawer::drawY(&window, Vector2(149, 44), 1, 'X');
-	AlphabetDrawer::drawI(&window, Vector2(153, 44), 1, 'X');
-	AlphabetDrawer::drawN(&window, Vector2(155, 44), 1, 'X');
-	AlphabetDrawer::drawG(&window, Vector2(160, 44), 1, 'X');
 	window.display();
 	system("pause");
 

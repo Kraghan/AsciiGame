@@ -13,15 +13,20 @@
 class GameMap
 {
 private: 
+	// Number of block that the gamemap can contains
 	Vector2 dimension;
+	
+	// Used to store the blocks
 	std::vector<Block*> blockMap;
-	bool needRedraw;
 
 public : 
-	explicit GameMap();
+	// Constructors
+	explicit GameMap(void);
 	explicit GameMap(Vector2 dim);
 	explicit GameMap(unsigned int x, unsigned int y);
-	virtual ~GameMap();
+
+	// Destructor
+	virtual ~GameMap(void);
 
 	// Check if a position is in bound
 	bool isInBound(Vector2 position);
@@ -34,14 +39,27 @@ public :
 	// Set the block at position
 	void setBlock(Block* block);
 
-	Vector2 getDimension();
-	std::vector<Block*> getBlocks();
-	void update();
+	// Get the number of blocks in the map
+	Vector2 getDimension(void);
+
+	// Return all the blocks
+	std::vector<Block*> getBlocks(void);
+
+	// Logical update method
+	void update(void);
+
+	// Display the map
 	void display(Window* window);
+
+	// Used to explode all the block which are not unbreakable in the circle of center position and of radius radius
 	void explode(Vector2 position, unsigned int radius);
-	void clear();
-	void debug();
 
+	// Destroy all the blocks
+	void clear(void);
+
+	// Debug method
+	void debug(void);
+
+	// Search a block at position position and if found, destroy it
 	void destroyBlock(Vector2 position);
-
 };

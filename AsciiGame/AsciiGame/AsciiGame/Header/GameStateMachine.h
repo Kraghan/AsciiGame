@@ -7,13 +7,21 @@
 class GameStateMachine
 {
 private:
+	// Storage of game state
 	std::map<std::string, GameState*> stateMap;
+	
+	// Pointer to the active state
 	GameState* currentState;
+
+	// Pointer to the window object
 	Window* window;
 
 public:
-	explicit GameStateMachine();
+	// Constructor
+	explicit GameStateMachine(void);
 	explicit GameStateMachine(Window * graphic);
+
+	// Destructor
 	virtual ~GameStateMachine(void);
 
 	// Allow to add a game state to the state machine.
@@ -26,5 +34,5 @@ public:
 	bool activeState(std::string name, bool resetState = false);
 
 	// Return the active state
-	GameState* getActiveState();
+	GameState* getActiveState(void);
 };

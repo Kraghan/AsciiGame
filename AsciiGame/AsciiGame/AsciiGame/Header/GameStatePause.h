@@ -5,6 +5,7 @@
 class GameStatePause : GameState
 {
 private:
+	// Enum used to know which button is focused
 	enum FocusButton
 	{
 		FB_RESUME,
@@ -12,7 +13,10 @@ private:
 		FB_QUIT
 	};
 
+	// 
 	FocusButton focus;
+
+	// 
 	Vector2 position;
 
 	void drawContour();
