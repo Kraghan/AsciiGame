@@ -118,6 +118,7 @@
     <ClCompile Include="Source\Block.cpp" />
     <ClCompile Include="Source\BombThrower.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
+    <ClCompile Include="Source\CorruptionBlock.cpp" />
     <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\Event.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Header\BombThrower.h" />
     <ClInclude Include="Header\BorderBlock.h" />
     <ClInclude Include="Header\Bullet.h" />
+    <ClInclude Include="Header\CorruptionBlock.h" />
     <ClInclude Include="Header\Debug.h" />
     <ClInclude Include="Header\Entity.h" />
     <ClInclude Include="Header\Event.h" />

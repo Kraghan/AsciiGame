@@ -11,27 +11,34 @@ bool GameStateGame::loadingScreenOn = false;
 // Used to initialize the state
 /*virtual*/ void GameStateGame::init(Window* wind)
 {
+	// Loading screen
 	std::thread loading(GameStateGame::loadingScreen, wind, this);
+	
+	// Init
+	timer = Timer();
 	window = wind;
 	player = Player(Vector2(10, Window::UI_HEIGHT + 10));
 	player.setWeapon(new BombThrower());
+	bullet.clear();
 	
 	gameMap.clear();
 	gameMap = GameMap(Window::SCREEN_WIDTH / 4,(Window::SCREEN_HEIGHT - Window::UI_HEIGHT) / 4);
 
 	Initializer::initializeBorder(&gameMap);
 	Initializer::initializeCave(&gameMap);
+	Initializer::initializeCorruption(&gameMap,10);
 	Initializer::initializeCollectible(&gameMap, 10, 10, 10);
 
 	GameStateGame::loadingScreenOn = false;
 	loading.join();
+	timer.start();
+
 }
 
 // Update the game logic
 /*virtual*/ void GameStateGame::update()
 {
-	timeElapsed += Timer::SECONDS_PER_UPDATE;
-	Debug::log("timer.txt", std::to_string(timeElapsed), true);
+	timeElapsed += timer.getElapsedSeconds(true);
 	gameMap.update();
 
 	Vector2 playerNextPos = Vector2(player.bounds.position.x + player.addHoriz * player.speed, player.bounds.position.y + player.addVerti * player.speed);

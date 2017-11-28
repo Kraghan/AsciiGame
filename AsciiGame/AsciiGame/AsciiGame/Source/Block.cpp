@@ -93,3 +93,13 @@ bool Block::getIsUnbreakable()
 {
 	return isUnbreakable;
 }
+
+void Block::setName(std::string name)
+{
+	blockName = name;
+}
+
+std::string Block::getName()
+{
+	return blockName;
+}

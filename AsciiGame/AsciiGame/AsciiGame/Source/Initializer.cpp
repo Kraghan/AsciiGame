@@ -186,3 +186,26 @@ std::vector<std::vector<bool>> Initializer::process()
 	}
 	return tmp;
 }
+
+/*static*/ void Initializer::initializeCorruption(GameMap* map, unsigned int nbSeeds)
+{
+	std::vector<Block*> blocks = map->getBlocks();
+	std::vector<unsigned int> randoms;
+	for(int i = 0; i < nbSeeds; ++i)
+	{
+		unsigned int random = blocks.size();
+		do
+		{
+			random = rand() % blocks.size();
+			//Debug::log("Initializer.txt", std::to_string() + " " + std::to_string(), true);
+		} while (random >= blocks.size() 
+			|| std::find(randoms.begin(), randoms.end(), random) != randoms.end()
+			|| blocks[random]->getIsUnbreakable());
+
+		randoms.push_back(random);
+		
+		map->setBlock(new CorruptionBlock(blocks[random]->getPosition()));
+
+	}
+	
+}

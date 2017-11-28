@@ -8,13 +8,13 @@ public :
 	explicit BorderBlock(void)
 		: Block(Vector2(), 'N', true, false, true)
 	{
-		
+		setName("BorderBlock");
 	}
 
 	// Constructor with initial position
 	explicit BorderBlock(Vector2 pos)
 		: Block(pos, 'N', true, false, true)
 	{
-		
+		setName("BorderBlock");
 	}
 };

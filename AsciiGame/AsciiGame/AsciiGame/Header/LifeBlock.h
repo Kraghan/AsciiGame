@@ -8,14 +8,14 @@ public:
 	explicit LifeBlock(void)
 		: Block(Vector2(), 'H', false, true)
 	{
-
+		setName("LifeBlock");
 	}
 
 	// Constructor with initial position
 	explicit LifeBlock(Vector2 pos)
 		: Block(pos, 'H', false, true)
 	{
-
+		setName("LifeBlock");
 	}
 
 	// Called when player collide with the block

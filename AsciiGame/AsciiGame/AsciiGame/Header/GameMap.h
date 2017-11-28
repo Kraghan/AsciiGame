@@ -7,6 +7,7 @@
 #include "AmmoBlock.h"
 #include "LifeBlock.h"
 #include "ScoreBlock.h"
+#include "CorruptionBlock.h"
 #include "Vector2.h"
 #include "Window.h"
 

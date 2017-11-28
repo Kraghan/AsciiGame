@@ -54,8 +54,8 @@ int main()
 		{
 			window.update();
 			stateMachine.getActiveState()->update();
-			lag = 0.0;
-			//lag -= Timer::SECONDS_PER_UPDATE;
+			//lag = 0.0;
+			lag -= Timer::SECONDS_PER_UPDATE;
 
 		}
 		stateMachine.getActiveState()->display();

@@ -8,13 +8,13 @@ public:
 	explicit NormalBlock(void)
 		: Block(Vector2(), 'X')
 	{
-
+		setName("NormalBlock");
 	}
 
 	// Constructor with initial position
 	explicit NormalBlock(Vector2 pos)
 		: Block(pos, 'X')
 	{
-
+		setName("NormalBlock");
 	}
 };

@@ -35,4 +35,7 @@ public :
 
 	// Function used to place the pick up on the level
 	static void initializeCollectible(GameMap* map, unsigned int nbScoreBlock, unsigned int nbAmmoBlock, unsigned int nbHeartBlock);
+
+	// Function used to place the corruption seed
+	static void initializeCorruption(GameMap* map, unsigned int nbSeeds);
 };

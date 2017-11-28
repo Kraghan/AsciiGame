@@ -16,6 +16,9 @@ private :
 	// Char used to display the block
 	char sprite;
 
+	// Used to differenciate block
+	std::string blockName;
+
 	// If true, the block is collidable
 	bool isSolid;
 
@@ -33,6 +36,10 @@ private :
 
 	// Set if the block is solid
 	void setIsSolid(bool solid);
+
+protected :
+	// To call only in constructor !
+	void setName(std::string name);
 
 public:
 	// Default constructor
@@ -70,5 +77,8 @@ public:
 
 	// Return true if the block is collectable
 	bool getIsCollectable();
+
+	// Get block name
+	std::string getName();
 };
 

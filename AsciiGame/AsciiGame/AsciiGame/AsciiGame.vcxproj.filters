@@ -171,6 +171,9 @@
     <ClCompile Include="Source\Shotgun.cpp">
       <Filter>Fichiers sources\Tools\Entity\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CorruptionBlock.cpp">
+      <Filter>Fichiers sources\Map\Blocks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="Header\Shotgun.h">
       <Filter>Fichiers d%27en-tête\Tools\Entity\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\CorruptionBlock.h">
+      <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

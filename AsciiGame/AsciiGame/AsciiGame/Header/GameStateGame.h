@@ -24,6 +24,7 @@ private:
 	bool needRedrawUi;
 	double timeElapsed;
 	vector<IA> ia;
+	Timer timer;
 
 public:
 	virtual ~GameStateGame(void);

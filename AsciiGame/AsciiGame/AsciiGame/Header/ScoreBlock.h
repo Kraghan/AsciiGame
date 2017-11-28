@@ -8,14 +8,14 @@ public:
 	explicit ScoreBlock(void)
 		: Block(Vector2(), 'S', false, true)
 	{
-
+		setName("ScoreBlock");
 	}
 
 	// Constructor with initial position
 	explicit ScoreBlock(Vector2 pos)
 		: Block(pos, 'S', false, true)
 	{
-
+		setName("ScoreBlock");
 	}
 
 	// Called when player collide with the block

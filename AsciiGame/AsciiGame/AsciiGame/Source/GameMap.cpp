@@ -78,7 +78,66 @@ std::vector<Block*> GameMap::getBlocks()
 
 void GameMap::update()
 {
-	
+	/*for (unsigned int i = 0; i < blockMap.size(); ++i)
+	{
+		if (blockMap[i]->getName() == "CorruptionBlock")
+		{
+			CorruptionBlock* block = (CorruptionBlock*) blockMap[i];
+			if (!block->getActive())
+				continue;
+
+			Vector2 currentPosition = blockMap[i]->getPosition();
+
+			std::vector<Block*> adjacents = std::vector<Block*>();
+			for (unsigned int j = 0; j < blockMap.size(); ++j)
+			{
+				if (j == i)
+					continue;
+				
+				Vector2 position = blockMap[j]->getPosition();
+
+				if (position.x == currentPosition.x && position.y == currentPosition.y - 1)
+				{
+					adjacents.push_back(blockMap[j]);
+					continue;
+				}
+
+				if (position.x == currentPosition.x && position.y == currentPosition.y + 1)
+				{
+					adjacents.push_back(blockMap[j]);
+					continue;
+				}
+
+				if (position.x == currentPosition.x - 1 && position.y == currentPosition.y)
+				{
+					adjacents.push_back(blockMap[j]);
+					continue;
+				}
+
+				if (position.x == currentPosition.x + 1 && position.y == currentPosition.y)
+				{
+					adjacents.push_back(blockMap[j]);
+					continue;
+				}
+			}
+
+			/*bool setInactive = true;
+			for (unsigned int j = 0; j < adjacents.size(); ++j)
+			{
+				if (adjacents[j]->getName() != "CorruptionBlock")
+					setInactive = false;
+				else
+					adjacents.erase(adjacents.begin() + j);
+			}
+			block->setActive(setInactive);
+
+			if (adjacents.size() != 0)
+			{
+				unsigned int random = rand() % adjacents.size();
+				setBlock(new CorruptionBlock(adjacents[random]->getPosition()));
+			}
+		}
+	}*/
 }
 
 void GameMap::display(Window* window)

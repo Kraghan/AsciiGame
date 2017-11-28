@@ -27,7 +27,7 @@
 		// Quit game if escape pressed
 		if (e->input == Event::INPUT::KB_ESCAPE
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
-			return false;
+			stateMachine->activeState("game");
 
 		// Change focus if down or s pressed
 		if ((e->input == Event::INPUT::KB_DOWN || e->input == Event::INPUT::KB_S)
@@ -62,7 +62,7 @@
 			else if (focus == FB_QUIT)
 				return false;
 			else if (focus == FB_NEWGAME)
-				stateMachine->activeState("game", true);
+				stateMachine->activeState("preparation", true);
 		}
 
 		e = window->popEvent();
