@@ -36,6 +36,7 @@ public:
 		, m_isComplete(false) {}
 
 	virtual ~QuadTree(){}
+	//https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
 
 	void subdivide()
 	{
