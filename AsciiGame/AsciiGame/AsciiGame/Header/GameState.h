@@ -1,5 +1,7 @@
 #pragma once
 #include "Window.h"
+#include "AudioHelper.h"
+
 // Forward declaration, used to fix cyclic inclusion issues
 class GameStateMachine;
 

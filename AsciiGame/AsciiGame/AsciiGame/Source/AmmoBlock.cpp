@@ -2,6 +2,7 @@
 
 /*virtual*/ void AmmoBlock::collect(Player* player)
 {
+	AudioHelper::getAudioHelper()->play("pickup");
 	player->addAmmo(5);
 }
 

@@ -6,6 +6,7 @@
 #include "Timer.h"
 #include "Weapon.h"
 #include <iostream>
+#include "AudioHelper.h"
 
 class Player : public Entity
 {

@@ -109,6 +109,7 @@ std::vector<Bullet> Player::shoot()
 	--ammunition;
 
 	timer.start();
+	AudioHelper::getAudioHelper()->play("shoot");
 
 	return (vec);
 }

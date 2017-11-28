@@ -174,6 +174,9 @@
     <ClCompile Include="Source\CorruptionBlock.cpp">
       <Filter>Fichiers sources\Map\Blocks</Filter>
     </ClCompile>
+    <ClCompile Include="Source\AudioHelper.cpp">
+      <Filter>Fichiers sources\Tools\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h">
@@ -280,6 +283,9 @@
     </ClInclude>
     <ClInclude Include="Header\CorruptionBlock.h">
       <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\AudioHelper.h">
+      <Filter>Fichiers d%27en-tête\Tools\Helper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,6 +10,7 @@
 #include "CorruptionBlock.h"
 #include "Vector2.h"
 #include "Window.h"
+#include "AudioHelper.h"
 
 class GameMap
 {

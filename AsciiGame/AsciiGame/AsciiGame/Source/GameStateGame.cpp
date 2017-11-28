@@ -59,11 +59,9 @@ bool GameStateGame::loadingScreenOn = false;
 		bool wallCollisionOk = true;
 
 		// On check pour tous les blocks si on a une collision
-		// La meilleure opti à envisager serai la quad map
-		//Debug::log("Debug2.txt","");
+		// La meilleure opti à envisager serai le quadtree
 		for (unsigned int i = 0; i < blocks.size(); ++i)
 		{
-			//Debug::log("Debug2.txt", std::to_string(blocks[i]->getIsSolid())+"\n",true);
 			Vector2 blockPos = blocks[i]->getPosition();
 			Vector2 blockDim = blocks[i]->getDimension();
 			blockPos.x *= 4;

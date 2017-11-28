@@ -2,6 +2,7 @@
 
 /*virtual*/ void LifeBlock::collect(Player* player)
 {
+	AudioHelper::getAudioHelper()->play("pickup");
 	player->addLifePoint(2);
 }
 

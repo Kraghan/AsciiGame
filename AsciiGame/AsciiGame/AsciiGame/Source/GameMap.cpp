@@ -166,6 +166,7 @@ void GameMap::explode(Vector2 position, unsigned int radius)
 		else
 			it++;
 	}
+	AudioHelper::getAudioHelper()->play("destroy", false, SND_ASYNC | SND_NOSTOP);
 }
 
 void GameMap::debug()

@@ -25,6 +25,7 @@
 
 	if (previousWeapon && !weaponChanged)
 	{
+		AudioHelper::getAudioHelper()->play("navigationMenu");
 		weaponIndex--;
 		if (weaponIndex < 0)
 			weaponIndex = weapons.size() - 1;
@@ -32,6 +33,7 @@
 	}
 	else if (nextWeapon && !weaponChanged)
 	{
+		AudioHelper::getAudioHelper()->play("navigationMenu");
 		weaponIndex++;
 		if (weaponIndex >= weapons.size())
 			weaponIndex = 0;

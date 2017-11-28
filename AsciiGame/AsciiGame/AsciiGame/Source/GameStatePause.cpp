@@ -33,6 +33,8 @@
 		if ((e->input == Event::INPUT::KB_DOWN || e->input == Event::INPUT::KB_S)
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
+			AudioHelper::getAudioHelper()->play("navigationMenu");
+
 			if (focus == FB_RESUME)
 				focus = FB_NEWGAME;
 			else if (focus == FB_NEWGAME)
@@ -45,6 +47,8 @@
 		if ((e->input == Event::INPUT::KB_UP || e->input == Event::INPUT::KB_Z)
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
+			AudioHelper::getAudioHelper()->play("navigationMenu");
+
 			if (focus == FB_RESUME)
 				focus = FB_QUIT;
 			else if (focus == FB_NEWGAME)
@@ -57,6 +61,8 @@
 		if ((e->input == Event::INPUT::KB_SPACE || e->input == Event::INPUT::KB_ENTER)
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
+			AudioHelper::getAudioHelper()->play("navigationMenu");
+
 			if (focus == FB_RESUME)
 				stateMachine->activeState("game");
 			else if (focus == FB_QUIT)

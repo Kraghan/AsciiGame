@@ -2,6 +2,8 @@
 
 /*virtual*/ void ScoreBlock::collect(Player* player)
 {
+
+	AudioHelper::getAudioHelper()->play("pickup");
 	player->score += 100;
 }
 

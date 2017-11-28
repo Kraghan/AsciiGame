@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <thread>
 #include "../Header/InputController.h"
 #include "../Header/Timer.h"
 #include "../Header/GameStateMachine.h"
@@ -12,12 +13,17 @@
 #include "../Header/GameStatePause.h"
 #include "../Header/GameStateGamePreparation.h"
 #include "../Header/Window.h"
+#include "../Header/AudioHelper.h"
 
 using namespace std;
 
 // Main function
 int main()
 {	
+
+	// Init Singleton
+	AudioHelper::getAudioHelper();
+
 	Window window = Window();
 	window.open("Ascii Game");
 	window.display();

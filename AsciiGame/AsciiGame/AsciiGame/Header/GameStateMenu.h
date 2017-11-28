@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "AlphabetDrawer.h"
+#include "AudioHelper.h"
 
 class GameStateMenu : GameState
 {

@@ -10,7 +10,7 @@
 {
 	window = wind;
 	focus = FB_PLAY;
-	hasChange = true;
+	hasChange = false;
 }
 
 // Update the game logic
@@ -34,7 +34,8 @@
 		if ((e->input == Event::INPUT::KB_DOWN || e->input == Event::INPUT::KB_S)
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
-			hasChange = true;
+
+			AudioHelper::getAudioHelper()->play("navigationMenu");
 			if (focus == FB_PLAY)
 				focus = FB_QUIT;
 			else if (focus == FB_QUIT)
@@ -45,7 +46,8 @@
 		if ((e->input == Event::INPUT::KB_UP || e->input == Event::INPUT::KB_Z)
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
-			hasChange = true;
+
+			AudioHelper::getAudioHelper()->play("navigationMenu");
 			if (focus == FB_PLAY)
 				focus = FB_QUIT;
 			else if (focus == FB_QUIT)
@@ -56,6 +58,7 @@
 		if ((e->input == Event::INPUT::KB_SPACE || e->input == Event::INPUT::KB_ENTER)
 			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
 		{
+			AudioHelper::getAudioHelper()->play("navigationMenu");
 			if (focus == FB_PLAY)
 				stateMachine->activeState("preparation", true);
 			else if (focus == FB_QUIT)
@@ -69,26 +72,19 @@
 
 /*virtual*/ void GameStateMenu::display()
 {
-	if (hasChange)
-	{
+	window->clear();
+	drawContour();
+	drawTitle();
 
-		window->clear();
-		drawContour();
-		drawTitle();
+	if (focus == FB_PLAY)
+		drawPlayFocused();
+	else
+		drawPlay();
 
-		if (focus == FB_PLAY)
-			drawPlayFocused();
-		else
-			drawPlay();
-
-		if (focus == FB_QUIT)
-			drawQuitFocused();
-		else
-			drawQuit();
-
-		hasChange = false;
-	}
-	
+	if (focus == FB_QUIT)
+		drawQuitFocused();
+	else
+		drawQuit();
 }
 
 // Called when the state is set to active
@@ -100,7 +96,7 @@
 // Called when the state is set to inactive
 /*virtual*/ void GameStateMenu::onExit(void)
 {
-
+	
 }
 
 void GameStateMenu::drawContour()
