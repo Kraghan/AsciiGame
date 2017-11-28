@@ -6,7 +6,7 @@ Player::Player()
 }
 
 Player::Player(Vector2 pos)
-	: Entity(pos, Vector2(11, 9))
+	: Entity(pos, Vector2(11, 8))
 {
 	speed = speedPlayer;
 
@@ -97,8 +97,10 @@ void Player::tryToShoot(MOVE_TYPE moveTry)
 ///
 std::vector<Bullet> Player::shoot()
 {
-	int posX = bounds.position.x + (bounds.dimension.x / 2) + (bounds.dimension.x * addShootHoriz);
-	int posY = bounds.position.y + (bounds.dimension.y / 2) + (bounds.dimension.y * addShootVerti);
+	/*int posX = bounds.position.x + (bounds.dimension.x / 2) + (bounds.dimension.x * addShootHoriz);
+	int posY = bounds.position.y + (bounds.dimension.y / 2) + (bounds.dimension.y * addShootVerti);*/
+	int posX = bounds.position.x + (bounds.dimension.x / 2);
+	int posY = bounds.position.y + (bounds.dimension.y / 2);
 	
 	std::vector<Bullet> vec = weapon->shoot(Vector2(posX,posY),addShootHoriz, addShootVerti );
 

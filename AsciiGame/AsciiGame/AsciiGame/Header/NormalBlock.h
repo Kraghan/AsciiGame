@@ -17,4 +17,6 @@ public:
 	{
 		setName("NormalBlock");
 	}
+
+	virtual void display(Window* window);
 };

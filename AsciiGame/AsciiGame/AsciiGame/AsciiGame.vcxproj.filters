@@ -177,6 +177,9 @@
     <ClCompile Include="Source\AudioHelper.cpp">
       <Filter>Fichiers sources\Tools\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="Source\NormalBlock.cpp">
+      <Filter>Fichiers sources\Map\Blocks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h">

@@ -166,7 +166,6 @@ bool GameStateGame::loadingScreenOn = false;
 	window->clear();
 
 	gameMap.display(window);
-	player.display(window);		//afficher le player dans graphicEngine (et remettre un couloir dans son ancienne position)
 
 	for (auto & element : bullet)
 	{
@@ -178,6 +177,8 @@ bool GameStateGame::loadingScreenOn = false;
 	{
 		element.display(window);
 	}
+
+	player.display(window);		//afficher le player dans graphicEngine 
 }
 
 // Called when the state is set to active

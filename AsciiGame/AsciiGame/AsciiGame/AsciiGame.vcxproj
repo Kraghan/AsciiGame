@@ -139,6 +139,7 @@
     <ClCompile Include="Source\InputController.cpp" />
     <ClCompile Include="Source\Laser.cpp" />
     <ClCompile Include="Source\LifeBlock.cpp" />
+    <ClCompile Include="Source\NormalBlock.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\QuadTree.cpp" />
     <ClCompile Include="Source\ScoreBlock.cpp" />

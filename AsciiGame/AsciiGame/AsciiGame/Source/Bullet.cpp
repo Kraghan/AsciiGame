@@ -25,11 +25,11 @@ void Bullet::display(Window *win)
 	unsigned int x = bounds.position.x;
 	unsigned int y = bounds.position.y;
 
-	win->changePixel(x + dimension.x / 2, y + dimension.y / 2, carac, color);
+	win->changePixel(x + dimension.x / 2, y + dimension.y / 2, carac, 0x07);
 	win->changePixel(x + dimension.x / 2 - 1, y + dimension.y / 2, carac, color);
 	win->changePixel(x + dimension.x / 2 + 1, y + dimension.y / 2, carac, color);
-	win->changePixel(x + dimension.x / 2, y + dimension.y / 2 - 1, carac, color);
-	win->changePixel(x + dimension.x / 2, y + dimension.y / 2 + 1, carac, color);
+	win->changePixel(x + dimension.x / 2, y + dimension.y / 2 - 1, carac, 0x07);
+	win->changePixel(x + dimension.x / 2, y + dimension.y / 2 + 1, carac, 0x07);
 
 	win->changePixel(x + dimension.x / 2 - 2, y + dimension.y / 2, carac, color);
 	win->changePixel(x + dimension.x / 2 + 2, y + dimension.y / 2, carac, color);

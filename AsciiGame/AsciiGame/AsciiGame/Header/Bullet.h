@@ -9,7 +9,7 @@ private :
 	int delay;
 public:
 	char carac = '*';
-	int color = 7;
+	int color = 0x0B;
 	int speedBullet = 2;
 
 public:
