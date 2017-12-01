@@ -180,6 +180,9 @@
     <ClCompile Include="Source\NormalBlock.cpp">
       <Filter>Fichiers sources\Map\Blocks</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Vector2.cpp">
+      <Filter>Fichiers sources\Tools\Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h">

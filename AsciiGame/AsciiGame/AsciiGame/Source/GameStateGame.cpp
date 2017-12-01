@@ -28,6 +28,7 @@ bool GameStateGame::loadingScreenOn = false;
 	Initializer::initializeCave(&gameMap);
 	Initializer::initializeCorruption(&gameMap,10);
 	Initializer::initializeCollectible(&gameMap, 10, 10, 10);
+	gameMap.updateQuadTree();
 
 	GameStateGame::loadingScreenOn = false;
 	loading.join();
@@ -39,10 +40,10 @@ bool GameStateGame::loadingScreenOn = false;
 /*virtual*/ void GameStateGame::update()
 {
 	timeElapsed += timer.getElapsedSeconds(true);
-	gameMap.update();
+	//gameMap.update();
 
 	Vector2 playerNextPos = Vector2(player.bounds.position.x + player.addHoriz * player.speed, player.bounds.position.y + player.addVerti * player.speed);
-	std::vector<Block*> blocks = gameMap.getBlocks();
+	//std::vector<Block*> blocks = gameMap.getBlocks();
 
 	if (player.canShoot())
 	{
@@ -60,7 +61,8 @@ bool GameStateGame::loadingScreenOn = false;
 
 		// On check pour tous les blocks si on a une collision
 		// La meilleure opti à envisager serai le quadtree
-		for (unsigned int i = 0; i < blocks.size(); ++i)
+		// Old
+		/*for (unsigned int i = 0; i < blocks.size(); ++i)
 		{
 			Vector2 blockPos = blocks[i]->getPosition();
 			Vector2 blockDim = blocks[i]->getDimension();
@@ -82,6 +84,37 @@ bool GameStateGame::loadingScreenOn = false;
 					gameMap.destroyBlock(blocks[i]->getPosition());
 				}
 			}
+		}*/
+		// End Old
+		
+		std::vector<Block*> nearBlock = gameMap.getBlocks(AABB(Vector2(playerNextPos.x, playerNextPos.y - Window::UI_HEIGHT), player.bounds.dimension));
+		gameMap.debug();
+		exit(0);
+		//Debug::log("debug.txt", std::to_string(nearBlock.size())+"\n");
+		//Debug::log("debug.txt", "Player Bounds : (" + std::to_string(playerNextPos.x) + "," + std::to_string(playerNextPos.y - Window::UI_HEIGHT) + "),(" + std::to_string(player.bounds.dimension.x) + "," + std::to_string(player.bounds.dimension.y) + ")\n", true);
+		for (unsigned int i = 0; i < nearBlock.size(); ++i)
+		{
+			//Debug::log("debug.txt", "\tBounds : (" + std::to_string(nearBlock[i]->getPosition().x) + "," + std::to_string(nearBlock[i]->getPosition().y) + "),(" + std::to_string(nearBlock[i]->getDimension().x) + "," + std::to_string(nearBlock[i]->getDimension().y) + ")\n",true);
+			Vector2 blockPos = nearBlock[i]->getPosition();
+			Vector2 blockDim = nearBlock[i]->getDimension();
+			blockPos.x *= 4;
+			blockPos.y *= 4;
+			blockPos.y += Window::UI_HEIGHT;
+
+			if (collision(playerNextPos, player.bounds.dimension, blockPos, blockDim))
+			{
+				if (nearBlock[i]->getIsSolid())
+				{
+					wallCollisionOk = false;
+					break;
+				}
+
+				if (nearBlock[i]->getIsCollectable())
+				{
+					nearBlock[i]->collect(&player);
+					gameMap.destroyBlock(nearBlock[i]->getPosition());
+				}
+			}
 		}
 
 		if(wallCollisionOk)
@@ -95,16 +128,17 @@ bool GameStateGame::loadingScreenOn = false;
 		}
 	}
 	
-	for (std::vector<Bullet>::iterator it = bullet.begin(); it != bullet.end();)
+	/*for (std::vector<Bullet>::iterator it = bullet.begin(); it != bullet.end();)
 	{
 		Vector2 bulletNextPos = Vector2((*it).bounds.position.x + (*it).addHoriz * (*it).speed, (*it).bounds.position.y + (*it).addVerti * (*it).speed);
 		bool collide = false;
-		for (unsigned int i = 0; i < blocks.size(); ++i)
+		std::vector<Block*> nearBlock = gameMap.getBlocks(AABB(bulletNextPos, (*it).bounds.dimension));
+		for (unsigned int i = 0; i < nearBlock.size(); ++i)
 		{
-			if (!blocks[i]->getIsSolid())
+			if (!nearBlock[i]->getIsSolid())
 				continue;
-			Vector2 blockPos = blocks[i]->getPosition();
-			Vector2 blockDim = blocks[i]->getDimension();
+			Vector2 blockPos = nearBlock[i]->getPosition();
+			Vector2 blockDim = nearBlock[i]->getDimension();
 			blockPos.x *= 4;
 			blockPos.y *= 4;
 			blockPos.y += Window::UI_HEIGHT;
@@ -126,12 +160,7 @@ bool GameStateGame::loadingScreenOn = false;
 			gameMap.explode(bulletNextPos,player.getWeapon()->getRadius());
 		}
 
-	}
-
-	for (auto & element : ia)
-	{
-		element.update();
-	}
+	}*/
 
 }
 
@@ -148,13 +177,6 @@ bool GameStateGame::loadingScreenOn = false;
 		}
 
 		inputPlayer(e);											//input du joueur in-game
-
-		if (e->input == Event::INPUT::KB_I
-			&& e->typeInput == Event::TYPE_INPUT_EVENT::TI_PRESSED)
-		{
-			IA popIa(Vector2(200, 100));
-			ia.push_back(popIa);
-		}
 
 		e = window->popEvent();
 	}

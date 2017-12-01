@@ -3,60 +3,61 @@
 #include "Block.h"
 #include <vector>
 
+//https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
 class QuadTree
 {
-private : 
-	static const unsigned short NODE_CAPACITY = 4;
 
-	std::vector<Block> m_nodes;
+private : 
+	// Capacité en block d'un node quadtree
+	static const unsigned short NODE_CAPACITY = 10;
+	static const unsigned short MAX_LEVEL = 1;
+
+	// Block contenu dedans
+	std::vector<Block*> m_nodes;
+
+	// Limit de ce block de quadtree
 	AABB m_bounds;
 
+	// Subdivisions
 	QuadTree* m_northWest;
 	QuadTree* m_northEast;
 	QuadTree* m_southWest;
 	QuadTree* m_southEast;
 
-	bool m_isComplete;
+	// L'arbre à été splitté
+	bool m_isSubdivided;
+
+	// Niveau de profondeur dans le quadtree
+	unsigned int m_level;
+
+	// Retourne le morceau de quadtree adéquat
+	QuadTree* getIndex(AABB bound);
 
 public:
-	explicit QuadTree()
-		: m_bounds(AABB())
-		, m_northEast(nullptr)
-		, m_northWest(nullptr)
-		, m_southEast(nullptr)
-		, m_southWest(nullptr)
-		, m_isComplete(false){}
+	// Constructors
+	explicit QuadTree();
 
-	explicit QuadTree(AABB bounds)
-		: m_bounds(bounds)
-		, m_northEast(nullptr)
-		, m_northWest(nullptr)
-		, m_southEast(nullptr)
-		, m_southWest(nullptr)
-		, m_isComplete(false) {}
+	explicit QuadTree(unsigned int level, AABB bounds);
 
-	virtual ~QuadTree(){}
-	//https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
+	// Destructor
+	virtual ~QuadTree();
 
-	void subdivide()
-	{
-		Vector2 newDimensions = Vector2(m_bounds.dimension.x / 2, m_bounds.dimension.y / 2);
-		int eastX = m_bounds.position.x + newDimensions.x;
-		int southY = m_bounds.position.y + newDimensions.y;
+	// Divise la quadmap en 4 sous partie
+	void subdivide();
 
-		m_northWest = new QuadTree(AABB(m_bounds.position, newDimensions));
-		m_northEast = new QuadTree(AABB(Vector2(eastX, m_bounds.position.y), newDimensions));
-		m_southWest = new QuadTree(AABB(Vector2(m_bounds.position.x, southY), newDimensions));
-		m_southEast = new QuadTree(AABB(Vector2(eastX, southY), newDimensions));
-	}
+	// Insert un nouveau block
+	void insert(Block* node);
 
-	bool insert(Block node)
-	{
-		if(m_bounds.contains() )
-	}
+	// Supprime un block
+	void remove(Block* node);
 
-	void queryRange(AABB area)
-	{
+	// Retourne les blocks contenu dans cette zone
+	std::vector<Block*> queryRange(AABB area, int recursion = 0);
 
-	}
+	// Vide le quadtree
+	void clear();
+
+	void debug();
+	int getNumberOfNodes();
+	AABB getBound();
 };

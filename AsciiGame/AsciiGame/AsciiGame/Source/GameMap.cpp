@@ -5,18 +5,21 @@
 {
 	blockMap = std::vector<Block*>();
 	blockMap.reserve(dimension.x * dimension.y);
+	quadtree = QuadTree(0, AABB(0, 0, dimension.x * 4, dimension.y * 4));
 }
 /*explicit*/ GameMap::GameMap(Vector2 dim)
 	: dimension(dim)
 {
 	blockMap = std::vector<Block*>();
 	blockMap.reserve(dimension.x * dimension.y);
+	quadtree = QuadTree(0,AABB(0,0,dimension.x * 4, dimension.y * 4));
 }
 /*explicit*/ GameMap::GameMap(unsigned int x, unsigned int y)
 	: dimension(Vector2(x,y))
 {
-	
 	blockMap = std::vector<Block*>();
+	blockMap.reserve(x * y);
+	quadtree = QuadTree(0, AABB(0, 0, dimension.x * 4, dimension.y * 4));
 }
 
 /*virtual*/ GameMap::~GameMap()
@@ -74,6 +77,11 @@ Vector2 GameMap::getDimension()
 std::vector<Block*> GameMap::getBlocks()
 {
 	return blockMap;
+}
+
+std::vector<Block*> GameMap::getBlocks(AABB bounds)
+{
+	return quadtree.queryRange(bounds);
 }
 
 void GameMap::update()
@@ -171,11 +179,14 @@ void GameMap::explode(Vector2 position, unsigned int radius)
 
 void GameMap::debug()
 {
-	Debug::log("DebugGameMap.txt", "");
+	/*Debug::log("DebugGameMap.txt", "");
 	for (std::vector<Block*>::iterator it = blockMap.begin(); it != blockMap.end(); it++)
 	{
 		Debug::log("DebugGameMap.txt", std::to_string((*it)->position.x) + " " + std::to_string((*it)->position.y) + "\n", true);
-	}
+	}*/
+	Debug::log("blocks.log", std::to_string(blockMap.size())+"\n");
+	Debug::log("blocks.log", std::to_string(quadtree.getNumberOfNodes()), true);
+	quadtree.debug();
 }
 
 void GameMap::clear()
@@ -193,10 +204,20 @@ void GameMap::destroyBlock(Vector2 position)
 	{
 		if ((*it)->position.x == position.x && (*it)->position.y == position.y)
 		{
+			quadtree.remove(*it);
 			delete(*it);
 			blockMap.erase(it);
 			return;
 		}
 		++it;
+	}
+}
+
+void GameMap::updateQuadTree()
+{
+	quadtree.clear();
+	for (unsigned int i = 0; i < blockMap.size(); ++i)
+	{
+		quadtree.insert(blockMap[i]);
 	}
 }

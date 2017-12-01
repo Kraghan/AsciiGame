@@ -17,3 +17,8 @@ public :
 		y = yy;
 	}
 };
+
+Vector2  operator*  (Vector2 const& type1, unsigned int const& type2);
+Vector2  operator*  (unsigned int const& type1, Vector2 const& type2);
+
+bool  operator==  (Vector2 const& type1, Vector2 const& type2);

@@ -18,7 +18,7 @@ AudioHelper* AudioHelper::instance = nullptr;
 
 	if (INVALID_HANDLE_VALUE == hFind)
 	{
-		Debug::log("Audio.log", "Error first file\n", true);
+		//Debug::log("Audio.log", "Error first file\n", true);
 		return;
 	}
 
@@ -28,7 +28,7 @@ AudioHelper* AudioHelper::instance = nullptr;
 		{
 			std::string txt = ffd.cFileName;
 			txt += " is a dir\n";
-			Debug::log("Audio.log", txt , true);
+			//Debug::log("Audio.log", txt , true);
 		}
 		else
 		{

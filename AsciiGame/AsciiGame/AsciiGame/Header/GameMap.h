@@ -11,6 +11,7 @@
 #include "Vector2.h"
 #include "Window.h"
 #include "AudioHelper.h"
+#include "QuadTree.h"
 
 class GameMap
 {
@@ -20,6 +21,9 @@ private:
 	
 	// Used to store the blocks
 	std::vector<Block*> blockMap;
+
+	// Used to optimize collision
+	QuadTree quadtree;
 
 public : 
 	// Constructors
@@ -47,6 +51,9 @@ public :
 	// Return all the blocks
 	std::vector<Block*> getBlocks(void);
 
+	// Return all the blocks near the bound
+	std::vector<Block*> getBlocks(AABB bound);
+
 	// Logical update method
 	void update(void);
 
@@ -64,4 +71,7 @@ public :
 
 	// Search a block at position position and if found, destroy it
 	void destroyBlock(Vector2 position);
+
+	// Update the quadtree
+	void updateQuadTree();
 };

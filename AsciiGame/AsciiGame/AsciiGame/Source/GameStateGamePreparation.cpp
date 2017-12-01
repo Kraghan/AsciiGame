@@ -42,6 +42,7 @@
 	if (weaponChanged)
 	{
 		Initializer::initializePreparationWall(&gameMap);
+		gameMap.updateQuadTree();
 		timeElapsedBeforeCompleteReset = 0.0;
 		bullet.clear();
 	}
@@ -64,10 +65,11 @@
 	if (timeElapsedBeforeCompleteReset >= timeBeforeCompleteReset)
 	{
 		Initializer::initializePreparationWall(&gameMap);
+		gameMap.updateQuadTree();
 		timeElapsedBeforeCompleteReset = 0.0;
 	}
 	
-	std::vector<Block*> blocks = gameMap.getBlocks();
+	//std::vector<Block*> blocks = gameMap.getBlocks();
 
 	if (player.canShoot())
 	{
@@ -82,6 +84,8 @@
 	{
 		Vector2 bulletNextPos = Vector2((*it).bounds.position.x + (*it).addHoriz * (*it).speed, (*it).bounds.position.y + (*it).addVerti * (*it).speed);
 		bool collide = false;
+
+		std::vector<Block*> blocks = gameMap.getBlocks(AABB(bulletNextPos,(*it).bounds.dimension));
 		for (unsigned int i = 0; i < blocks.size(); ++i)
 		{
 			if (!blocks[i]->getIsSolid())
