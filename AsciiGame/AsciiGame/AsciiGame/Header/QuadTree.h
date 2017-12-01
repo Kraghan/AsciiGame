@@ -10,7 +10,7 @@ class QuadTree
 private : 
 	// Capacité en block d'un node quadtree
 	static const unsigned short NODE_CAPACITY = 10;
-	static const unsigned short MAX_LEVEL = 1;
+	static const unsigned short MAX_LEVEL = 2;
 
 	// Block contenu dedans
 	std::vector<Block*> m_nodes;

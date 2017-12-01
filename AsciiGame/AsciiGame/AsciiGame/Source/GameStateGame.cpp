@@ -28,6 +28,7 @@ bool GameStateGame::loadingScreenOn = false;
 	Initializer::initializeCave(&gameMap);
 	Initializer::initializeCorruption(&gameMap,10);
 	Initializer::initializeCollectible(&gameMap, 10, 10, 10);
+
 	gameMap.updateQuadTree();
 
 	GameStateGame::loadingScreenOn = false;
@@ -58,43 +59,10 @@ bool GameStateGame::loadingScreenOn = false;
 		&& gameMap.isInBound(Vector2(playerNextPos.x + player.bounds.dimension.x, playerNextPos.y + player.bounds.dimension.y)))
 	{
 		bool wallCollisionOk = true;
-
-		// On check pour tous les blocks si on a une collision
-		// La meilleure opti à envisager serai le quadtree
-		// Old
-		/*for (unsigned int i = 0; i < blocks.size(); ++i)
-		{
-			Vector2 blockPos = blocks[i]->getPosition();
-			Vector2 blockDim = blocks[i]->getDimension();
-			blockPos.x *= 4;
-			blockPos.y *= 4;
-			blockPos.y += Window::UI_HEIGHT;
-			
-			if (collision(playerNextPos,player.bounds.dimension,blockPos, blockDim))
-			{
-				if (blocks[i]->getIsSolid())
-				{
-					wallCollisionOk = false;
-					break;
-				}
-
-				if (blocks[i]->getIsCollectable())
-				{
-					blocks[i]->collect(&player);
-					gameMap.destroyBlock(blocks[i]->getPosition());
-				}
-			}
-		}*/
-		// End Old
 		
 		std::vector<Block*> nearBlock = gameMap.getBlocks(AABB(Vector2(playerNextPos.x, playerNextPos.y - Window::UI_HEIGHT), player.bounds.dimension));
-		gameMap.debug();
-		exit(0);
-		//Debug::log("debug.txt", std::to_string(nearBlock.size())+"\n");
-		//Debug::log("debug.txt", "Player Bounds : (" + std::to_string(playerNextPos.x) + "," + std::to_string(playerNextPos.y - Window::UI_HEIGHT) + "),(" + std::to_string(player.bounds.dimension.x) + "," + std::to_string(player.bounds.dimension.y) + ")\n", true);
 		for (unsigned int i = 0; i < nearBlock.size(); ++i)
 		{
-			//Debug::log("debug.txt", "\tBounds : (" + std::to_string(nearBlock[i]->getPosition().x) + "," + std::to_string(nearBlock[i]->getPosition().y) + "),(" + std::to_string(nearBlock[i]->getDimension().x) + "," + std::to_string(nearBlock[i]->getDimension().y) + ")\n",true);
 			Vector2 blockPos = nearBlock[i]->getPosition();
 			Vector2 blockDim = nearBlock[i]->getDimension();
 			blockPos.x *= 4;
@@ -128,11 +96,11 @@ bool GameStateGame::loadingScreenOn = false;
 		}
 	}
 	
-	/*for (std::vector<Bullet>::iterator it = bullet.begin(); it != bullet.end();)
+	for (std::vector<Bullet>::iterator it = bullet.begin(); it != bullet.end();)
 	{
 		Vector2 bulletNextPos = Vector2((*it).bounds.position.x + (*it).addHoriz * (*it).speed, (*it).bounds.position.y + (*it).addVerti * (*it).speed);
 		bool collide = false;
-		std::vector<Block*> nearBlock = gameMap.getBlocks(AABB(bulletNextPos, (*it).bounds.dimension));
+		std::vector<Block*> nearBlock = gameMap.getBlocks(AABB(Vector2(bulletNextPos.x,bulletNextPos.y - Window::UI_HEIGHT), (*it).bounds.dimension));
 		for (unsigned int i = 0; i < nearBlock.size(); ++i)
 		{
 			if (!nearBlock[i]->getIsSolid())
@@ -160,7 +128,7 @@ bool GameStateGame::loadingScreenOn = false;
 			gameMap.explode(bulletNextPos,player.getWeapon()->getRadius());
 		}
 
-	}*/
+	}
 
 }
 

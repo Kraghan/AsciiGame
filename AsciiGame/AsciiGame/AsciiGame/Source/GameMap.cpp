@@ -186,7 +186,6 @@ void GameMap::debug()
 	}*/
 	Debug::log("blocks.log", std::to_string(blockMap.size())+"\n");
 	Debug::log("blocks.log", std::to_string(quadtree.getNumberOfNodes()), true);
-	quadtree.debug();
 }
 
 void GameMap::clear()

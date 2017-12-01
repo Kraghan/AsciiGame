@@ -9,7 +9,6 @@
 	, m_isSubdivided(false)
 	, m_level(0) 
 {
-	m_nodes = std::vector<Block*>();
 	m_nodes.reserve(NODE_CAPACITY);
 }
 
@@ -22,7 +21,6 @@
 	, m_isSubdivided(false)
 	, m_level(level) 
 {
-	m_nodes = std::vector<Block*>();
 	m_nodes.reserve(NODE_CAPACITY);
 }
 
@@ -38,42 +36,45 @@ void QuadTree::subdivide()
 	int x = (int)m_bounds.position.x;
 	int y = (int)m_bounds.position.y;
 
-	m_northEast = new QuadTree(m_level + 1, AABB(x + subWidth, y, subWidth, subHeight));
-	m_northWest = new QuadTree(m_level + 1, AABB(x, y, subWidth, subHeight));
-	m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight));
-	m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth, subHeight));
-
-	/*if (m_bounds.dimension.x & 1 == 1)
-	{
-
-		m_northEast = new QuadTree(m_level + 1, AABB(x + subWidth, y, subWidth + 1, subHeight));
-		m_northWest = new QuadTree(m_level + 1, AABB(x, y, subWidth, subHeight));
-		if (m_bounds.dimension.y & 1 == 1)
-		{
-			m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight + 1));
-			m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth + 1, subHeight + 1));
-		}
-		else
-		{
-			m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight));
-			m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth + 1, subHeight));
-		}
-	}
-	else
+	if (m_northEast == nullptr)
 	{
 		m_northEast = new QuadTree(m_level + 1, AABB(x + subWidth, y, subWidth, subHeight));
 		m_northWest = new QuadTree(m_level + 1, AABB(x, y, subWidth, subHeight));
-		if (m_bounds.dimension.y & 1 == 1)
+		m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight));
+		m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth, subHeight));
+
+		/*if (m_bounds.dimension.x & 1 == 1)
 		{
-			m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight + 1));
-			m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth, subHeight + 1));
+
+			m_northEast = new QuadTree(m_level + 1, AABB(x + subWidth, y, subWidth + 1, subHeight));
+			m_northWest = new QuadTree(m_level + 1, AABB(x, y, subWidth, subHeight));
+			if (m_bounds.dimension.y & 1 == 1)
+			{
+				m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight + 1));
+				m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth + 1, subHeight + 1));
+			}
+			else
+			{
+				m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight));
+				m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth + 1, subHeight));
+			}
 		}
 		else
 		{
-			m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight));
-			m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth, subHeight));
-		}
-	}*/
+			m_northEast = new QuadTree(m_level + 1, AABB(x + subWidth, y, subWidth, subHeight));
+			m_northWest = new QuadTree(m_level + 1, AABB(x, y, subWidth, subHeight));
+			if (m_bounds.dimension.y & 1 == 1)
+			{
+				m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight + 1));
+				m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth, subHeight + 1));
+			}
+			else
+			{
+				m_southWest = new QuadTree(m_level + 1, AABB(x, y + subHeight, subWidth, subHeight));
+				m_southEast = new QuadTree(m_level + 1, AABB(x + subWidth, y + subHeight, subWidth, subHeight));
+			}
+		}*/
+	}
 
 	m_isSubdivided = true;
 }
@@ -89,15 +90,6 @@ void QuadTree::insert(Block* node)
 			tree->insert(node);
 			return;
 		}
-		else
-		{
-			Debug::log("empty.txt", "(" + std::to_string(node->getPosition().x) + "," + std::to_string(node->getPosition().y) + ") -> ", true);
-			Debug::log("empty.txt", "(" + std::to_string(m_bounds.position.x) + "," + std::to_string(m_bounds.position.y) + ") (" + std::to_string(m_bounds.dimension.x) + "," + std::to_string(m_bounds.dimension.y) + ") -> ", true);
-			Debug::log("empty.txt", "(" + std::to_string(m_northEast->getBound().position.x) + "," + std::to_string(m_northEast->getBound().position.y) + ") (" + std::to_string(m_northEast->getBound().dimension.x) + "," + std::to_string(m_northEast->getBound().dimension.y) + ") -> ", true);
-			Debug::log("empty.txt", "(" + std::to_string(m_northWest->getBound().position.x) + "," + std::to_string(m_northWest->getBound().position.y) + ") (" + std::to_string(m_northWest->getBound().dimension.x) + "," + std::to_string(m_northWest->getBound().dimension.y) + ") -> ", true);
-			Debug::log("empty.txt", "(" + std::to_string(m_southEast->getBound().position.x) + "," + std::to_string(m_southEast->getBound().position.y) + ") (" + std::to_string(m_southEast->getBound().dimension.x) + "," + std::to_string(m_southEast->getBound().dimension.y) + ") -> ", true);
-			Debug::log("empty.txt", "(" + std::to_string(m_southWest->getBound().position.x) + "," + std::to_string(m_southWest->getBound().position.y) + ") (" + std::to_string(m_southWest->getBound().dimension.x) + "," + std::to_string(m_southWest->getBound().dimension.y) + ")\n", true);
-		}
 
 	}
 	
@@ -108,23 +100,22 @@ void QuadTree::insert(Block* node)
 		if (!m_isSubdivided)
 		{
 			subdivide();
-		}
-
-		for (int i = 0; i < m_nodes.size(); ++i)
-		{
-			QuadTree* tree = getIndex(AABB(m_nodes[i]->getPosition() * 4, m_nodes[i]->getDimension()));
-			if (tree != nullptr)
+			for (int i = 0; i < m_nodes.size(); ++i)
 			{
-				tree->insert(m_nodes[i]);
+				QuadTree* tree = getIndex(AABB(m_nodes[i]->getPosition() * 4, m_nodes[i]->getDimension()));
+				if (tree != nullptr)
+				{
+					tree->insert(m_nodes[i]);
+				}
 			}
-		} 
-		m_nodes.clear();
+			m_nodes.clear();
+		}
 	}
 }
 
 void QuadTree::remove(Block* node)
 {
-	if (m_northEast != nullptr)
+	if (m_isSubdivided)
 	{
 		QuadTree* tree = getIndex(AABB(node->getPosition() * 4, node->getDimension()));
 
@@ -164,7 +155,7 @@ void QuadTree::clear()
 {
 	m_nodes.clear();
 	
-	if (m_northEast != nullptr) 
+	if (m_isSubdivided) 
 	{
 		m_northEast->clear();
 		m_northWest->clear();
@@ -173,17 +164,6 @@ void QuadTree::clear()
 		m_southWest->clear();
 
 		m_isSubdivided = false;
-
-		/*delete(m_northEast);
-		delete(m_northWest);
-		delete(m_southEast);
-		delete(m_southWest);
-
-		m_northEast = nullptr;
-		m_northWest = nullptr;
-
-		m_southEast = nullptr;
-		m_southWest = nullptr;*/
 	}
 }
 
@@ -233,7 +213,7 @@ void QuadTree::debug()
 		Debug::log("QuadTree.txt", "\tBounds block : (" + std::to_string(m_nodes[i]->getPosition().x * 4) + "," + std::to_string(m_nodes[i]->getPosition().y * 4) + "),(" + std::to_string(m_nodes[i]->getDimension().x) + "," + std::to_string(m_nodes[i]->getDimension().y) + ")\n", true);
 	}
 
-	if (m_northEast != nullptr)
+	if (m_isSubdivided)
 	{
 		m_northWest->debug();
 		m_northEast->debug();

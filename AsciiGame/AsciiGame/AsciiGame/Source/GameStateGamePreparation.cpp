@@ -85,7 +85,7 @@
 		Vector2 bulletNextPos = Vector2((*it).bounds.position.x + (*it).addHoriz * (*it).speed, (*it).bounds.position.y + (*it).addVerti * (*it).speed);
 		bool collide = false;
 
-		std::vector<Block*> blocks = gameMap.getBlocks(AABB(bulletNextPos,(*it).bounds.dimension));
+		std::vector<Block*> blocks = gameMap.getBlocks();
 		for (unsigned int i = 0; i < blocks.size(); ++i)
 		{
 			if (!blocks[i]->getIsSolid())
