@@ -126,6 +126,7 @@
     <ClCompile Include="Source\Block.cpp" />
     <ClCompile Include="Source\BombThrower.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
+    <ClCompile Include="Source\ColorHelper.cpp" />
     <ClCompile Include="Source\CorruptionBlock.cpp" />
     <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\Entity.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="Source\GameState.cpp" />
     <ClCompile Include="Source\GameStateGame.cpp" />
     <ClCompile Include="Source\GameStateGamePreparation.cpp" />
+    <ClCompile Include="Source\GameStateHow.cpp" />
     <ClCompile Include="Source\GameStateMachine.cpp" />
     <ClCompile Include="Source\GameStateMenu.cpp" />
     <ClCompile Include="Source\GameStatePause.cpp" />
@@ -161,6 +163,7 @@
     <ClInclude Include="Header\BombThrower.h" />
     <ClInclude Include="Header\BorderBlock.h" />
     <ClInclude Include="Header\Bullet.h" />
+    <ClInclude Include="Header\ColorHelper.h" />
     <ClInclude Include="Header\CorruptionBlock.h" />
     <ClInclude Include="Header\Debug.h" />
     <ClInclude Include="Header\Entity.h" />
@@ -169,6 +172,7 @@
     <ClInclude Include="Header\GameState.h" />
     <ClInclude Include="Header\GameStateGame.h" />
     <ClInclude Include="Header\GameStateGamePreparation.h" />
+    <ClInclude Include="Header\GameStateHow.h" />
     <ClInclude Include="Header\GameStateMachine.h" />
     <ClInclude Include="Header\GameStateMenu.h" />
     <ClInclude Include="Header\GameStatePause.h" />

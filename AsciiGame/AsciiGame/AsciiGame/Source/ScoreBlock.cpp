@@ -1,10 +1,13 @@
 #include "../Header/ScoreBlock.h"
+unsigned int ScoreBlock::numberOfBlock = 0;
+unsigned int ScoreBlock::level = 1;
 
 /*virtual*/ void ScoreBlock::collect(Player* player)
 {
 
 	AudioHelper::getAudioHelper()->play("pickup");
-	player->score += 100;
+	player->score += ScoreBlock::level * 100;
+	ScoreBlock::numberOfBlock--;
 }
 
 /*virtual*/ void ScoreBlock::display(Window* window)

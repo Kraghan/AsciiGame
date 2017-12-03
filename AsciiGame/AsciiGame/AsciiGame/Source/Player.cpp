@@ -1,6 +1,7 @@
 #include "..\Header\Player.h"
 
 Player::Player()
+	: Entity()
 {
 
 }
@@ -12,8 +13,8 @@ Player::Player(Vector2 pos)
 
 	timer = Timer();
 
-	lifePoint = 10;
-	ammunition = 12;
+	lifePoint = MAX_LIFE_POINT;
+	ammunition = MAX_AMMO;
 	score = 0;
 }
 
@@ -217,15 +218,15 @@ bool Player::canShoot()
 void Player::addLifePoint(unsigned int health)
 {
 	lifePoint += health;
-	if (lifePoint > 10)
-		lifePoint = 10;
+	if (lifePoint > MAX_LIFE_POINT)
+		lifePoint = MAX_LIFE_POINT;
 }
 
 void Player::addAmmo(unsigned int ammo)
 {
 	ammunition += ammo;
-	if (ammunition > 12)
-		ammunition = 12;
+	if (ammunition > MAX_AMMO)
+		ammunition = MAX_AMMO;
 }
 
 void Player::setWeapon(Weapon* weap)

@@ -5,6 +5,11 @@
 //it basically says that you are running this
 //  program on Windows 2000 or higher
 //to call BEFORE window.h
+
+// Undef to remove warning
+#ifdef _WIN32_WINNT
+#undef _WIN32_WINNT
+#endif
 #define _WIN32_WINNT 0x0500
 
 #include <Windows.h>
@@ -12,6 +17,7 @@
 #include "Event.h"
 #include "InputController.h"
 #include "Vector2.h"
+#include "ColorHelper.h"
 
 class Window
 {

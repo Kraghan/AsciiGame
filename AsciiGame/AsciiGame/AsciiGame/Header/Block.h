@@ -72,6 +72,9 @@ public:
 	// Display the block
 	virtual void display(Window* window);
 
+	// Called when the player collide with the block to check if the player can collect the block
+	virtual bool canCollect(Player* player);
+
 	// Called when the player collide with the block if the block is set to collectable
 	virtual void collect(Player* player);
 

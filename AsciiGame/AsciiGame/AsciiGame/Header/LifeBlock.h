@@ -23,4 +23,7 @@ public:
 
 	// Called once per frame, used to display block
 	virtual void display(Window* window);
+
+	// Called when the player collide with the block to check if the player can collect the block
+	virtual bool canCollect(Player* player);
 };

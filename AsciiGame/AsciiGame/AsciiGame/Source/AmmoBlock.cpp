@@ -19,3 +19,8 @@
 		}
 	}
 }
+
+/*virtual*/ bool AmmoBlock::canCollect(Player* player)
+{
+	return player->ammunition != player->MAX_AMMO;
+}

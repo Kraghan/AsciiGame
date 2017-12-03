@@ -37,6 +37,8 @@
 
 			AudioHelper::getAudioHelper()->play("navigationMenu");
 			if (focus == FB_PLAY)
+				focus = FB_HOW;
+			else if (focus == FB_HOW)
 				focus = FB_QUIT;
 			else if (focus == FB_QUIT)
 				focus = FB_PLAY;
@@ -50,8 +52,10 @@
 			AudioHelper::getAudioHelper()->play("navigationMenu");
 			if (focus == FB_PLAY)
 				focus = FB_QUIT;
-			else if (focus == FB_QUIT)
+			else if (focus == FB_HOW)
 				focus = FB_PLAY;
+			else if (focus == FB_QUIT)
+				focus = FB_HOW;
 		}
 
 		// Valid choice if space or enter pressed
@@ -61,6 +65,8 @@
 			AudioHelper::getAudioHelper()->play("navigationMenu");
 			if (focus == FB_PLAY)
 				stateMachine->activeState("preparation", true);
+			else if (focus == FB_HOW)
+				stateMachine->activeState("how", true);
 			else if (focus == FB_QUIT)
 				return false;
 		}
@@ -80,6 +86,11 @@
 		drawPlayFocused();
 	else
 		drawPlay();
+
+	if (focus == FB_HOW)
+		AlphabetDrawer::drawWord(window, Vector2(60, 120), "How to play", 5, 'X', ColorHelper::YELLOW + ColorHelper::BRIGHT);
+	else
+		AlphabetDrawer::drawWord(window, Vector2(82, 122), "How to play", 4, 'X', ColorHelper::WHITE + ColorHelper::BRIGHT);
 
 	if (focus == FB_QUIT)
 		drawQuitFocused();
@@ -197,7 +208,7 @@ void GameStateMenu::drawQuit()
 {
 	unsigned int fontSize = 4;
 	char caractere = 'X';
-	Vector2 initPos = Vector2(110, 122);
+	Vector2 initPos = Vector2(110, 152);
 
 	AlphabetDrawer::drawQ(window, initPos, fontSize, caractere);
 	AlphabetDrawer::drawU(window, Vector2(initPos.x + 5 * fontSize, initPos.y), fontSize, caractere);
@@ -214,7 +225,7 @@ void GameStateMenu::drawQuitFocused()
 {
 	unsigned int fontSize = 5;
 	char caractere = 'X';
-	Vector2 initPos = Vector2(90, 120);
+	Vector2 initPos = Vector2(90, 150);
 
 	AlphabetDrawer::drawQ(window, initPos, fontSize, caractere, 0x0E);
 	AlphabetDrawer::drawU(window, Vector2(initPos.x + 5 * fontSize, initPos.y), fontSize, caractere, 0x0E);

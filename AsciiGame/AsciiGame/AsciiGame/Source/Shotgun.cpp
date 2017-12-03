@@ -3,7 +3,7 @@
 /*explicit*/ Shotgun::Shotgun()
 	: Weapon("Shotgun",3)
 {
-	radius = 10;
+	radius = 3;
 	timeBetweenShot = 0.5;
 }
 

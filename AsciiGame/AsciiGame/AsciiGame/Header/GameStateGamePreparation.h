@@ -20,8 +20,8 @@ private:
 	int arrowColor = 0x06;
 	int arrowColorPressed = 0x0E;
 	int weaponIndex;
-	int playerYLimitTop = 30;
-	int playerYLimitBottom = 90;
+	unsigned int playerYLimitTop = 30;
+	unsigned int playerYLimitBottom = 90;
 
 	bool nextWeapon;
 	bool previousWeapon;

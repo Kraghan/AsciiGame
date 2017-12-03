@@ -3,7 +3,7 @@
 /*explicit*/ Laser::Laser(void)
 	: Weapon("Laser",10)
 {
-	radius = 6;
+	radius = 2;
 	timeBetweenShot = 1;
 }
 

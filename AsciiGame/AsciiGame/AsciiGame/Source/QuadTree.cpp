@@ -100,7 +100,7 @@ void QuadTree::insert(Block* node)
 		if (!m_isSubdivided)
 		{
 			subdivide();
-			for (int i = 0; i < m_nodes.size(); ++i)
+			for (unsigned int i = 0; i < m_nodes.size(); ++i)
 			{
 				QuadTree* tree = getIndex(AABB(m_nodes[i]->getPosition() * 4, m_nodes[i]->getDimension()));
 				if (tree != nullptr)
@@ -202,13 +202,13 @@ QuadTree* QuadTree::getIndex(AABB bound)
 
 void QuadTree::debug()
 {
-	for (int i = 0; i < m_level; ++i)
+	for (unsigned int i = 0; i < m_level; ++i)
 		Debug::log("QuadTree.txt", "\t", true);
 	Debug::log("QuadTree.txt", "Bounds : (" + std::to_string(m_bounds.position.x) + "," + std::to_string(m_bounds.position.y) + "),(" + std::to_string(m_bounds.dimension.x) + "," + std::to_string(m_bounds.dimension.y) + ") : "+std::to_string(getNumberOfNodes())+" "+std::to_string(m_northEast != nullptr) +"\n", true);
 
-	for (int i = 0; i < m_nodes.size(); ++i)
+	for (unsigned int i = 0; i < m_nodes.size(); ++i)
 	{
-		for (int j = 0; j < m_level; ++j)
+		for (unsigned int j = 0; j < m_level; ++j)
 			Debug::log("QuadTree.txt", "\t", true);
 		Debug::log("QuadTree.txt", "\tBounds block : (" + std::to_string(m_nodes[i]->getPosition().x * 4) + "," + std::to_string(m_nodes[i]->getPosition().y * 4) + "),(" + std::to_string(m_nodes[i]->getDimension().x) + "," + std::to_string(m_nodes[i]->getDimension().y) + ")\n", true);
 	}

@@ -3,7 +3,7 @@
 /*explicit*/ BombThrower::BombThrower()
 	: Weapon("Bomb Thrower",1)
 {
-	radius = 12;
+	radius = 4;
 	timeBetweenShot = 0.3;
 }
 

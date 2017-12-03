@@ -183,6 +183,12 @@
     <ClCompile Include="Source\Vector2.cpp">
       <Filter>Fichiers sources\Tools\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameStateHow.cpp">
+      <Filter>Fichiers sources\StateMachine\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ColorHelper.cpp">
+      <Filter>Fichiers sources\Tools\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Block.h">
@@ -291,6 +297,12 @@
       <Filter>Fichiers d%27en-tête\Map\Blocks</Filter>
     </ClInclude>
     <ClInclude Include="Header\AudioHelper.h">
+      <Filter>Fichiers d%27en-tête\Tools\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameStateHow.h">
+      <Filter>Fichiers d%27en-tête\StateMachine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\ColorHelper.h">
       <Filter>Fichiers d%27en-tête\Tools\Helper</Filter>
     </ClInclude>
   </ItemGroup>

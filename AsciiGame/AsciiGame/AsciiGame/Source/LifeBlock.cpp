@@ -19,3 +19,8 @@
 		}
 	}
 }
+
+/*virtual*/ bool LifeBlock::canCollect(Player* player)
+{
+	return player->lifePoint != player->MAX_LIFE_POINT;
+}

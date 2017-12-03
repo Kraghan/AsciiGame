@@ -89,6 +89,11 @@ Vector2 Block::getDimension()
 	
 }
 
+/*virtual*/ bool Block::canCollect(Player* player)
+{
+	return true;
+}
+
 bool Block::getIsUnbreakable()
 {
 	return isUnbreakable;

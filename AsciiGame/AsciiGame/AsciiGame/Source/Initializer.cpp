@@ -191,7 +191,7 @@ std::vector<std::vector<bool>> Initializer::process()
 {
 	std::vector<Block*> blocks = map->getBlocks();
 	std::vector<unsigned int> randoms;
-	for(int i = 0; i < nbSeeds; ++i)
+	for(unsigned int i = 0; i < nbSeeds; ++i)
 	{
 		unsigned int random = blocks.size();
 		do

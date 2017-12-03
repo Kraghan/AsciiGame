@@ -4,11 +4,16 @@
 class ScoreBlock : Block
 {
 public:
+	// Number of score block in the game
+	static unsigned int numberOfBlock;
+	static unsigned int level;
+
 	// Default constructor
 	explicit ScoreBlock(void)
 		: Block(Vector2(), 'S', false, true)
 	{
 		setName("ScoreBlock");
+		ScoreBlock::numberOfBlock++;
 	}
 
 	// Constructor with initial position
@@ -16,6 +21,7 @@ public:
 		: Block(pos, 'S', false, true)
 	{
 		setName("ScoreBlock");
+		ScoreBlock::numberOfBlock++;
 	}
 
 	// Called when player collide with the block

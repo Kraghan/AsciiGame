@@ -10,6 +10,7 @@ private:
 	enum FocusButton
 	{
 		FB_PLAY,
+		FB_HOW,
 		FB_QUIT
 	};
 

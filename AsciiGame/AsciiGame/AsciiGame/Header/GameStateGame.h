@@ -25,6 +25,10 @@ private:
 	double timeElapsed;
 	vector<IA> ia;
 	Timer timer;
+	bool animationUpdatedDecreaseScore;
+	double timeElapsedBeforeNextLevel;
+	double timeBeforeNextLevel = 3;
+	unsigned int level;
 
 public:
 	virtual ~GameStateGame(void);
@@ -48,6 +52,8 @@ public:
 	void virtual onExit(void);
 
 	void setPlayerWeapon(Weapon* weapon);
+
+	void nextLevel();
 
 	static void loadingScreen(Window* window, GameStateGame* state);
 	static bool loadingScreenOn;

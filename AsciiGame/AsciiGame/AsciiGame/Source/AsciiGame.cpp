@@ -8,6 +8,7 @@
 #include "../Header/Timer.h"
 #include "../Header/GameStateMachine.h"
 
+#include "../Header/GameStateHow.h"
 #include "../Header/GameStateGame.h"
 #include "../Header/GameStateMenu.h"
 #include "../Header/GameStatePause.h"
@@ -33,6 +34,7 @@ int main()
 	// Initialization
 	stateMachine = GameStateMachine(&window);
 	stateMachine.registerGameState("menu", (GameState*) new GameStateMenu());
+	stateMachine.registerGameState("how", (GameState*) new GameStateHow());
 	stateMachine.registerGameState("preparation", (GameState*) new GameStateGamePreparation());
 	stateMachine.registerGameState("game", (GameState*) new GameStateGame());
 	stateMachine.registerGameState("pause", (GameState*) new GameStatePause());

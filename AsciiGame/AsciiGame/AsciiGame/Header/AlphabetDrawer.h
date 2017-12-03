@@ -53,4 +53,8 @@ public :
 	static void drawColumn(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 	static void drawPlus(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 	static void drawMinus(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void drawUp(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void drawDown(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void drawLeft(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
+	static void drawRight(Window* window, Vector2 pos, unsigned int fontSize = 1, char caractere = 'X', int color = 15);
 };

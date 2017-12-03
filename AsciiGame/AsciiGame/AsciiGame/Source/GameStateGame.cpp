@@ -11,35 +11,57 @@ bool GameStateGame::loadingScreenOn = false;
 // Used to initialize the state
 /*virtual*/ void GameStateGame::init(Window* wind)
 {
-	// Loading screen
-	std::thread loading(GameStateGame::loadingScreen, wind, this);
-	
 	// Init
+	level = 0;
 	timer = Timer();
 	window = wind;
 	player = Player(Vector2(10, Window::UI_HEIGHT + 10));
-	player.setWeapon(new BombThrower());
-	bullet.clear();
-	
+	//player.setWeapon(new BombThrower());
+
+	nextLevel();
+}
+
+void GameStateGame::nextLevel()
+{
+	// Loading screen
+	std::thread loading(GameStateGame::loadingScreen, window, this);
+	level++;
+	ScoreBlock::level = level;
 	gameMap.clear();
-	gameMap = GameMap(Window::SCREEN_WIDTH / 4,(Window::SCREEN_HEIGHT - Window::UI_HEIGHT) / 4);
+	gameMap = GameMap(Window::SCREEN_WIDTH / 4, (Window::SCREEN_HEIGHT - Window::UI_HEIGHT) / 4);
+	ScoreBlock::numberOfBlock = 0;
+	animationUpdatedDecreaseScore = true;
+	timeElapsedBeforeNextLevel = 0;
 
 	Initializer::initializeBorder(&gameMap);
 	Initializer::initializeCave(&gameMap);
-	Initializer::initializeCorruption(&gameMap,10);
+	Initializer::initializeCorruption(&gameMap, 10);
 	Initializer::initializeCollectible(&gameMap, 10, 10, 10);
 
 	gameMap.updateQuadTree();
 
+	player.bounds.position = Vector2(10, Window::UI_HEIGHT + 10);
+
 	GameStateGame::loadingScreenOn = false;
 	loading.join();
 	timer.start();
-
 }
 
 // Update the game logic
 /*virtual*/ void GameStateGame::update()
 {
+	if(ScoreBlock::numberOfBlock == 0)
+	{
+		if (timeElapsedBeforeNextLevel > timeBeforeNextLevel)
+		{
+			nextLevel();
+		}
+		if (timeElapsed < 0)
+		{
+			timeElapsedBeforeNextLevel += timer.getElapsedSeconds(true);
+		}
+		return;
+	}
 	timeElapsed += timer.getElapsedSeconds(true);
 	//gameMap.update();
 
@@ -77,7 +99,7 @@ bool GameStateGame::loadingScreenOn = false;
 					break;
 				}
 
-				if (nearBlock[i]->getIsCollectable())
+				if (nearBlock[i]->getIsCollectable() && nearBlock[i]->canCollect(&player))
 				{
 					nearBlock[i]->collect(&player);
 					gameMap.destroyBlock(nearBlock[i]->getPosition());
@@ -125,7 +147,7 @@ bool GameStateGame::loadingScreenOn = false;
 		else
 		{
 			it = bullet.erase(it);
-			gameMap.explode(bulletNextPos,player.getWeapon()->getRadius());
+			gameMap.explode(bulletNextPos,player.getWeapon()->getRadius() * 4);
 		}
 
 	}
@@ -153,6 +175,19 @@ bool GameStateGame::loadingScreenOn = false;
 
 /*virtual*/ void GameStateGame::display()
 {
+	// Exception pour animation
+	if(ScoreBlock::numberOfBlock == 0)
+	{
+		if (animationUpdatedDecreaseScore && timeElapsed >= 0)
+		{
+			timeElapsed--;
+			player.score -= level;
+			if (timeElapsed < 0)
+				timer.start();
+		}
+		animationUpdatedDecreaseScore = !animationUpdatedDecreaseScore;
+	}
+
 	window->clear();
 
 	gameMap.display(window);

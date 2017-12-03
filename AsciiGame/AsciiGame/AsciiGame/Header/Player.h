@@ -11,6 +11,8 @@
 class Player : public Entity
 {
 public:
+	unsigned int MAX_LIFE_POINT = 10;
+	unsigned int MAX_AMMO = 12;
 	unsigned int lifePoint;
 	unsigned int ammunition;
 	unsigned int score;

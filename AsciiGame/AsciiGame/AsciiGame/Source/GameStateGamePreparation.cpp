@@ -35,7 +35,7 @@
 	{
 		AudioHelper::getAudioHelper()->play("navigationMenu");
 		weaponIndex++;
-		if (weaponIndex >= weapons.size())
+		if ((unsigned int)weaponIndex >= weapons.size())
 			weaponIndex = 0;
 		weaponChanged = true;
 	}
@@ -110,7 +110,7 @@
 		else
 		{
 			it = bullet.erase(it);
-			gameMap.explode(bulletNextPos, player.getWeapon()->getRadius());
+			gameMap.explode(bulletNextPos, player.getWeapon()->getRadius() * 4);
 		}
 
 	}
@@ -247,7 +247,7 @@
 		if(weaponName.size() % 2 != 0)
 			weaponName = ' ' + weaponName;
 
-		for (int i = 0; i < (24 - weaponName.size()) / 2 + 3; ++i)
+		for (unsigned int i = 0; i < (24 - weaponName.size()) / 2 + 3; ++i)
 			weaponName = ' ' + weaponName;
 	}
 	AlphabetDrawer::drawWord(window, Vector2(Window::SCREEN_WIDTH / 2 + 40, Window::SCREEN_HEIGHT / 2 - 2), weaponName);
