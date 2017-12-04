@@ -168,6 +168,7 @@ void GameMap::explode(Vector2 position, unsigned int radius)
 
 		if (x * x + y * y <= (int) (radius * radius))
 		{
+			quadtree.remove(*it);
 			delete(*it);
 			it = blockMap.erase(it);
 		}

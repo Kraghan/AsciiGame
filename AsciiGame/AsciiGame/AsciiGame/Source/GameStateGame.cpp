@@ -15,7 +15,8 @@ bool GameStateGame::loadingScreenOn = false;
 	level = 0;
 	timer = Timer();
 	window = wind;
-	player = Player(Vector2(10, Window::UI_HEIGHT + 10));
+	player = Player();
+	//player = Player(Vector2(10, Window::UI_HEIGHT + 10));
 	//player.setWeapon(new BombThrower());
 
 	nextLevel();
@@ -37,10 +38,11 @@ void GameStateGame::nextLevel()
 	Initializer::initializeCave(&gameMap);
 	Initializer::initializeCorruption(&gameMap, 10);
 	Initializer::initializeCollectible(&gameMap, 10, 10, 10);
+	Initializer::initializePlayerPosition(&gameMap, &player);
 
 	gameMap.updateQuadTree();
 
-	player.bounds.position = Vector2(10, Window::UI_HEIGHT + 10);
+	//player.bounds.position = Vector2(10, Window::UI_HEIGHT + 10);
 
 	GameStateGame::loadingScreenOn = false;
 	loading.join();

@@ -209,3 +209,35 @@ std::vector<std::vector<bool>> Initializer::process()
 	}
 	
 }
+
+/*static*/ void Initializer::initializePlayerPosition(GameMap* map, Player* player)
+{
+	bool again = true;
+
+	while (again)
+	{
+		unsigned int randomX = (rand() % (Window::SCREEN_WIDTH - 8)) + 4;
+		unsigned int randomY = (rand() % (Window::SCREEN_HEIGHT - 8 - Window::UI_HEIGHT	- player->bounds.dimension.y)) + 4 + Window::UI_HEIGHT;
+
+		std::vector<Block*> blocks = map->getBlocks(AABB(Vector2(randomX, randomY), player->bounds.dimension));
+
+		again = false;
+
+		for (unsigned int i = 0; i < blocks.size(); ++i)
+		{
+			Vector2 blockPos = blocks[i]->getPosition() * 4;
+			Vector2 blockDim = blocks[i]->getDimension();
+			blockPos.y += Window::UI_HEIGHT;
+
+			if (!(randomX >= blockPos.x + blockDim.x)
+				&& !(randomX + player->bounds.dimension.x <= blockPos.x)
+				&& !(randomY >= blockPos.y + blockDim.y)
+				&& !(randomY + player->bounds.dimension.y <= blockPos.y))
+			{
+				again = true;
+				break;
+			}
+		}
+		player->bounds.position = Vector2(randomX, randomY);
+	}
+}

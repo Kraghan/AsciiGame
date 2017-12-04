@@ -38,4 +38,7 @@ public :
 
 	// Function used to place the corruption seed
 	static void initializeCorruption(GameMap* map, unsigned int nbSeeds);
+
+	// Function used to place the player on an empty area
+	static void initializePlayerPosition(GameMap* map, Player* player);
 };

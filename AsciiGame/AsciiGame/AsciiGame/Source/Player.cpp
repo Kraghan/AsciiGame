@@ -1,7 +1,7 @@
 #include "..\Header\Player.h"
 
 Player::Player()
-	: Entity()
+	: Player(Vector2(0,Window::UI_HEIGHT))
 {
 
 }
