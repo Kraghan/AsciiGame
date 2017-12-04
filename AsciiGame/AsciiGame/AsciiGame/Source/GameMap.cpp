@@ -86,7 +86,7 @@ std::vector<Block*> GameMap::getBlocks(AABB bounds)
 
 void GameMap::update()
 {
-	/*for (unsigned int i = 0; i < blockMap.size(); ++i)
+	for (unsigned int i = 0; i < blockMap.size(); ++i)
 	{
 		if (blockMap[i]->getName() == "CorruptionBlock")
 		{
@@ -143,9 +143,9 @@ void GameMap::update()
 			{
 				unsigned int random = rand() % adjacents.size();
 				setBlock(new CorruptionBlock(adjacents[random]->getPosition()));
-			}
+			}*/
 		}
-	}*/
+	}
 }
 
 void GameMap::display(Window* window)
