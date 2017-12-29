@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Fichiers sources\Tools">
+      <UniqueIdentifier>{928fd033-9256-47c3-af5e-41872f67142f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GameMap">
+      <UniqueIdentifier>{6bce050c-849d-4259-9212-6040485bf1bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Tools">
+      <UniqueIdentifier>{34a8ca45-d4ee-43eb-9a03-4e5d7b3d45e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameMap">
+      <UniqueIdentifier>{33864faf-4ac1-409c-9aeb-27664859bc63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Tools\Helper">
+      <UniqueIdentifier>{0b8845f6-e468-4475-93b8-e9b305f740e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Tools\Helper">
+      <UniqueIdentifier>{d101047e-2f67-4157-86ef-caf4b3261962}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine">
+      <UniqueIdentifier>{df231e2b-ca24-4894-bb45-28b1ff1aceb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Weapons">
+      <UniqueIdentifier>{38184292-b4c4-47b3-b6ac-3e92beac29eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\StateMachine">
+      <UniqueIdentifier>{1b1bc838-605d-40ad-aa7c-3ddd4a6a113c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine">
+      <UniqueIdentifier>{78d12332-80a7-4937-95f4-36f84f164d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\StateMachine">
+      <UniqueIdentifier>{1139977a-1ad6-4bdf-a885-4d057355df3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Weapons">
+      <UniqueIdentifier>{42ca9adc-0a06-41cb-829b-1a41aca858ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Engine\Physics">
+      <UniqueIdentifier>{1a23845b-76f7-42fe-a847-471a2cb7150b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Engine\Physics">
+      <UniqueIdentifier>{915bbe35-5fed-4a3a-a7a3-f5f6fb310efd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Entity">
+      <UniqueIdentifier>{afc7b188-8bb1-4a48-9ddd-e446ef4eacbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Entity">
+      <UniqueIdentifier>{fd19e721-1f9f-4998-b62b-bd1df01d65ad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Sources\AsciiGame.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameState.cpp">
+      <Filter>Fichiers sources\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameStateGame.cpp">
+      <Filter>Fichiers sources\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameStateGamePreparation.cpp">
+      <Filter>Fichiers sources\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameStateHow.cpp">
+      <Filter>Fichiers sources\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameStateMachine.cpp">
+      <Filter>Fichiers sources\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameStateMenu.cpp">
+      <Filter>Fichiers sources\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameStatePause.cpp">
+      <Filter>Fichiers sources\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Entity.cpp">
+      <Filter>Fichiers sources\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\AlphabetDrawer.cpp">
+      <Filter>Fichiers sources\Tools\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\AudioHelper.cpp">
+      <Filter>Fichiers sources\Tools\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Debug.cpp">
+      <Filter>Fichiers sources\Tools\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Timer.cpp">
+      <Filter>Fichiers sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Event.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Window.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\InputController.cpp">
+      <Filter>Fichiers sources\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameMap.cpp">
+      <Filter>Fichiers sources\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Block.cpp">
+      <Filter>Fichiers sources\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\UnbreakableBlock.cpp">
+      <Filter>Fichiers sources\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\NormalBlock.cpp">
+      <Filter>Fichiers sources\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\QuadTree.cpp">
+      <Filter>Fichiers sources\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Initializer.cpp">
+      <Filter>Fichiers sources\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Player.cpp">
+      <Filter>Fichiers sources\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Bullet.cpp">
+      <Filter>Fichiers sources\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\BombThrower.cpp">
+      <Filter>Fichiers sources\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Laser.cpp">
+      <Filter>Fichiers sources\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Shotgun.cpp">
+      <Filter>Fichiers sources\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Weapon.cpp">
+      <Filter>Fichiers sources\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\HeartBlock.cpp">
+      <Filter>Fichiers sources\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\ScoreBlock.cpp">
+      <Filter>Fichiers sources\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\AmmoBlock.cpp">
+      <Filter>Fichiers sources\GameMap</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Headers\GameState.h">
+      <Filter>Fichiers d%27en-tête\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\GameStateGame.h">
+      <Filter>Fichiers d%27en-tête\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\GameStateGamePreparation.h">
+      <Filter>Fichiers d%27en-tête\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\GameStateHow.h">
+      <Filter>Fichiers d%27en-tête\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\GameStateMachine.h">
+      <Filter>Fichiers d%27en-tête\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\GameStateMenu.h">
+      <Filter>Fichiers d%27en-tête\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\GameStatePause.h">
+      <Filter>Fichiers d%27en-tête\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Vector2.h">
+      <Filter>Fichiers d%27en-tête\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\AABB.h">
+      <Filter>Fichiers d%27en-tête\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Entity.h">
+      <Filter>Fichiers d%27en-tête\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\AlphabetDrawer.h">
+      <Filter>Fichiers d%27en-tête\Tools\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\AudioHelper.h">
+      <Filter>Fichiers d%27en-tête\Tools\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\ColorHelper.h">
+      <Filter>Fichiers d%27en-tête\Tools\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Debug.h">
+      <Filter>Fichiers d%27en-tête\Tools\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Timer.h">
+      <Filter>Fichiers d%27en-tête\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Event.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\InputController.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Window.h">
+      <Filter>Fichiers d%27en-tête\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\GameMap.h">
+      <Filter>Fichiers d%27en-tête\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Block.h">
+      <Filter>Fichiers d%27en-tête\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\UnbreakableBlock.h">
+      <Filter>Fichiers d%27en-tête\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\NormalBlock.h">
+      <Filter>Fichiers d%27en-tête\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\QuadTree.h">
+      <Filter>Fichiers d%27en-tête\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Initializer.h">
+      <Filter>Fichiers d%27en-tête\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Player.h">
+      <Filter>Fichiers d%27en-tête\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Bullet.h">
+      <Filter>Fichiers d%27en-tête\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\BombThrower.h">
+      <Filter>Fichiers d%27en-tête\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Laser.h">
+      <Filter>Fichiers d%27en-tête\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Shotgun.h">
+      <Filter>Fichiers d%27en-tête\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Weapon.h">
+      <Filter>Fichiers d%27en-tête\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\ScoreBlock.h">
+      <Filter>Fichiers d%27en-tête\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\AmmoBlock.h">
+      <Filter>Fichiers d%27en-tête\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\HeartBlock.h">
+      <Filter>Fichiers d%27en-tête\GameMap</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Inlines\Vector2.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Physics</Filter>
+    </None>
+    <None Include="Inlines\AABB.inl">
+      <Filter>Fichiers d%27en-tête\Engine\Physics</Filter>
+    </None>
+  </ItemGroup>
+</Project>
